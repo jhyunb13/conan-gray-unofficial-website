@@ -24,9 +24,12 @@
 }
 
 body {
+  overflow: hidden;
   margin: 0;
   background-color: black;
   color: #f7f7f7;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 17px;
 }
 
 .container {
@@ -42,13 +45,44 @@ body {
   border-bottom: 1px solid #f7f7f7;
 }
 
-nav {
-  border-right: 1px solid #f7f7f7;
+.info-banner span {
+  margin-right: 30px;
+  white-space: nowrap;
+  transform: translateX(100vw);
+  animation-name: scroll-to-left;
+  animation-duration: 20s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-.content {
+@keyframes scroll-to-left {
+  from {
+    transform: translateX(50vw);
+  }
+  to {
+    transform: translateX(-30vw);
+  }
+}
+
+nav {
+  border-right: 1px solid #f7f7f7;
+  font-size: 50px;
+}
+
+nav div {
+  cursor: pointer;
+}
+
+.main-page {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-page h4 {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
@@ -62,7 +96,19 @@ h4 {
   font-size: 50px;
 }
 
-p {
-  font-family: "Roboto Flex", sans-serif;
-  font-size: 20px;
+.tour-page {
+  overflow-y: scroll;
+}
+
+.tour {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tour span {
+  text-align: right;
 }

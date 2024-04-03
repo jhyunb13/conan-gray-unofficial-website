@@ -1,26 +1,19 @@
 import "../assets/App.css";
 import Nav from "./Nav";
 import Banner from "./Banner";
-import symbol from "../assets/TifglrGlV2cJ.mp4_snapshot_00.00.002.jpg";
+import ContentContainer from "./ContentContainer";
+import { useState } from "react";
 
 function App() {
+  const [clickTour, setClickTour] = useState(false);
+
   return (
     <div className="container">
       <Banner />
-      <Nav />
-      <Content />
+      <Nav setClickTour={setClickTour} />
+      <ContentContainer clickTour={clickTour} />
     </div>
   );
 }
-
-function Content() {
-  return (
-    <div className="content">
-      <img src={symbol} />
-    </div>
-  );
-}
-
-function Main() {}
 
 export default App;
