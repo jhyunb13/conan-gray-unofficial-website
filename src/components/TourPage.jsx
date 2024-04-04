@@ -15,8 +15,6 @@ function TourPage() {
     setSearch(capitalized);
   }
 
-  console.log(search);
-
   return (
     <div className="tour-page">
       <h2>Find Found Heaven tour near you</h2>

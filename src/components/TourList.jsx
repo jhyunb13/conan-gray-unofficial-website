@@ -12,12 +12,6 @@ function TourList({ search }) {
 
   data = filteredData;
 
-  console.log(
-    tourData.filter((data) => {
-      data.location.address.includes(search);
-    })
-  );
-
   return (
     <div>
       {data.map((data) => (

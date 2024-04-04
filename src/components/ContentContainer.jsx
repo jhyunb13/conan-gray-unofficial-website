@@ -1,13 +1,44 @@
+import propTypes from "prop-types";
 import MainPage from "./MainPage";
 import TourPage from "./TourPage";
-import propTypes from "prop-types";
+import StorePage from "./StorePage";
+import MusicPage from "./MusicPage";
+import MerchPage from "./MerchPage";
+import ListenPage from "./ListenPage";
 
-function ContentContainer({ clickTour }) {
-  return <>{clickTour ? <TourPage /> : <MainPage />}</>;
+function ContentContainer({
+  isMainOpen,
+  clickTour,
+  clickStore,
+  clickMusic,
+  clickMerch,
+  clickListen,
+  setClickMusic,
+  setClickStore,
+  setClickMerch,
+}) {
+  return (
+    <>
+      {isMainOpen && <MainPage />}
+      {clickTour && <TourPage />}
+      {clickStore && (
+        <StorePage
+          setClickMusic={setClickMusic}
+          setClickStore={setClickStore}
+          setClickMerch={setClickMerch}
+        />
+      )}
+      {clickMusic && <MusicPage />}
+      {clickMerch && <MerchPage />}
+      {clickListen && <ListenPage />}
+    </>
+  );
 }
 
 ContentContainer.propTypes = {
+  isMainOpen: propTypes.bool,
   clickTour: propTypes.bool,
+  clickStore: propTypes.bool,
 };
 
 export default ContentContainer;
