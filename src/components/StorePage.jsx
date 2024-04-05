@@ -1,25 +1,10 @@
 import Category from "./Category";
 import MusicList from "./MusicList";
 
-function StorePage({ setClickMusic, setClickStore, setClickMerch }) {
+function StorePage() {
   return (
-    <div className="store-page">
-      <div className="filters">
-        <Category
-          setClickOther={setClickMerch}
-          setClick={setClickMusic}
-          setClickStore={setClickStore}
-        >
-          Music
-        </Category>
-        <Category
-          setClick={setClickMerch}
-          setClickOther={setClickMusic}
-          setClickStore={setClickStore}
-        >
-          Merch
-        </Category>
-      </div>
+    <div className="store-page pt-35 pb-50">
+      <Category />
       <MusicList />
     </div>
   );

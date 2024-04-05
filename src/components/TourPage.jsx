@@ -16,7 +16,7 @@ function TourPage() {
   }
 
   return (
-    <div className="tour-page">
+    <div className="tour-page pt-35 pb-50">
       <h2>Find Found Heaven tour near you</h2>
       <input
         type="text"

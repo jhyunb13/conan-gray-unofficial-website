@@ -1,13 +1,30 @@
 import propTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-function Category({ children, setClick, setClickOther, setClickStore }) {
-  function handleOpenMusic() {
-    setClickStore(false);
-    setClickOther(false);
-    setClick((open) => !open);
-  }
-
-  return <span onClick={handleOpenMusic}>{children}</span>;
+function Category() {
+  return (
+    <div className="filters">
+      <div className="category">
+        <div>
+          <Link to={"/store/music"}>Music</Link>
+        </div>
+        <select>
+          <option>All</option>
+          <option>CD</option>
+          <option>Vinyl</option>
+          <option>Cassette</option>
+        </select>
+      </div>
+      <div className="category">
+        <div>
+          <Link to={"/store/merch"}>Merch</Link>
+        </div>
+        <select>
+          <option>All</option>
+        </select>
+      </div>
+    </div>
+  );
 }
 
 Category.propTypes = {

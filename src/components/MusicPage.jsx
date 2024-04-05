@@ -1,5 +1,6 @@
 import MusicList from "./MusicList";
 import Filter from "./Filter";
+import Category from "./Category";
 import { useState } from "react";
 
 function MusicPage() {
@@ -8,12 +9,8 @@ function MusicPage() {
   const [cassetteClick, setCassetteClick] = useState(false);
 
   return (
-    <div className="music-page">
-      <div className="filters">
-        <Filter setClick={setCdClick}>CD</Filter>
-        <Filter setClick={setVinylClick}>Vinyl</Filter>
-        <Filter setClick={setCassetteClick}>Cassette</Filter>
-      </div>
+    <div className="music-page pt-35 pb-50">
+      <Category />
       <MusicList
         cdClick={cdClick}
         vinylClick={vinylClick}

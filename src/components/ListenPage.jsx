@@ -2,12 +2,14 @@ import songsData from "../assets/songsData.json";
 
 function ListenPage() {
   return (
-    <div className="song-list scroll">
-      {songsData.map((itemData, i) => {
-        if (itemData.songTitle) {
-          return <Song itemData={itemData} key={i} />;
-        }
-      })}
+    <div className="pt-35 pb-50">
+      <div className="song-list">
+        {songsData.map((itemData, i) => {
+          if (itemData.songTitle) {
+            return <Song itemData={itemData} key={i} />;
+          }
+        })}
+      </div>
     </div>
   );
 }
