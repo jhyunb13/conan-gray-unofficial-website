@@ -1,5 +1,5 @@
 import musicData from "../assets/musicData.json";
-import MusicItem from "./MusicItem";
+import Item from "./Item";
 import propTypes from "prop-types";
 import { useState, useEffect } from "react";
 
@@ -53,7 +53,7 @@ function MusicList({
   return (
     <div className="music-list">
       {data.map((itemData) => (
-        <MusicItem itemData={itemData} key={itemData.title} />
+        <Item itemData={itemData} key={itemData.title} />
       ))}
     </div>
   );

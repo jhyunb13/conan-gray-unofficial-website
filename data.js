@@ -12,10 +12,12 @@ const tourData = [];
 const musicData = [];
 const merchData = [];
 const songData = [];
+const socialMediaData = [];
 const tourDataPath = "src/assets/tourData.json";
 const musicDataPath = "src/assets/musicData.json";
 const merchDataPath = "src/assets/merchData.json";
 const songsDataPath = "src/assets/songsData.json";
+const socialMediaPath = "src/assets/socialMediaData.json";
 
 async function scrapeTourData() {
   try {
@@ -24,21 +26,34 @@ async function scrapeTourData() {
     const $ = cheerio.load(html);
     const obj = $("script[type='application/ld+json']");
 
-    for (var i in obj) {
-      for (var j in obj[i].children) {
-        var data = obj[i].children[j].data;
-        if (data) {
-          const script = JSON.parse(data);
-          tourData.push(script);
-        }
-      }
-    }
+    // for (var i in obj) {
+    //   for (var j in obj[i].children) {
+    //     var data = obj[i].children[j].data;
+    //     if (data) {
+    //       const script = JSON.parse(data);
+    //       tourData.push(script);
+    //     }
+    //   }
+    // }
 
-    fs.writeFileSync(tourDataPath, JSON.stringify(tourData[1]));
+    // fs.writeFileSync(tourDataPath, JSON.stringify(tourData[1]));
+
+    $("#social-links > li").each((index, el) => {
+      const socialMedia = { platform: "", url: "" };
+
+      socialMedia.platform = $(el).find("a").text();
+      socialMedia.url = $(el).find("a").attr("href");
+
+      socialMediaData.push(socialMedia);
+    });
+
+    fs.writeFileSync(socialMediaPath, JSON.stringify(socialMediaData));
   } catch (err) {
     console.log(err);
   }
 }
+
+scrapeTourData();
 
 async function scrapeSongsData() {
   try {
@@ -70,7 +85,7 @@ async function scrapeSongsData() {
   }
 }
 
-scrapeSongsData();
+// scrapeSongsData();
 
 async function scrapemusicData() {
   try {

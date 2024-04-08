@@ -9,16 +9,6 @@ function Nav() {
   const [isStoreOpen, setIsStoreOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
-  // const style = {
-  //   color: "#f5b804",
-  //   marginRight: "5px",
-  //   animationName: "rotation",
-  //   animationDuration: "4s",
-  //   animationFillMode: "forwards",
-  //   animationTimingFunction: "ease-in-out",
-  //   animationIterationCount: "infinite",
-  // };
-
   function handleHome() {
     setIsHomeOpen((open) => !open);
     setIsListenOpen(false);
@@ -80,7 +70,7 @@ function Nav() {
         </li>
         <li onClick={handleVideos}>
           {isVideosOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/video"}>videos</Link>
+          <Link to={"/videos"}>videos</Link>
         </li>
         <li onClick={handleTour}>
           {isTourOpen && <div className="nav-clicked">✪</div>}

@@ -11,7 +11,7 @@ import MainPage from "./components/MainPage.jsx";
 import MerchPage from "./components/MerchPage.jsx";
 import MusicPage from "./components/MusicPage.jsx";
 import InfoPage from "./components/InfoPage";
-import VideoPage from "./components/VideoPage";
+import VideosPage from "./components/VideosPage";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <MainPage /> },
       { path: "/listen", element: <ListenPage /> },
-      { path: "/video", element: <VideoPage /> },
+      { path: "/videos", element: <VideosPage /> },
       { path: "/tour", element: <TourPage /> },
       { path: "/store", element: <StorePage /> },
       { path: "/store/merch", element: <MerchPage /> },

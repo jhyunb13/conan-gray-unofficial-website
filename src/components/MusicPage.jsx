@@ -1,5 +1,4 @@
 import MusicList from "./MusicList";
-import Filter from "./Filter";
 import Category from "./Category";
 import { useState } from "react";
 

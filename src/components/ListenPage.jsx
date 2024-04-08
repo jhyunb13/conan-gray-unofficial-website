@@ -19,7 +19,7 @@ function Song({ itemData }) {
     <div className="song">
       <img src={itemData.cover} alt={itemData.songTitle} />
       <h3>{itemData.songTitle}</h3>
-      <a href={itemData.url} target="_blank">
+      <a href={itemData.url} target="_blank" rel="noopener">
         <button>Listen Now</button>
       </a>
     </div>

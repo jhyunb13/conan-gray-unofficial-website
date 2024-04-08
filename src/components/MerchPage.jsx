@@ -1,6 +1,6 @@
 import merchData from "../assets/merchData.json";
-import MusicItem from "./MusicItem";
 import Category from "./Category";
+import Item from "./Item";
 
 function MerchPage() {
   return (
@@ -8,7 +8,7 @@ function MerchPage() {
       <Category />
       <div className="merch-list">
         {merchData.map((itemData) => (
-          <MusicItem itemData={itemData} key={itemData.title} />
+          <Item itemData={itemData} key={itemData.title} />
         ))}
       </div>
     </div>

@@ -1,8 +1,8 @@
 import propTypes from "prop-types";
 
-function MusicItem({ itemData }) {
+function Item({ itemData }) {
   return (
-    <div className="music-item">
+    <div className="item">
       <img src={`https:${itemData.img}`} alt={itemData.title} />
       <div>{itemData.title}</div>
       <div>{itemData.price}</div>
@@ -11,8 +11,8 @@ function MusicItem({ itemData }) {
   );
 }
 
-MusicItem.propTypes = {
+Item.propTypes = {
   itemData: propTypes.object,
 };
 
-export default MusicItem;
+export default Item;
