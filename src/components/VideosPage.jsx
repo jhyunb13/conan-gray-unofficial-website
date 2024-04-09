@@ -81,8 +81,8 @@ function VideosPage() {
 
     function APIReady(id, i) {
       player2 = new YT.Player(`video-player-s-${i + 1}`, {
-        height: "390",
-        width: "640",
+        height: "190",
+        width: "400",
         videoId: id,
         playerVars: {
           playsinline: 1,
@@ -99,26 +99,41 @@ function VideosPage() {
   return (
     <div className="pt-35 pb-50">
       <div className="video-list">
-        <h1>coming up soon</h1>
-        {foundHeavenPlaylist.length
-          ? foundHeavenPlaylist
-              .filter((el) => !el.snippet.title.includes("Lyric"))
-              .map((el, i) => {
-                return (
-                  <div key={el.snippet.title}>
-                    <div id={`video-player-fh-${i + 1}`}></div>
-                    <div>
-                      {el.snippet.title
-                        .split(" ")
-                        .slice(3)
-                        .slice(0, -3)
-                        .join(" ")}
+        <div className="eras">
+          <span>Found Heaven</span>
+          <span>/</span>
+          <span>Superache</span>
+          <span>/</span>
+          <span>Kid Krow</span>
+        </div>
+        <div className="found-heaven-era">
+          {foundHeavenPlaylist.length
+            ? foundHeavenPlaylist
+                .filter((el) => !el.snippet.title.includes("Lyric"))
+                .map((el, i) => {
+                  return (
+                    <div className="video-container" key={el.snippet.title}>
+                      <div
+                        className="video-player"
+                        id={`video-player-fh-${i + 1}`}
+                      ></div>
+                      <div>
+                        {el.snippet.title
+                          .split(" ")
+                          .slice(3)
+                          .slice(0, -3)
+                          .join(" ")}
+                      </div>
+                      <div>
+                        {new Date(el.snippet.publishedAt).getFullYear()}
+                      </div>
                     </div>
-                    <div>{new Date(el.snippet.publishedAt).getFullYear()}</div>
-                  </div>
-                );
-              })
-          : null}
+                  );
+                })
+            : null}
+        </div>
+      </div>
+      <div className="superache-era mt-20">
         {superachePlaylist.length
           ? superachePlaylist
               .filter(
@@ -128,8 +143,11 @@ function VideosPage() {
               )
               .map((el, i) => {
                 return (
-                  <div key={el.snippet.title}>
-                    <div id={`video-player-s-${i + 1}`}></div>
+                  <div className="video-container" key={el.snippet.title}>
+                    <div
+                      className="video-player"
+                      id={`video-player-s-${i + 1}`}
+                    ></div>
                     <div>
                       {el.snippet.title.includes("Official Video")
                         ? el.snippet.title

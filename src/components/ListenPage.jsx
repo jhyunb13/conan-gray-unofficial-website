@@ -1,4 +1,5 @@
 import songsData from "../assets/songsData.json";
+import Button from "./Button";
 
 function ListenPage() {
   return (
@@ -19,9 +20,7 @@ function Song({ itemData }) {
     <div className="song">
       <img src={itemData.cover} alt={itemData.songTitle} />
       <h3>{itemData.songTitle}</h3>
-      <a href={itemData.url} target="_blank" rel="noopener">
-        <button>Listen Now</button>
-      </a>
+      <Button url={itemData.url}>Listen Now</Button>
     </div>
   );
 }

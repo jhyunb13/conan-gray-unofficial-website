@@ -52,9 +52,9 @@ function MusicList({
 
   return (
     <div className="music-list">
-      {data.map((itemData) => (
-        <Item itemData={itemData} key={itemData.title} />
-      ))}
+      {data.map((itemData) => {
+        return <Item itemData={itemData} key={itemData.title} />;
+      })}
     </div>
   );
 }

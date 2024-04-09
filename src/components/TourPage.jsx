@@ -17,15 +17,17 @@ function TourPage() {
 
   return (
     <div className="tour-page pt-35 pb-50">
-      <h2>Find Found Heaven tour near you</h2>
-      <input
-        type="text"
-        placeholder="enter a city or country name"
-        style={style}
-        value={search}
-        onChange={handleSearch}
-      />
-      <button>Search</button>
+      <div className="center-align">
+        <h2>Find Found Heaven tour near you</h2>
+        <input
+          className="input-field"
+          type="text"
+          placeholder="✪ enter a city or country name"
+          style={style}
+          value={search}
+          onChange={handleSearch}
+        />
+      </div>
       <TourList search={search} />
     </div>
   );

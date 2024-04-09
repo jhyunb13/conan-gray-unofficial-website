@@ -26,6 +26,7 @@ async function scrapeTourData() {
     const $ = cheerio.load(html);
     const obj = $("script[type='application/ld+json']");
 
+    console.log($(".seated-event-link").attr("href"));
     // for (var i in obj) {
     //   for (var j in obj[i].children) {
     //     var data = obj[i].children[j].data;
@@ -38,16 +39,16 @@ async function scrapeTourData() {
 
     // fs.writeFileSync(tourDataPath, JSON.stringify(tourData[1]));
 
-    $("#social-links > li").each((index, el) => {
-      const socialMedia = { platform: "", url: "" };
+    // $("#social-links > li").each((index, el) => {
+    //   const socialMedia = { platform: "", url: "" };
 
-      socialMedia.platform = $(el).find("a").text();
-      socialMedia.url = $(el).find("a").attr("href");
+    //   socialMedia.platform = $(el).find("a").text();
+    //   socialMedia.url = $(el).find("a").attr("href");
 
-      socialMediaData.push(socialMedia);
-    });
+    //   socialMediaData.push(socialMedia);
+    // });
 
-    fs.writeFileSync(socialMediaPath, JSON.stringify(socialMediaData));
+    // fs.writeFileSync(socialMediaPath, JSON.stringify(socialMediaData));
   } catch (err) {
     console.log(err);
   }
@@ -104,7 +105,7 @@ async function scrapemusicData() {
       };
 
       item.title = $(el).find(".product-title").children("a").text();
-      item.img = $(el).find("img").attr("src");
+      item.img = $(el).find("img").attr("srcset");
       item.price = $(el).find(".product-price").text();
       item.status = $(el).find(".product-status").children(".signed").text();
       item.availability = $(el).find(".product-availability").text();
@@ -138,7 +139,7 @@ async function scrapeMerchData() {
       };
 
       item.title = $(el).find(".product-title").children("a").text();
-      item.img = $(el).find("img").attr("src");
+      item.img = $(el).find("img").attr("srcset");
       item.price = $(el).find(".product-price").text();
       item.status = $(el).find(".product-status").children(".signed").text();
       item.availability = $(el).find(".product-availability").text();

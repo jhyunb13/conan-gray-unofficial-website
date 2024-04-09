@@ -1,12 +1,28 @@
 import propTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function Item({ itemData }) {
+  const urlParam = itemData.title
+    .toLowerCase()
+    .replace("(", "")
+    .replace(")", "")
+    .split(" ")
+    .join("-");
+
   return (
     <div className="item">
-      <img src={`https:${itemData.img}`} alt={itemData.title} />
-      <div>{itemData.title}</div>
-      <div>{itemData.price}</div>
-      <div>{itemData.availability}</div>
+      <Link to={`/store/products/${urlParam}`} className="no-link-style">
+        <div>{itemData.title}</div>
+        <img src={`https:${itemData.img}`} alt={itemData.title} />
+        <div className="item-price">
+          <div>{itemData.price}</div>
+          {itemData.availability && (
+            <div className="item-availability">
+              {itemData.availability.toUpperCase()}
+            </div>
+          )}
+        </div>
+      </Link>
     </div>
   );
 }

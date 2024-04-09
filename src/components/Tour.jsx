@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import Button from "./Button";
 
 function Tour({ tourData }) {
   const dateString = tourData.startDate;
@@ -18,6 +19,7 @@ function Tour({ tourData }) {
         <div>{tourData.location.name}</div>
       </div>
       <span>{tourData.location.address}</span>
+      <Button url="https://www.conangray.com/">Ticket</Button>
     </div>
   );
 }
