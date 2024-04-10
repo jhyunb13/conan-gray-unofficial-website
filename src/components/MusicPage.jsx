@@ -7,9 +7,11 @@ function MusicPage() {
   const [vinylClick, setVinylClick] = useState(false);
   const [cassetteClick, setCassetteClick] = useState(false);
 
+  const category = ["All", "CD", "Vinyl", "Cassette"];
+
   return (
     <div className="music-page pt-35 pb-50">
-      <Category />
+      <Category options={category} />
       <MusicList
         cdClick={cdClick}
         vinylClick={vinylClick}

@@ -62,27 +62,27 @@ function Nav() {
     <nav>
       <ul>
         <li onClick={handleHome}>
-          <Link to={"/"}>home</Link>
+          <Link to={"/"}>{`home`.toUpperCase()}</Link>
         </li>
         <li onClick={handleListen}>
           {isListenOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/listen"}>listen</Link>
+          <Link to={"/listen"}>{`listen`.toUpperCase()}</Link>
         </li>
         <li onClick={handleVideos}>
           {isVideosOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/videos"}>videos</Link>
+          <Link to={"/videos"}>{`videos`.toUpperCase()}</Link>
         </li>
         <li onClick={handleTour}>
           {isTourOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/tour"}>tour</Link>
+          <Link to={"/tour"}>{`tour`.toUpperCase()}</Link>
         </li>
         <li onClick={handleStore}>
           {isStoreOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/store"}>store</Link>
+          <Link to={"/store"}>{`store`.toUpperCase()}</Link>
         </li>
         <li onClick={handleInfo}>
           {isInfoOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/info"}>info</Link>
+          <Link to={"/info"}>{`info`.toUpperCase()}</Link>
         </li>
       </ul>
     </nav>

@@ -1,5 +1,6 @@
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Badge from "./Badge";
 
 function Item({ itemData }) {
   const urlParam = itemData.title
@@ -12,15 +13,17 @@ function Item({ itemData }) {
   return (
     <div className="item">
       <Link to={`/store/products/${urlParam}`} className="no-link-style">
-        <div>{itemData.title}</div>
         <img src={`https:${itemData.img}`} alt={itemData.title} />
-        <div className="item-price">
+        <div className="item-detail center-align">
+          <div>
+            {itemData.status && <Badge>{itemData.status.toUpperCase()}</Badge>}
+
+            {itemData.availability && (
+              <Badge>{itemData.availability.toUpperCase()}</Badge>
+            )}
+          </div>
+          <div>{itemData.title}</div>
           <div>{itemData.price}</div>
-          {itemData.availability && (
-            <div className="item-availability">
-              {itemData.availability.toUpperCase()}
-            </div>
-          )}
         </div>
       </Link>
     </div>

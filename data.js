@@ -154,6 +154,6 @@ async function scrapeMerchData() {
   }
 }
 
-// scrapeMerchData();
+scrapeMerchData();
 
 app.listen(PORT, () => console.log(`server is running on PORT ${PORT}`));

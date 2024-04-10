@@ -1,26 +1,20 @@
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
 
-function Category() {
+function Category({ options }) {
   return (
-    <div className="filters">
+    <div className="filters grid-2-col">
       <div className="category">
-        <div>
-          <Link to={"/store/music"}>Music</Link>
-        </div>
+        <div>Category</div>
         <select>
-          <option>All</option>
-          <option>CD</option>
-          <option>Vinyl</option>
-          <option>Cassette</option>
+          {options.map((option) => (
+            <option key={option}>{option}</option>
+          ))}
         </select>
       </div>
       <div className="category">
-        <div>
-          <Link to={"/store/merch"}>Merch</Link>
-        </div>
+        <div>Sort By</div>
         <select>
-          <option>All</option>
+          <option>price, low to high</option>
         </select>
       </div>
     </div>

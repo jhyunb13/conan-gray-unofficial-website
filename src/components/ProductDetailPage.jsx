@@ -53,11 +53,13 @@ function ProductDetailPage() {
           <div className="product-detail">
             <h2>{correspondingData.title}</h2>
             <div>{correspondingData.price}</div>
-            {correspondingData.title.includes("TEE") && (
-              <>
-                <SizeSelector />
-              </>
-            )}
+            {correspondingData.title.includes("TEE") ||
+              correspondingData.title.includes("SWEATER") ||
+              (correspondingData.title.includes("HOODIE") && (
+                <>
+                  <SizeSelector />
+                </>
+              ))}
             <QuantitySelector />
             <div className="btn-add-item mt-20">
               {correspondingData.availability ? (

@@ -51,7 +51,7 @@ function MusicList({
   }, [cdClick, vinylClick, cassetteClick]);
 
   return (
-    <div className="music-list">
+    <div className="music-list grid-3-col grid-1-col-sm grid-2-col-md">
       {data.map((itemData) => {
         return <Item itemData={itemData} key={itemData.title} />;
       })}

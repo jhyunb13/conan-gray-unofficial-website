@@ -98,13 +98,13 @@ function VideosPage() {
 
   return (
     <div className="pt-35 pb-50">
-      <div className="video-list">
+      <div className="video-list mt-30">
         <div className="eras">
-          <span>Found Heaven</span>
-          <span>/</span>
-          <span>Superache</span>
-          <span>/</span>
-          <span>Kid Krow</span>
+          <h1>Found Heaven</h1>
+          <h1>/</h1>
+          <h1>Superache</h1>
+          <h1>/</h1>
+          <h1> Kid Krow</h1>
         </div>
         <div className="found-heaven-era">
           {foundHeavenPlaylist.length
@@ -133,7 +133,7 @@ function VideosPage() {
             : null}
         </div>
       </div>
-      <div className="superache-era mt-20">
+      <div className="superache-era grid-3-col grid-1-col-sm mt-20">
         {superachePlaylist.length
           ? superachePlaylist
               .filter(

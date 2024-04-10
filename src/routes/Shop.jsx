@@ -15,16 +15,16 @@ function Shop() {
             <Link to={"/"}>conangray.com</Link>
           </li>
           <li>
-            <Link to={"/store"}>Store</Link>
+            <Link to={"/store"}>{`Store`.toUpperCase()}</Link>
           </li>
           <li>
-            <Link to={"/store/music"}>Music</Link>
+            <Link to={"/store/music"}>{`Music`.toUpperCase()}</Link>
           </li>
           <li>
-            <Link to={"/store/merch"}>Merch</Link>
+            <Link to={"/store/merch"}>{`Merch`.toUpperCase()}</Link>
           </li>
           <li>
-            <Link to={"/store/shopping-cart"}>Cart{cartNum}</Link>
+            <Link to={"/store/shopping-cart"}>{`Cart`.toUpperCase()}</Link>
           </li>
         </ul>
       </nav>

@@ -5,7 +5,7 @@ function MainPage() {
   return (
     <div className="main-page pt-35">
       <img src={symbol} />
-      <h4>conan gray found heaven</h4>
+      <h1>conan gray ✪ found heaven</h1>
       <p>04/05/2024</p>
       <DayCounter />
     </div>

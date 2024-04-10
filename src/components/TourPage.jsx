@@ -3,9 +3,6 @@ import TourList from "./TourList";
 
 function TourPage() {
   const [search, setSearch] = useState("");
-  const style = {
-    width: "200px",
-  };
 
   function handleSearch(e) {
     const original = e.target.value;
@@ -17,13 +14,12 @@ function TourPage() {
 
   return (
     <div className="tour-page pt-35 pb-50">
-      <div className="center-align">
-        <h2>Find Found Heaven tour near you</h2>
+      <div className="center-align mt-30">
+        <h1 className="mb-10">Find Found Heaven tour near you</h1>
         <input
           className="input-field"
           type="text"
           placeholder="✪ enter a city or country name"
-          style={style}
           value={search}
           onChange={handleSearch}
         />
