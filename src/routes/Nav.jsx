@@ -62,7 +62,9 @@ function Nav() {
     <nav>
       <ul>
         <li onClick={handleHome}>
-          <Link to={"/"}>{`home`.toUpperCase()}</Link>
+          <Link to={"/"} preventScrollReset={false}>
+            {`home`.toUpperCase()}
+          </Link>
         </li>
         <li onClick={handleListen}>
           {isListenOpen && <div className="nav-clicked">✪</div>}

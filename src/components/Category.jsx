@@ -1,17 +1,23 @@
 import propTypes from "prop-types";
 
-function Category({ options }) {
+function Category({ options, setFilterOptions }) {
+  function handleSettingFilter(e) {
+    setFilterOptions(e.target.value);
+  }
+
   return (
-    <div className="filters grid-2-col">
-      <div className="category">
+    <div className="search-options grid-2-col">
+      <div className="filtering">
         <div>Category</div>
-        <select>
+        <select onChange={handleSettingFilter}>
           {options.map((option) => (
-            <option key={option}>{option}</option>
+            <option key={option} value={option}>
+              {option}
+            </option>
           ))}
         </select>
       </div>
-      <div className="category">
+      <div className="sorting">
         <div>Sort By</div>
         <select>
           <option>price, low to high</option>

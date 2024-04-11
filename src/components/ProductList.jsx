@@ -1,9 +1,10 @@
-import musicData from "../assets/musicData.json";
+// import musicData from "../assets/musicData.json";
 import Item from "./Item";
 import propTypes from "prop-types";
 import { useState, useEffect } from "react";
 
-function MusicList({
+function ProductList({
+  content,
   cdClick,
   vinylClick,
   cassetteClick,
@@ -11,12 +12,12 @@ function MusicList({
   setVinylClick,
   setCassetteClick,
 }) {
-  const [data, setData] = useState(musicData);
+  const [data, setData] = useState(content);
 
   useEffect(() => {
     if (cdClick) {
       setData(
-        musicData.filter((music) => {
+        content.filter((music) => {
           return music.title.includes("CD");
         })
       );
@@ -27,7 +28,7 @@ function MusicList({
 
     if (vinylClick) {
       setData(
-        musicData.filter((music) => {
+        content.filter((music) => {
           return music.title.includes("LP");
         })
       );
@@ -38,7 +39,7 @@ function MusicList({
 
     if (cassetteClick) {
       setData(
-        musicData.filter((music) => {
+        content.filter((music) => {
           return music.title.includes("Cassette");
         })
       );
@@ -47,20 +48,20 @@ function MusicList({
       setVinylClick(false);
     }
 
-    if (!cdClick && !vinylClick && !cassetteClick) setData(musicData);
+    if (!cdClick && !vinylClick && !cassetteClick) setData(content);
   }, [cdClick, vinylClick, cassetteClick]);
 
   return (
-    <div className="music-list grid-3-col grid-1-col-sm grid-2-col-md">
-      {data.map((itemData) => {
-        return <Item itemData={itemData} key={itemData.title} />;
+    <div className="music-list grid-3-col grid-1-col-sm grid-2-col-md grid-4-row grid-6-row-md grid-12-row-sm">
+      {content.map((itemData, i) => {
+        return <Item itemData={itemData} key={`${itemData.title}-${i}`} />;
       })}
     </div>
   );
 }
 
-MusicList.propTypes = {
-  musicData: propTypes.array,
+ProductList.propTypes = {
+  content: propTypes.array,
 };
 
-export default MusicList;
+export default ProductList;
