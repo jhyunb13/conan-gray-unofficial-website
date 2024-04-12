@@ -42,6 +42,14 @@
   grid-template-rows: repeat(4, 33.3vw);
 }
 
+.grid-2-row {
+  grid-template-rows: repeat(2, 33.3vw);
+}
+
+.grid-3-row {
+  grid-template-rows: repeat(3, 33.3vw);
+}
+
 .mt-20 {
   margin-top: 20px;
 }
@@ -351,8 +359,26 @@ nav a:visited {
   border-right: var(--border-default);
 }
 
+.item-img-container {
+  width: 70%;
+  height: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.item-img-container img {
+  width: 100%;
+  height: 100%;
+  transition: scale 0.5s;
+}
+
+.item:hover img {
+  scale: 1.1;
+}
+
 .item {
-  padding: 10px 10px 20px 10px;
+  display: flex;
+  align-items: center;
   border-bottom: var(--border-default);
   border-right: var(--border-default);
   cursor: pointer;
@@ -366,17 +392,6 @@ nav a:visited {
   color: var(--color-text);
 }
 
-.item img {
-  padding-left: 10%;
-  padding-right: 10%;
-  width: 70%;
-  transition: width 0.5s;
-}
-
-.item:hover img {
-  width: 75%;
-}
-
 .item-detail div {
   text-align: center;
   margin-bottom: 7px;
@@ -384,24 +399,27 @@ nav a:visited {
 
 .product-detail-page {
   display: flex;
+  gap: 20px;
+  padding-top: 70px;
+}
+
+.product-detail-page > div:first-child {
+  display: flex;
+  justify-content: center;
 }
 
 .product-detail-page img {
-  width: 50%;
+  width: 60%;
 }
 
-.product-detail-page div:first-child {
-  width: 50vw;
-}
-
-.product-detail-page div:nth-child(2) {
+.product-detail {
   margin-top: auto;
   margin-bottom: auto;
 }
 
-.size-selection {
+/* .size-selection {
   display: flex;
-}
+} */
 
 .pagination {
   display: flex;
@@ -455,6 +473,14 @@ ul .social-link a {
     grid-template-columns: 1fr 1fr;
   }
 
+  .grid-2-row-md {
+    grid-template-rows: repeat(2, 50vw);
+  }
+
+  .grid-4-row-md {
+    grid-template-rows: repeat(4, 50vw);
+  }
+
   .grid-6-row-md {
     grid-template-rows: repeat(6, 50vw);
   }
@@ -471,22 +497,15 @@ ul .social-link a {
   .item:nth-child(2n) {
     border-right: none;
   }
+
+  .product-detail-page {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media (max-width: 600px) {
-  .grid-1-col-sm {
-    grid-template-columns: 1fr;
-  }
-
-  .grid-12-row-sm {
-    grid-template-rows: repeat(12, 100vw);
-  }
-
   .tour {
     font-size: var(--text-sm);
-  }
-
-  .item {
-    border-right: none;
   }
 }

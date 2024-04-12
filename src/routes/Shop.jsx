@@ -35,7 +35,8 @@ export async function musicDataLoader() {
 
 function Shop() {
   console.log("Built by Bae");
-  const [cartNum, setCartNum] = useState();
+  const [count, setCount] = useState(0);
+  const [itemsInCart, setItemsInCart] = useState([]);
 
   const newParam = new URLSearchParams([["page", "1"]]).toString();
 
@@ -56,11 +57,18 @@ function Shop() {
             <Link to={`/store/merch?${newParam}`}>{`Merch`.toUpperCase()}</Link>
           </li>
           <li>
-            <Link to={"/store/shopping-cart"}>{`Cart`.toUpperCase()}</Link>
+            <Link to={"/store/shopping-cart"}>
+              {`Cart(${count})`.toUpperCase()}
+            </Link>
           </li>
         </ul>
       </nav>
-      <Outlet />
+      <Outlet
+        context={{
+          count: [count, setCount],
+          cartItem: [itemsInCart, setItemsInCart],
+        }}
+      />
       <Banner />
     </>
   );

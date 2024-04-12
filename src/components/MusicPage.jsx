@@ -4,22 +4,28 @@ import Pagination from "./Pagination";
 import { useState, useEffect, useMemo } from "react";
 import { useLocation, useLoaderData } from "react-router-dom";
 
-function StorePage() {
+function MusicPage() {
   const data = useLoaderData();
-  const [filterOption, setFilterOptions] = useState("All");
-  const [content, setContent] = useState(data[1]);
+  const location = useLocation();
   const category = data[0];
+  const productData = data[1];
+
+  const [filterOption, setFilterOptions] = useState("All");
+  const [filteredData, setFilteredData] = useState(productData);
+  const [content, setContent] = useState(
+    productData.slice(12 * (1 - 1), 12 * 1)
+  );
 
   const contentLimitPerPage = 12;
-  const totalPage = Math.ceil(data[1].length / contentLimitPerPage);
+  const totalPage = Math.ceil(filteredData.length / contentLimitPerPage);
   const pageNumbers = useMemo(() => {
     const arr = [];
     for (let i = 0; i < totalPage; i++) arr.push(i + 1);
     return arr;
   }, [totalPage]);
 
-  const location = useLocation();
   const pathName = location.pathname;
+
   let currentParam = parseInt(new URLSearchParams(location.search).get("page"));
 
   function handleScrollToTop() {
@@ -30,15 +36,15 @@ function StorePage() {
     pageNumbers.map(
       (num) =>
         currentParam === num &&
-        setContent(data[1].slice(12 * (num - 1), 12 * num))
+        setContent(filteredData.slice(12 * (num - 1), 12 * num))
     );
-  }, [currentParam, pageNumbers, data]);
+  }, [currentParam, pageNumbers, productData, filteredData]);
 
   useEffect(() => {
-    if (filterOption === "All") setContent(data[1]);
+    if (filterOption === "All") setFilteredData(productData);
     else if (filterOption === "Merch")
-      setContent(
-        data[1].filter((data) => {
+      setFilteredData(
+        productData.filter((data) => {
           return (
             !data.title.includes(category[1]) &&
             !data.title.includes(category[2]) &&
@@ -47,24 +53,24 @@ function StorePage() {
         })
       );
     else if (filterOption === "CD")
-      setContent(
-        data[1].filter((data) => {
+      setFilteredData(
+        productData.filter((data) => {
           return data.title.includes("CD") || data.title.includes("Box");
         })
       );
     else if (filterOption === "LP")
-      setContent(
-        data[1].filter((data) => {
+      setFilteredData(
+        productData.filter((data) => {
           return data.title.includes("LP");
         })
       );
     else if (filterOption === "Cassette")
-      setContent(
-        data[1].filter((data) => {
+      setFilteredData(
+        productData.filter((data) => {
           return data.title.includes("Cassette");
         })
       );
-  }, [filterOption, data, category]);
+  }, [filterOption, productData, category]);
 
   return (
     <div className="store-page pt-35 pb-50">
@@ -72,7 +78,6 @@ function StorePage() {
       <ProductList content={content} />
       <Pagination
         pageNumbers={pageNumbers}
-        pathName={pathName}
         currentParam={currentParam}
         scrollToTop={handleScrollToTop}
       />
@@ -80,4 +85,4 @@ function StorePage() {
   );
 }
 
-export default StorePage;
+export default MusicPage;

@@ -1,8 +1,4 @@
-import { useState } from "react";
-
-function QuantitySelector() {
-  const [quantity, setQuantity] = useState(1);
-
+function QuantitySelector({ quantity, setQuantity }) {
   function handleSubtraction() {
     if (quantity === 0) return;
     setQuantity((num) => (num -= 1));

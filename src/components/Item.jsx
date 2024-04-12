@@ -13,7 +13,9 @@ function Item({ itemData }) {
   return (
     <div className="item">
       <Link to={`/store/products/${urlParam}`} className="no-link-style">
-        <img src={`https:${itemData.img}`} alt={itemData.title} />
+        <div className="item-img-container">
+          <img src={`https:${itemData.img}`} alt={itemData.title} />
+        </div>
         <div className="item-detail center-align">
           <div>
             {itemData.status && <Badge>{itemData.status.toUpperCase()}</Badge>}
