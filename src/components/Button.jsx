@@ -6,11 +6,15 @@ function Button({
   setItemsInCart,
   quantity,
   correspondingData,
+  sizeSelected,
 }) {
   function handleCounting() {
     setCount((num) => num + quantity);
     setItemsInCart((item) => {
-      return [...item, { product: correspondingData, quantity: quantity }];
+      return [
+        ...item,
+        { product: correspondingData, size: sizeSelected, quantity },
+      ];
     });
   }
 

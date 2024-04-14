@@ -1,11 +1,11 @@
-import { useState } from "react";
-
-function SizeSelector() {
-  const [sizeSelected, setSizeSelected] = useState("S");
+function SizeSelector({ setSizeSelected, correspondingData }) {
   const sizeOptions = ["S", "M", "L", "XL", "2XL"];
 
   function handleSizeSelection(e) {
-    setSizeSelected(e.target.value);
+    correspondingData.title.includes("TEE") ||
+      correspondingData.title.includes("SWEATER") ||
+      (correspondingData.title.includes("HOODIE") &&
+        setSizeSelected(e.target.value));
   }
 
   return (

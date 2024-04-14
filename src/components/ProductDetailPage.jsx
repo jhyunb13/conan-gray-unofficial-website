@@ -14,6 +14,7 @@ function ProductDetailPage() {
   } = useOutletContext();
   const [correspondingData, setCorrespondingData] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [sizeSelected, setSizeSelected] = useState("");
 
   useEffect(() => {
     function getData() {
@@ -64,7 +65,10 @@ function ProductDetailPage() {
               correspondingData.title.includes("SWEATER") ||
               (correspondingData.title.includes("HOODIE") && (
                 <>
-                  <SizeSelector />
+                  <SizeSelector
+                    setSizeSelected={setSizeSelected}
+                    correspondingData={correspondingData}
+                  />
                 </>
               ))}
             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
@@ -80,6 +84,7 @@ function ProductDetailPage() {
                   setItemsInCart={setItemsInCart}
                   correspondingData={correspondingData}
                   quantity={quantity}
+                  sizeSelected={sizeSelected}
                 >
                   Add To Cart
                 </Button>
