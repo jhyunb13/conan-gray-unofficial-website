@@ -1,11 +1,17 @@
-function SizeSelector({ setSizeSelected, correspondingData }) {
+function SizeSelector({
+  availability,
+  sizeSelected,
+  setSizeSelected,
+  correspondingData,
+}) {
   const sizeOptions = ["S", "M", "L", "XL", "2XL"];
 
   function handleSizeSelection(e) {
     correspondingData.title.includes("TEE") ||
-      correspondingData.title.includes("SWEATER") ||
-      (correspondingData.title.includes("HOODIE") &&
-        setSizeSelected(e.target.value));
+    correspondingData.title.includes("SWEATER") ||
+    correspondingData.title.includes("HOODIE")
+      ? setSizeSelected(e.target.value)
+      : null;
   }
 
   return (
@@ -13,7 +19,14 @@ function SizeSelector({ setSizeSelected, correspondingData }) {
       <div>size</div>
       {sizeOptions.map((option) => {
         return (
-          <span className="size-option mr-10" key={option}>
+          <label
+            className={
+              sizeSelected === option
+                ? "size-option size-selected"
+                : "size-option"
+            }
+            key={option}
+          >
             <input
               type="radio"
               name="size"
@@ -21,8 +34,8 @@ function SizeSelector({ setSizeSelected, correspondingData }) {
               onClick={handleSizeSelection}
               defaultChecked={option === "S"}
             />
-            <label>{option}</label>
-          </span>
+            <div>{option}</div>
+          </label>
         );
       })}
     </form>

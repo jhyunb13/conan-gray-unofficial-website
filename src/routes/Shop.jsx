@@ -45,10 +45,10 @@ function Shop() {
       <nav>
         <ul>
           <li>
-            <Link to={"/"}>conangray.com</Link>
+            <Link to={"/"}>HOME</Link>
           </li>
           <li>
-            <Link to={`/store?${newParam}`}>{`Store`.toUpperCase()}</Link>
+            <Link to={`/store?${newParam}`}>{`all`.toUpperCase()}</Link>
           </li>
           <li>
             <Link to={`/store/music?${newParam}`}>{`Music`.toUpperCase()}</Link>

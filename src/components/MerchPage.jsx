@@ -1,6 +1,7 @@
 import Category from "./Category";
 import ProductList from "./ProductList";
 import Pagination from "./Pagination";
+import Footer from "./Footer";
 import { useState, useEffect, useMemo } from "react";
 import { useLocation, useLoaderData } from "react-router-dom";
 
@@ -66,20 +67,24 @@ function MerchPage() {
   }, [filterOption, productData, category]);
 
   return (
-    <div className="store-page pt-35 pb-50">
-      <Category
-        options={category}
-        setFilterOptions={setFilterOptions}
-        pathName={pathName}
-      />
-      <ProductList content={content} />
-      <Pagination
-        pageNumbers={pageNumbers}
-        pathName={pathName}
-        currentParam={currentParam}
-        scrollToTop={handleScrollToTop}
-      />
-    </div>
+    <>
+      <div className="store-page pt-35 pb-50">
+        <Category
+          options={category}
+          setFilterOptions={setFilterOptions}
+          pathName={pathName}
+        />
+        <ProductList content={content} />
+        <Pagination
+          totalPage={totalPage}
+          pageNumbers={pageNumbers}
+          pathName={pathName}
+          currentParam={currentParam}
+          scrollToTop={handleScrollToTop}
+        />
+      </div>
+      <Footer />
+    </>
   );
 }
 

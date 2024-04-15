@@ -1,6 +1,5 @@
 function Button({
   children,
-  url,
   availability,
   setCount,
   setItemsInCart,
@@ -19,15 +18,13 @@ function Button({
   }
 
   return (
-    <a className="no-link-style" href={url} target="_blank" rel="noopener">
-      <button
-        className="button"
-        disabled={availability ? true : false}
-        onClick={handleCounting}
-      >
-        {children}
-      </button>
-    </a>
+    <button
+      className="button"
+      disabled={availability ? true : false}
+      onClick={handleCounting}
+    >
+      {children}
+    </button>
   );
 }
 
