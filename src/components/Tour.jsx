@@ -15,11 +15,13 @@ function Tour({ tourData }) {
   return (
     <div className="tour">
       <div>
-        <div className="mb-5">{tourdate}</div>
+        <div className="mb-10">{tourdate}</div>
         <div>{tourData.location.name}</div>
       </div>
       <span>{tourData.location.address}</span>
-      <Button url="https://www.conangray.com/">Ticket</Button>
+      <div>
+        <Button url="https://www.conangray.com/">Tickets</Button>
+      </div>
     </div>
   );
 }

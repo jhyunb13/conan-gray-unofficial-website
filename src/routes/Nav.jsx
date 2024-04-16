@@ -80,11 +80,7 @@ function Nav() {
         </li>
         <li onClick={handleStore}>
           {isStoreOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/store"}>{`store`.toUpperCase()}</Link>
-        </li>
-        <li onClick={handleInfo}>
-          {isInfoOpen && <div className="nav-clicked">✪</div>}
-          <Link to={"/info"}>{`info`.toUpperCase()}</Link>
+          <Link to={"/store?page=1"}>{`store`.toUpperCase()}</Link>
         </li>
       </ul>
     </nav>

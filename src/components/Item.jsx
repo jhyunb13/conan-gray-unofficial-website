@@ -24,8 +24,10 @@ function Item({ itemData }) {
               <Badge>{itemData.availability.toUpperCase()}</Badge>
             )}
           </div>
-          <div>{itemData.title}</div>
-          <div>{itemData.price}</div>
+          <div className="product-info">
+            <div>{itemData.title}</div>
+            <div>{itemData.price}</div>
+          </div>
         </div>
       </Link>
     </div>

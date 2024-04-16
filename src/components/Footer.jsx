@@ -1,5 +1,11 @@
 function Footer({ style }) {
-  const contentList = ["help", "terms", "privacy police", "contacts"];
+  const contentList = [
+    "help",
+    "returns",
+    "terms",
+    "privacy police",
+    "contacts",
+  ];
 
   return (
     <footer className="pb-50" style={style}>

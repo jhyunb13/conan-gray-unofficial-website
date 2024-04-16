@@ -1,1 +1,26 @@
-[{"songTitle":"Found Heaven","url":"https://ConanGray.lnk.to/FoundHeaven","cover":"https://www.conangray.com/files/2024/04/artwork-440x440-1.jpg"},{"songTitle":"Alley Rose","url":"https://ConanGray.lnk.to/AlleyRoSE","cover":"https://www.conangray.com/files/2024/03/artwork-440x440-1.jpg"},{"songTitle":"Lonely Dancers","url":"https://conangray.lnk.to/lonelydancers","cover":"https://www.conangray.com/files/2024/02/Conan_FH_AlbumArt_M1_10x10.jpg"},{"songTitle":"Killing Me","url":"https://conangray.lnk.to/killingme  ","cover":"https://www.conangray.com/files/2023/10/conan-gray-crop-high-res.jpg"},{"songTitle":"Winner","url":"https://conangray.lnk.to/winner","cover":"https://www.conangray.com/files/2023/08/release-min.png"},{"songTitle":""},{"songTitle":""},{"songTitle":""},{"songTitle":""}]
+[
+  {
+    "songTitle": "Found Heaven",
+    "url": "https://ConanGray.lnk.to/FoundHeaven",
+    "cover": "https://www.conangray.com/files/2024/02/Conan_FH_AlbumArt_M1_10x10.jpg",
+    "release": 2024
+  },
+  {
+    "songTitle": "Superache",
+    "url": "https://open.spotify.com/album/5hIOd0FvjlgG4uLjXHkFWI?si=MF3ersUUQ5SGm-PiCniYwA",
+    "cover": "https://image.bugsm.co.kr/album/images/1000/181717/18171729.jpg",
+    "release": 2022
+  },
+  {
+    "songTitle": "Kid Krow",
+    "url": "https://open.spotify.com/album/2CMlkzFI2oDAy5MbyV7OV5?si=dB0dcDn6QDevCRvC-drsMQ",
+    "cover": "https://m.media-amazon.com/images/I/81RlWe2SiNL._UF1000,1000_QL80_.jpg",
+    "release": 2020
+  },
+  {
+    "songTitle": "Sunset Season",
+    "url": "https://open.spotify.com/album/16pubXUlqRziVWRsT6lLNz?si=PB2UWOZNTVqr5TODJTvH0w",
+    "cover": "https://m.media-amazon.com/images/I/71nBDnUEagL._UF1000,1000_QL80_.jpg",
+    "release": 2018
+  }
+]

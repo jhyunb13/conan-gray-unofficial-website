@@ -3,8 +3,9 @@ import Button from "./Button";
 
 function ListenPage() {
   return (
-    <div className="pt-35 pb-50">
-      <div className="song-list grid-2-col mt-30">
+    <div className="listen-page pt-35 pb-50">
+      <h1 className="mt-30">Releases</h1>
+      <div className="song-list grid-2-col grid-1-col-md">
         {songsData.map((itemData, i) => {
           if (itemData.songTitle) {
             return <Song itemData={itemData} key={i} />;
@@ -18,9 +19,11 @@ function ListenPage() {
 function Song({ itemData }) {
   return (
     <div className="song">
-      <img src={itemData.cover} alt={itemData.songTitle} />
-      <h2>{itemData.songTitle}</h2>
-      <Button url={itemData.url}>Listen Now</Button>
+      <a href={itemData.url} target="_blank" className="no-link-style">
+        <img src={itemData.cover} alt={itemData.songTitle} />
+        <h2>{itemData.songTitle}</h2>
+        <div>{itemData.release}</div>
+      </a>
     </div>
   );
 }

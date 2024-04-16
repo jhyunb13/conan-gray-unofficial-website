@@ -47,7 +47,12 @@ function QuantitySelector({
 
   return (
     <div>
-      <button onClick={() => handleSubtraction(title)}>
+      <button
+        onClick={() => handleSubtraction(title)}
+        className={
+          availability ? "quantity-btn inactive" : "quantity-btn active"
+        }
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -63,7 +68,12 @@ function QuantitySelector({
         </svg>
       </button>
       <span>{children}</span>
-      <button onClick={() => handleAddition(title)}>
+      <button
+        onClick={() => handleAddition(title)}
+        className={
+          availability ? "quantity-btn inactive" : "quantity-btn active"
+        }
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

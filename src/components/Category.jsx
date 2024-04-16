@@ -14,7 +14,7 @@ function Category({ options, setFilterOptions }) {
   return (
     <div className="search-options grid-2-col">
       <div className="filtering">
-        <div>Category</div>
+        <div>{`Category`.toUpperCase()}</div>
         <select onChange={handleSettingFilter}>
           {options.map((option) => (
             <option key={option} value={option}>
@@ -24,7 +24,7 @@ function Category({ options, setFilterOptions }) {
         </select>
       </div>
       <div className="sorting">
-        <div>Sort By</div>
+        <div>{`Sort By`.toUpperCase()}</div>
         <select onChange={handleSettingSort}>
           <option>A - Z</option>
           <option>Z - A</option>

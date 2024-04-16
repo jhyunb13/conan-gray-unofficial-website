@@ -29,10 +29,10 @@ function ShoppingCart() {
           <>
             <div className="item-summary">
               <div>
-                <div>Item Summary</div>
-                <div>price</div>
-                <div>quantity</div>
-                <div>subtotal</div>
+                <div className="pb-10">Item Summary</div>
+                <div>Price</div>
+                <div>Quantity</div>
+                <div>Subtotal</div>
               </div>
               {itemsInCart.map((item) => (
                 <div
@@ -79,19 +79,19 @@ function ShoppingCart() {
               ))}
             </div>
             <div className="order-summary">
-              <div>Order Summary</div>
-              <div className="grid-2-col">
-                <div>subtotal</div>
+              <div className="pb-10">Order Summary</div>
+              <div className="grid-2-col pt-20 pb-10">
+                <div>Subtotal</div>
                 <div>
                   ${Number.isInteger(sumPrice) ? `${sumPrice}.00` : sumPrice}
                 </div>
               </div>
-              <div className="grid-2-col">
-                <div>shipping</div>
-                <div>calculated at next step</div>
+              <div className="grid-2-col pb-20">
+                <div>Shipping</div>
+                <div>Calculated at next step</div>
               </div>
-              <div className="grid-2-col">
-                <div>total</div>
+              <div className="grid-2-col pt-20 pb-20">
+                <div>Total</div>
                 <div>
                   ${Number.isInteger(sumPrice) ? `${sumPrice}.00` : sumPrice}
                 </div>

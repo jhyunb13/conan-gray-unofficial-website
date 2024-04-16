@@ -19,23 +19,38 @@ function SizeSelector({
       <div>size</div>
       {sizeOptions.map((option) => {
         return (
-          <label
-            className={
-              sizeSelected === option
-                ? "size-option size-selected"
-                : "size-option"
-            }
-            key={option}
-          >
-            <input
-              type="radio"
-              name="size"
-              value={option}
-              onClick={handleSizeSelection}
-              defaultChecked={option === "S"}
-            />
-            <div>{option}</div>
-          </label>
+          <>
+            {availability ? (
+              <label className={"size-option inactive"} key={option}>
+                <input
+                  type="radio"
+                  name="size"
+                  value={option}
+                  onClick={handleSizeSelection}
+                  defaultChecked={option === "S"}
+                />
+                <div>{option}</div>
+              </label>
+            ) : (
+              <label
+                className={
+                  sizeSelected === option
+                    ? "size-option size-selected"
+                    : "size-option"
+                }
+                key={option}
+              >
+                <input
+                  type="radio"
+                  name="size"
+                  value={option}
+                  onClick={handleSizeSelection}
+                  defaultChecked={option === "S"}
+                />
+                <div>{option}</div>
+              </label>
+            )}
+          </>
         );
       })}
     </form>

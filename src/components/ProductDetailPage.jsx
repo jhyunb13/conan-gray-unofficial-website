@@ -98,13 +98,14 @@ function ProductDetailPage() {
                   correspondingData={correspondingData}
                   quantity={quantity}
                   sizeSelected={sizeSelected}
+                  availability={correspondingData.availability}
                 >
                   Add To Cart
                 </Button>
               )}
             </div>
             <div className="description">
-              this is not the official website of conan gray. if you want to
+              This is not the official website of conan gray. If you want to
               purchase the product, please{" "}
               <a
                 href={`https://shop.conangray.com/${correspondingData.url}`}
