@@ -3,15 +3,21 @@ import ProductList from "./ProductList";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
 import { useState, useEffect, useMemo } from "react";
-import { useLocation, useLoaderData } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 
 function MusicPage() {
-  const data = useLoaderData();
+  const {
+    musicData: [musicData, setMusicData],
+  } = useOutletContext();
   const location = useLocation();
-  const category = data[0];
-  const productData = data[1];
 
-  const [filterOption, setFilterOptions] = useState("All");
+  const category = musicData[0];
+
+  const [productData, setProductData] = useState(
+    musicData[1].filter((data) => !data.availability)
+  );
+  const [categoryOption, setCategoryOption] = useState("All");
+  const [filterOption, setFilterOption] = useState("In Stock");
   const [filteredData, setFilteredData] = useState(productData);
   const [content, setContent] = useState(
     productData.slice(12 * (1 - 1), 12 * 1)
@@ -42,8 +48,16 @@ function MusicPage() {
   }, [currentParam, pageNumbers, productData, filteredData]);
 
   useEffect(() => {
-    if (filterOption === "All") setFilteredData(productData);
-    else if (filterOption === "Merch")
+    if (filterOption === "All") setProductData(musicData[1]);
+    else if (filterOption === "Out of Stock")
+      setProductData(musicData[1].filter((data) => data.availability));
+    else if (filterOption === "In Stock")
+      setProductData(musicData[1].filter((data) => !data.availability));
+  }, [filterOption, musicData]);
+
+  useEffect(() => {
+    if (categoryOption === "All") setFilteredData(productData);
+    else if (categoryOption === "Merch")
       setFilteredData(
         productData.filter((data) => {
           return (
@@ -53,30 +67,34 @@ function MusicPage() {
           );
         })
       );
-    else if (filterOption === "CD")
+    else if (categoryOption === "CD")
       setFilteredData(
         productData.filter((data) => {
           return data.title.includes("CD") || data.title.includes("Box");
         })
       );
-    else if (filterOption === "LP")
+    else if (categoryOption === "LP")
       setFilteredData(
         productData.filter((data) => {
           return data.title.includes("LP");
         })
       );
-    else if (filterOption === "Cassette")
+    else if (categoryOption === "Cassette")
       setFilteredData(
         productData.filter((data) => {
           return data.title.includes("Cassette");
         })
       );
-  }, [filterOption, productData, category]);
+  }, [categoryOption, productData, category]);
 
   return (
     <>
       <div className="store-page pt-35 pb-50">
-        <Category options={category} setFilterOptions={setFilterOptions} />
+        <Category
+          options={category}
+          setCategoryOption={setCategoryOption}
+          setFilterOption={setFilterOption}
+        />
         <ProductList content={content} />
         <Pagination
           totalPage={totalPage}

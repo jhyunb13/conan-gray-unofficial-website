@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Badge from "./Badge";
 
 function Item({ itemData }) {
@@ -10,9 +10,15 @@ function Item({ itemData }) {
     .split(" ")
     .join("-");
 
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <div className="item">
-      <Link to={`/store/products/${urlParam}`} className="no-link-style">
+      <Link
+        to={`${currentPath}/products/${urlParam}`}
+        className="no-link-style"
+      >
         <div className="item-img-container">
           <img src={`https:${itemData.img}`} alt={itemData.title} />
         </div>

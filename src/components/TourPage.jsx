@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TourList from "./TourList";
+import Footer from "./Footer";
 
 function TourPage() {
   const [search, setSearch] = useState("");
@@ -13,19 +14,22 @@ function TourPage() {
   }
 
   return (
-    <div className="tour-page pt-35 pb-50">
-      <div className="center-align mt-30">
-        <h1 className="mb-10">Find Found Heaven tour near you</h1>
-        <input
-          className="input-field"
-          type="text"
-          placeholder="✪ enter a city or country name"
-          value={search}
-          onChange={handleSearch}
-        />
+    <>
+      <div className="tour-page pt-35 pb-50">
+        <div className="center-align mt-30">
+          <h1 className="mb-10">Find Found Heaven tour near you</h1>
+          <input
+            className="input-field"
+            type="text"
+            placeholder="✪ enter a city or country name"
+            value={search}
+            onChange={handleSearch}
+          />
+        </div>
+        <TourList search={search} />
       </div>
-      <TourList search={search} />
-    </div>
+      <Footer social="true" />
+    </>
   );
 }
 

@@ -1,19 +1,30 @@
 import { useEffect, useState } from "react";
+import SongInfo from "./SongInfo";
+import SocialMediaList from "./SocialMediaList";
+import Footer from "./Footer";
 
 function VideosPage() {
+  const [allVideosPlaylist, setAllVideosPlaylist] = useState([]);
   const [foundHeavenPlaylist, setFoundHeavenPlaylist] = useState([]);
   const [superachePlaylist, setSuperachePlaylist] = useState([]);
 
-  // useEffect(() => {
-  //   async function test() {
-  //     const a = await fetch(`/video-data`);
-  //     const data = await a.json();
+  function handleToFh() {
+    document
+      .querySelector(".found-heaven-era")
+      .scrollIntoView({ block: "start", behavior: "auto" });
+  }
 
-  //     console.log(data.items);
-  //   }
+  function handleToSuperache() {
+    document
+      .querySelector(".superache-era")
+      .scrollIntoView({ block: "start", behavior: "auto" });
+  }
 
-  //   test();
-  // });
+  function handleToKidKrow() {
+    document
+      .querySelector(".kid-krow-era")
+      .scrollIntoView({ block: "start", behavior: "auto" });
+  }
 
   useEffect(() => {
     async function getVideos() {
@@ -21,8 +32,15 @@ function VideosPage() {
       const youtubeEndPoint =
         "https://www.googleapis.com/youtube/v3/playlistItems";
       const parameters = "part=snippet&maxResults=5";
+      const parametersVer2 = "part=snippet&maxResults=10";
       const foundHeaven = "PL3exoAUOZJZns5FNKYhFVM5gT_vQYOtP8";
       const superache = "PL3exoAUOZJZnmrJYh9wgTHxSilgEldP_B";
+      const allVideos = "PL3exoAUOZJZkAxjqVQc6GcQK7C9bgvCcg";
+
+      const allVideosRes = await fetch(
+        `${youtubeEndPoint}?${parametersVer2}&playlistId=${allVideos}&key=${API_SECRET}`
+      );
+      const allVideosData = await allVideosRes.json();
 
       const foundHeavenRes = await fetch(
         `${youtubeEndPoint}?${parameters}&playlistId=${foundHeaven}&key=${API_SECRET}`
@@ -34,6 +52,7 @@ function VideosPage() {
       );
       const superacheData = await superacheRes.json();
 
+      setAllVideosPlaylist(allVideosData.items);
       setFoundHeavenPlaylist(foundHeavenData.items);
       setSuperachePlaylist(superacheData.items);
     }
@@ -47,10 +66,20 @@ function VideosPage() {
 
     let foundHeavenVideoId;
     let superacheVideoId;
+    let allVideosId;
     let player1;
     let player2;
+    let player3;
 
-    if (foundHeavenPlaylist.length && superachePlaylist.length) {
+    if (
+      foundHeavenPlaylist.length &&
+      superachePlaylist.length &&
+      allVideosPlaylist.length
+    ) {
+      allVideosId = allVideosPlaylist
+        .slice(4, 10)
+        .map((el) => el.snippet.resourceId.videoId);
+
       foundHeavenVideoId = foundHeavenPlaylist
         .filter((el) => !el.snippet.title.includes("Lyric"))
         .map((el) => el.snippet.resourceId.videoId);
@@ -70,8 +99,7 @@ function VideosPage() {
 
     function onYouTubeIframeAPIReady(id, i) {
       player1 = new YT.Player(`video-player-fh-${i + 1}`, {
-        height: "390",
-        width: "640",
+        width: "100%",
         videoId: id,
         playerVars: {
           playsinline: 1,
@@ -79,10 +107,19 @@ function VideosPage() {
       });
     }
 
-    function APIReady(id, i) {
+    function sIframeReady(id, i) {
       player2 = new YT.Player(`video-player-s-${i + 1}`, {
-        height: "190",
-        width: "400",
+        width: "100%",
+        videoId: id,
+        playerVars: {
+          playsinline: 1,
+        },
+      });
+    }
+
+    function kkIframeReady(id, i) {
+      player3 = new YT.Player(`video-player-kk-${i + 1}`, {
+        width: "100%",
         videoId: id,
         playerVars: {
           playsinline: 1,
@@ -91,83 +128,134 @@ function VideosPage() {
     }
 
     if (YT && foundHeavenPlaylist.length && superachePlaylist.length) {
+      allVideosId.map((el, i) => kkIframeReady(el, i));
       foundHeavenVideoId.map((el, i) => onYouTubeIframeAPIReady(el, i));
-      superacheVideoId.map((el, i) => APIReady(el, i));
+      superacheVideoId.map((el, i) => sIframeReady(el, i));
     }
-  }, [foundHeavenPlaylist, superachePlaylist]);
+  }, [foundHeavenPlaylist, superachePlaylist, allVideosPlaylist]);
 
   return (
-    <div className="pt-35 pb-50">
-      <div className="video-list mt-30">
-        <div className="eras">
-          <h1>Found Heaven</h1>
+    <>
+      <div className="pt-35 pb-50">
+        <div className="eras-list mt-30">
+          <button onClick={handleToFh}>
+            <h1>Found Heaven</h1>
+          </button>
           <h1>/</h1>
-          <h1>Superache</h1>
+          <button onClick={handleToSuperache}>
+            <h1>Superache</h1>
+          </button>
           <h1>/</h1>
-          <h1> Kid Krow</h1>
+          <button onClick={handleToKidKrow}>
+            <h1>Kid Krow</h1>
+          </button>
         </div>
-        <div className="found-heaven-era">
+        <div className="found-heaven-era mt-20">
           {foundHeavenPlaylist.length
             ? foundHeavenPlaylist
                 .filter((el) => !el.snippet.title.includes("Lyric"))
                 .map((el, i) => {
                   return (
-                    <div className="video-container" key={el.snippet.title}>
-                      <div
-                        className="video-player"
-                        id={`video-player-fh-${i + 1}`}
-                      ></div>
-                      <div>
-                        {el.snippet.title
-                          .split(" ")
-                          .slice(3)
-                          .slice(0, -3)
-                          .join(" ")}
+                    <div className="video" key={el.snippet.title}>
+                      <div className="video-container">
+                        <div
+                          className="video-player"
+                          id={`video-player-fh-${i + 1}`}
+                        ></div>
                       </div>
-                      <div>
-                        {new Date(el.snippet.publishedAt).getFullYear()}
+                      <div className="video-info">
+                        <SongInfo>
+                          {[
+                            el.snippet.title
+                              .split(" ")
+                              .slice(3)
+                              .slice(0, -3)
+                              .join(" "),
+                            new Date(el.snippet.publishedAt).getFullYear(),
+                          ]}
+                        </SongInfo>
                       </div>
                     </div>
                   );
                 })
             : null}
         </div>
-      </div>
-      <div className="superache-era grid-3-col grid-1-col-sm mt-20">
-        {superachePlaylist.length
-          ? superachePlaylist
-              .filter(
-                (el) =>
-                  !el.snippet.title.includes("Lyric") &&
-                  !el.snippet.title.includes("Behind")
-              )
-              .map((el, i) => {
-                return (
-                  <div className="video-container" key={el.snippet.title}>
-                    <div
-                      className="video-player"
-                      id={`video-player-s-${i + 1}`}
-                    ></div>
-                    <div>
-                      {el.snippet.title.includes("Official Video")
-                        ? el.snippet.title
-                            .split(" ")
-                            .slice(3)
-                            .slice(0, -2)
-                            .join(" ")
-                        : el.snippet.title
-                            .split(" ")
-                            .slice(3)
-                            .slice(0, -3)
-                            .join(" ")}
+        <div className="superache-era ">
+          {superachePlaylist.length
+            ? superachePlaylist
+                .filter(
+                  (el) =>
+                    !el.snippet.title.includes("Lyric") &&
+                    !el.snippet.title.includes("Behind")
+                )
+                .map((el, i) => {
+                  return (
+                    <div className="video" key={el.snippet.title}>
+                      <div className="video-container">
+                        <div
+                          className="video-player"
+                          id={`video-player-s-${i + 1}`}
+                        ></div>
+                      </div>
+                      <div>
+                        <div className="video-info">
+                          <SongInfo>
+                            {[
+                              el.snippet.title.includes("Official Video")
+                                ? el.snippet.title
+                                    .split(" ")
+                                    .slice(3)
+                                    .slice(0, -2)
+                                    .join(" ")
+                                : el.snippet.title
+                                    .split(" ")
+                                    .slice(3)
+                                    .slice(0, -3)
+                                    .join(" "),
+                              new Date(el.snippet.publishedAt).getFullYear(),
+                            ]}
+                          </SongInfo>
+                        </div>
+                      </div>
                     </div>
-                    <div>{new Date(el.snippet.publishedAt).getFullYear()}</div>
+                  );
+                })
+            : null}
+        </div>
+        <div className="kid-krow-era">
+          {allVideosPlaylist.slice(4, 10).map((el, i) => {
+            return (
+              <div className="video" key={el.snippet.title}>
+                <div className="video-container">
+                  <div
+                    className="video-player"
+                    id={`video-player-kk-${i + 1}`}
+                  ></div>
+                </div>
+                <div>
+                  <div className="video-info">
+                    <SongInfo>
+                      {[
+                        el.snippet.title.includes("Official Video")
+                          ? el.snippet.title
+                              .split(" ")
+                              .slice(3)
+                              .slice(0, -2)
+                              .join(" ")
+                          : el.snippet.title.split(" ").slice(-1).join(),
+
+                        2020,
+                      ]}
+                    </SongInfo>
                   </div>
-                );
-              })
-          : null}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+      <Footer social="true" />
+    </>
   );
 }
 

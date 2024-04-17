@@ -21,7 +21,10 @@ function SizeSelector({
         return (
           <>
             {availability ? (
-              <label className={"size-option inactive"} key={option}>
+              <label
+                className={"size-option inactive"}
+                key={`${option}-inactive`}
+              >
                 <input
                   type="radio"
                   name="size"

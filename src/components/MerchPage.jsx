@@ -3,15 +3,21 @@ import ProductList from "./ProductList";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
 import { useState, useEffect, useMemo } from "react";
-import { useLocation, useLoaderData } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 
 function MerchPage() {
-  const data = useLoaderData();
+  const {
+    merchData: [merchData, setMerchData],
+  } = useOutletContext();
   const location = useLocation();
-  const category = data[0];
-  const productData = data[1];
 
-  const [filterOption, setFilterOptions] = useState("All");
+  const category = merchData[0];
+
+  const [productData, setProductData] = useState(
+    merchData[1].filter((data) => !data.availability)
+  );
+  const [categoryOption, setCategoryOption] = useState("All");
+  const [filterOption, setFilterOption] = useState("In Stock");
   const [filteredData, setFilteredData] = useState(productData);
   const [content, setContent] = useState(
     productData.slice(12 * (1 - 1), 12 * 1)
@@ -41,20 +47,28 @@ function MerchPage() {
   }, [currentParam, pageNumbers, productData, filteredData]);
 
   useEffect(() => {
-    if (filterOption === "All") setFilteredData(productData);
-    else if (filterOption === "Tops")
+    if (filterOption === "All") setProductData(merchData[1]);
+    else if (filterOption === "Out of Stock")
+      setProductData(merchData[1].filter((data) => data.availability));
+    else if (filterOption === "In Stock")
+      setProductData(merchData[1].filter((data) => !data.availability));
+  }, [filterOption, merchData]);
+
+  useEffect(() => {
+    if (categoryOption === "All") setFilteredData(productData);
+    else if (categoryOption === "Tops")
       setFilteredData(
         productData.filter((data) => {
           return data.title.includes("TEE") || data.title.includes("SWEATER");
         })
       );
-    else if (filterOption === "Outerwear")
+    else if (categoryOption === "Outerwear")
       setFilteredData(
         productData.filter((data) => {
           return data.title.includes("HOODIE");
         })
       );
-    else if (filterOption === "Accessories")
+    else if (categoryOption === "Accessories")
       setFilteredData(
         productData.filter((data) => {
           return (
@@ -64,14 +78,15 @@ function MerchPage() {
           );
         })
       );
-  }, [filterOption, productData, category]);
+  }, [categoryOption, productData, category]);
 
   return (
     <>
       <div className="store-page pt-35 pb-50">
         <Category
           options={category}
-          setFilterOptions={setFilterOptions}
+          setCategoryOption={setCategoryOption}
+          setFilterOption={setFilterOption}
           pathName={pathName}
         />
         <ProductList content={content} />

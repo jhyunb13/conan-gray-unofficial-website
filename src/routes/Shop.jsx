@@ -1,44 +1,37 @@
 import Banner from "./Banner";
 import Nav from "./Nav";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import merchData from "../assets/merchData.json";
-import musicData from "../assets/musicData.json";
-
-const categoryALL = ["All", "CD", "LP", "Cassette", "Merch"];
-const categoryMusic = ["All", "CD", "LP", "Cassette"];
-const categoryMerch = ["All", "Tops", "Outerwear", "Accessories"];
-
-export async function loader() {
-  const uniqueData = musicData
-    .concat(merchData)
-    .filter(
-      (obj, i) =>
-        i ===
-        musicData.concat(merchData).findIndex((o) => obj.title === o.title)
-    );
-
-  const combinedData = [categoryALL, uniqueData];
-
-  return combinedData;
-}
-
-export async function merchDataLoader() {
-  const combinedData = [categoryMerch, merchData];
-  return combinedData;
-}
-
-export async function musicDataLoader() {
-  const combinedData = [categoryMusic, musicData];
-  return combinedData;
-}
+import merch from "../assets/merchData.json";
+import music from "../assets/musicData.json";
 
 function Shop() {
-  console.log("Built by Bae");
+  const categoryALL = ["All", "CD", "LP", "Cassette", "Merch"];
+  const categoryMusic = ["All", "CD", "LP", "Cassette"];
+  const categoryMerch = ["All", "Tops", "Outerwear", "Accessories"];
+  const uniqueData = music
+    .concat(merch)
+    .filter(
+      (obj, i) =>
+        i === music.concat(merch).findIndex((o) => obj.title === o.title)
+    );
+
   const [count, setCount] = useState(0);
   const [itemsInCart, setItemsInCart] = useState([]);
+  const [allProductData, setAllProdcutData] = useState([
+    categoryALL,
+    uniqueData,
+  ]);
+  const [merchData, setMerchData] = useState([categoryMerch, merch]);
+  const [musicData, setMusicData] = useState([categoryMusic, music]);
 
   const newParam = new URLSearchParams([["page", "1"]]).toString();
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  function handleScrollToTop() {
+    window.scrollTo(0, 0);
+  }
 
   return (
     <>
@@ -47,19 +40,35 @@ function Shop() {
           <li>
             <Link to={"/"}>HOME</Link>
           </li>
-          <li>
+          <li onClick={handleScrollToTop}>
+            {currentPath.includes("/store/product") ||
+            currentPath === "/store" ? (
+              <div className="nav-clicked">✪</div>
+            ) : null}
             <Link to={`/store?${newParam}`}>{`all`.toUpperCase()}</Link>
           </li>
-          <li>
+          <li onClick={handleScrollToTop}>
+            {currentPath.includes("/store/music") && (
+              <div className="nav-clicked">✪</div>
+            )}
             <Link to={`/store/music?${newParam}`}>{`Music`.toUpperCase()}</Link>
           </li>
-          <li>
+          <li onClick={handleScrollToTop}>
+            {currentPath.includes("/store/merch") && (
+              <div className="nav-clicked">✪</div>
+            )}
             <Link to={`/store/merch?${newParam}`}>{`Merch`.toUpperCase()}</Link>
           </li>
-          <li>
-            <Link to={"/store/shopping-cart"}>
-              {`Cart(${count})`.toUpperCase()}
-            </Link>
+          <li onClick={handleScrollToTop}>
+            {currentPath.includes("shopping-cart") && (
+              <div className="nav-clicked">✪</div>
+            )}
+            <Link to={"/store/shopping-cart"}>{`Cart`.toUpperCase()}</Link>
+            {count ? (
+              <div className="cart-num">
+                <span>{count}</span>
+              </div>
+            ) : null}
           </li>
         </ul>
       </nav>
@@ -67,6 +76,9 @@ function Shop() {
         context={{
           count: [count, setCount],
           cartItem: [itemsInCart, setItemsInCart],
+          allData: [allProductData, setAllProdcutData],
+          musicData: [musicData, setMusicData],
+          merchData: [merchData, setMerchData],
         }}
       />
       <Banner />

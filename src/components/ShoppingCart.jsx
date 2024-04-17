@@ -96,14 +96,18 @@ function ShoppingCart() {
                   ${Number.isInteger(sumPrice) ? `${sumPrice}.00` : sumPrice}
                 </div>
               </div>
-              <button className="button mt-20">Continue To Check out</button>
+              <button className="button mt-20">
+                {`Continue To Check Out`.toUpperCase()}
+              </button>
             </div>
           </>
         ) : (
           <>
             <h1>your cart is currently empty</h1>
             <Link to={`/store?${newParam}`}>
-              <button className="button mt-20 ">Continue Shopping</button>
+              <button className="button mt-20 ">
+                {`Continue Shopping`.toUpperCase()}
+              </button>
             </Link>
           </>
         )}

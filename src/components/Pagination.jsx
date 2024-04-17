@@ -8,14 +8,14 @@ function Pagination({
   scrollToTop,
 }) {
   return (
-    <div className="pagination mt-20">
+    <div className="pagination">
       {currentParam > 1 && (
         <Link to={`${pathName}?page=${currentParam - 1}`}>
           <button onClick={scrollToTop}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="25"
+              height="25"
               fill="currentColor"
               className="bi bi-arrow-left"
               viewBox="0 0 16 16"
@@ -29,20 +29,21 @@ function Pagination({
         </Link>
       )}
       {pageNumbers.map((num) => (
-        <span
-          className={currentParam === num ? "current-page" : "inactive-page"}
-          key={num}
-        >
-          {num}
-        </span>
+        <Link to={`${pathName}?page=${num}`} key={num} onClick={scrollToTop}>
+          <button
+            className={currentParam === num ? "current-page" : "inactive-page"}
+          >
+            {num}
+          </button>
+        </Link>
       ))}
       {pageNumbers.length > 1 && currentParam < totalPage ? (
         <Link to={`${pathName}?page=${currentParam + 1}`}>
           <button onClick={scrollToTop}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="25"
+              height="25"
               fill="currentColor"
               className="bi bi-arrow-right"
               viewBox="0 0 16 16"

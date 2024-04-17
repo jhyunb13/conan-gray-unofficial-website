@@ -89,7 +89,7 @@ function ProductDetailPage() {
             <div className="btn-add-item mt-20">
               {correspondingData.availability ? (
                 <Button availability={correspondingData.availability}>
-                  {correspondingData.availability}
+                  {correspondingData.availability.toUpperCase()}
                 </Button>
               ) : (
                 <Button
@@ -100,7 +100,7 @@ function ProductDetailPage() {
                   sizeSelected={sizeSelected}
                   availability={correspondingData.availability}
                 >
-                  Add To Cart
+                  {`Add To Cart`.toUpperCase()}
                 </Button>
               )}
             </div>

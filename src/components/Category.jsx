@@ -1,21 +1,25 @@
 import propTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-function Category({ options, setFilterOptions }) {
+function Category({ options, setFilterOption, setCategoryOption }) {
   const navigate = useNavigate();
+  const filters = ["All", "In Stock", "Out of Stock"];
 
-  function handleSettingFilter(e) {
-    setFilterOptions(e.target.value);
+  function handleSettingCategory(e) {
+    setCategoryOption(e.target.value);
     navigate(`?page=1`);
   }
 
-  function handleSettingSort(e) {}
+  function handleSettingFilter(e) {
+    setFilterOption(e.target.value);
+    navigate(`?page=1`);
+  }
 
   return (
     <div className="search-options grid-2-col">
-      <div className="filtering">
+      <div className="category">
         <div>{`Category`.toUpperCase()}</div>
-        <select onChange={handleSettingFilter}>
+        <select onChange={handleSettingCategory}>
           {options.map((option) => (
             <option key={option} value={option}>
               {option}
@@ -23,13 +27,19 @@ function Category({ options, setFilterOptions }) {
           ))}
         </select>
       </div>
-      <div className="sorting">
-        <div>{`Sort By`.toUpperCase()}</div>
-        <select onChange={handleSettingSort}>
-          <option>A - Z</option>
-          <option>Z - A</option>
-          <option>Price, low to high</option>
-          <option>Price, high to low</option>
+      <div className="filtering">
+        <div>{`filter`.toUpperCase()}</div>
+        <select onChange={handleSettingFilter}>
+          {filters.map((option) => (
+            <option
+              key={option}
+              value={option}
+              defaultValue={option === "In Stock"}
+              selected={option === "In Stock"}
+            >
+              {option}
+            </option>
+          ))}
         </select>
       </div>
     </div>

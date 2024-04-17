@@ -1,85 +1,34 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Nav() {
-  const [isHomeOpen, setIsHomeOpen] = useState(false);
-  const [isListenOpen, setIsListenOpen] = useState(false);
-  const [isVideosOpen, setIsVideosOpen] = useState(false);
-  const [isTourOpen, setIsTourOpen] = useState(false);
-  const [isStoreOpen, setIsStoreOpen] = useState(false);
-  const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
-  function handleHome() {
-    setIsHomeOpen((open) => !open);
-    setIsListenOpen(false);
-    setIsVideosOpen(false);
-    setIsTourOpen(false);
-    setIsStoreOpen(false);
-    setIsInfoOpen(false);
-  }
-
-  function handleListen() {
-    setIsListenOpen((open) => !open);
-    setIsVideosOpen(false);
-    setIsTourOpen(false);
-    setIsStoreOpen(false);
-    setIsInfoOpen(false);
-  }
-
-  function handleVideos() {
-    setIsVideosOpen((open) => !open);
-    setIsListenOpen(false);
-    setIsTourOpen(false);
-    setIsStoreOpen(false);
-    setIsInfoOpen(false);
-  }
-
-  function handleTour() {
-    setIsTourOpen((open) => !open);
-    setIsListenOpen(false);
-    setIsVideosOpen(false);
-    setIsStoreOpen(false);
-    setIsInfoOpen(false);
-  }
-
-  function handleStore() {
-    setIsStoreOpen((open) => !open);
-    setIsListenOpen(false);
-    setIsVideosOpen(false);
-    setIsTourOpen(false);
-    setIsInfoOpen(false);
-  }
-
-  function handleInfo() {
-    setIsInfoOpen((open) => !open);
-    setIsListenOpen(false);
-    setIsVideosOpen(false);
-    setIsTourOpen(false);
-    setIsStoreOpen(false);
+  function handleScrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   return (
     <nav>
       <ul>
-        <li onClick={handleHome}>
-          <Link to={"/"} preventScrollReset={false}>
-            {`home`.toUpperCase()}
-          </Link>
+        <li onClick={handleScrollToTop}>
+          {currentPath === "/" && <div className="nav-clicked">✪</div>}
+          <Link to={"/"}>{`home`.toUpperCase()}</Link>
         </li>
-        <li onClick={handleListen}>
-          {isListenOpen && <div className="nav-clicked">✪</div>}
+        <li onClick={handleScrollToTop}>
+          {currentPath === "/listen" && <div className="nav-clicked">✪</div>}
           <Link to={"/listen"}>{`listen`.toUpperCase()}</Link>
         </li>
-        <li onClick={handleVideos}>
-          {isVideosOpen && <div className="nav-clicked">✪</div>}
+        <li onClick={handleScrollToTop}>
+          {currentPath === "/videos" && <div className="nav-clicked">✪</div>}
           <Link to={"/videos"}>{`videos`.toUpperCase()}</Link>
         </li>
-        <li onClick={handleTour}>
-          {isTourOpen && <div className="nav-clicked">✪</div>}
+        <li onClick={handleScrollToTop}>
+          {currentPath === "/tour" && <div className="nav-clicked">✪</div>}
           <Link to={"/tour"}>{`tour`.toUpperCase()}</Link>
         </li>
-        <li onClick={handleStore}>
-          {isStoreOpen && <div className="nav-clicked">✪</div>}
+        <li onClick={handleScrollToTop}>
           <Link to={"/store?page=1"}>{`store`.toUpperCase()}</Link>
         </li>
       </ul>

@@ -3,11 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./assets/style.css";
 import Root from "./routes/Root.jsx";
-import Shop, {
-  loader as combinedDataLoader,
-  merchDataLoader,
-  musicDataLoader,
-} from "./routes/Shop.jsx";
+import Shop from "./routes/Shop.jsx";
 import MainPage from "./components/MainPage.jsx";
 import ListenPage from "./components/ListenPage.jsx";
 import VideosPage from "./components/VideosPage";
@@ -38,19 +34,25 @@ const router = createBrowserRouter([
     path: "/store",
     element: <Shop />,
     children: [
-      { path: "/store", loader: combinedDataLoader, element: <StorePage /> },
+      { path: "/store", element: <StorePage /> },
       {
         path: "/store/merch",
-        loader: merchDataLoader,
         element: <MerchPage />,
       },
       {
         path: "/store/music",
-        loader: musicDataLoader,
         element: <MusicPage />,
       },
       {
         path: "/store/products/:productId",
+        element: <ProductDetailPage />,
+      },
+      {
+        path: "/store/music/products/:productId",
+        element: <ProductDetailPage />,
+      },
+      {
+        path: "/store/merch/products/:productId",
         element: <ProductDetailPage />,
       },
       {
