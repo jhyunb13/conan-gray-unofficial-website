@@ -15,7 +15,7 @@ function Tour({ tourData }) {
   return (
     <div className="tour">
       <div>
-        <div className="mb-10">{tourdate}</div>
+        <div className="tour-date mb-10">{tourdate}</div>
         <div>{tourData.location.name}</div>
       </div>
       <span>{tourData.location.address}</span>

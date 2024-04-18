@@ -4,13 +4,13 @@ import Pagination from "./Pagination";
 import Footer from "./Footer";
 import { useState, useEffect, useMemo } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
+import AlertNoResult from "./AlertNoResult";
 
 function StorePage() {
   const {
     allData: [allProductData, setAllProdcutData],
   } = useOutletContext();
   const location = useLocation();
-
   const category = allProductData[0];
 
   const [productData, setProductData] = useState(
@@ -38,15 +38,13 @@ function StorePage() {
     window.scrollTo(0, 0);
   }
 
-  function shuffle() {}
-
   useEffect(() => {
     pageNumbers.map(
       (num) =>
         currentParam === num &&
         setContent(filteredData.slice(12 * (num - 1), 12 * num))
     );
-  }, [currentParam, pageNumbers, productData, filteredData]);
+  }, [currentParam, pageNumbers, filteredData]);
 
   useEffect(() => {
     if (filterOption === "All") setProductData(allProductData[1]);
@@ -97,7 +95,11 @@ function StorePage() {
           setFilterOption={setFilterOption}
           pathName={pathName}
         />
-        <ProductList content={content} />
+        {filteredData.length ? (
+          <ProductList content={content} />
+        ) : (
+          <AlertNoResult>no results found</AlertNoResult>
+        )}
         <Pagination
           totalPage={totalPage}
           pageNumbers={pageNumbers}

@@ -4,6 +4,7 @@ import Pagination from "./Pagination";
 import Footer from "./Footer";
 import { useState, useEffect, useMemo } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
+import AlertNoResult from "./AlertNoResult";
 
 function MerchPage() {
   const {
@@ -89,7 +90,11 @@ function MerchPage() {
           setFilterOption={setFilterOption}
           pathName={pathName}
         />
-        <ProductList content={content} />
+        {filteredData.length ? (
+          <ProductList content={content} />
+        ) : (
+          <AlertNoResult>no results found</AlertNoResult>
+        )}{" "}
         <Pagination
           totalPage={totalPage}
           pageNumbers={pageNumbers}

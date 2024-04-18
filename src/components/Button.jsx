@@ -14,7 +14,18 @@ function Button({
     setItemsInCart((item) => {
       return [
         ...item,
-        { product: correspondingData, size: sizeSelected, quantity },
+        correspondingData.title.includes("TEE") ||
+        correspondingData.title.includes("HOODIE") ||
+        correspondingData.title.includes("SWEATER")
+          ? {
+              product: correspondingData,
+              size: sizeSelected,
+              quantity,
+            }
+          : {
+              product: correspondingData,
+              quantity,
+            },
       ];
     });
   }

@@ -17,45 +17,46 @@ function SizeSelector({
   return (
     <form className="size-selector mt-20">
       <div>size</div>
-      {sizeOptions.map((option) => {
-        return (
-          <>
-            {availability ? (
-              <label
-                className={"size-option inactive"}
-                key={`${option}-inactive`}
-              >
-                <input
-                  type="radio"
-                  name="size"
-                  value={option}
-                  onClick={handleSizeSelection}
-                  defaultChecked={option === "S"}
-                />
-                <div>{option}</div>
-              </label>
-            ) : (
-              <label
-                className={
-                  sizeSelected === option
-                    ? "size-option size-selected"
-                    : "size-option"
-                }
-                key={option}
-              >
-                <input
-                  type="radio"
-                  name="size"
-                  value={option}
-                  onClick={handleSizeSelection}
-                  defaultChecked={option === "S"}
-                />
-                <div>{option}</div>
-              </label>
-            )}
-          </>
-        );
-      })}
+      <div className="size">
+        {sizeOptions.map((option) => {
+          return (
+            <div key={option}>
+              {availability ? (
+                <label
+                  className={"size-option inactive"}
+                  key={`${option}-inactive`}
+                >
+                  <input
+                    type="radio"
+                    name="size"
+                    value={option}
+                    onClick={handleSizeSelection}
+                    defaultChecked={option === "S"}
+                  />
+                  <div>{option}</div>
+                </label>
+              ) : (
+                <label
+                  className={
+                    sizeSelected === option
+                      ? "size-option size-selected"
+                      : "size-option"
+                  }
+                >
+                  <input
+                    type="radio"
+                    name="size"
+                    value={option}
+                    onClick={handleSizeSelection}
+                    defaultChecked={option === "S"}
+                  />
+                  <div>{option}</div>
+                </label>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </form>
   );
 }

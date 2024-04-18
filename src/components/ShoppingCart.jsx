@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import BtnRemove from "./BtnRemove";
 import QuantitySelector from "./QuantitySelector";
 import Footer from "./Footer";
+import AlertNoResult from "./AlertNoResult";
+import { useState } from "react";
+import AlertWarning from "./AlertWarning";
 
 function ShoppingCart() {
   const {
     count: [count, setCount],
     cartItem: [itemsInCart, setItemsInCart],
   } = useOutletContext();
+  const [closeAlert, setCloseAlert] = useState(true);
   const newParam = new URLSearchParams([["page", "1"]]).toString();
 
   let sumPrice = 0;
@@ -17,6 +21,10 @@ function ShoppingCart() {
     return (sumPrice =
       sumPrice + Number(item.product.price.slice(1)) * item.quantity);
   });
+
+  function handleAlertMessage() {
+    setCloseAlert(false);
+  }
 
   return (
     <>
@@ -34,10 +42,18 @@ function ShoppingCart() {
                 <div>Quantity</div>
                 <div>Subtotal</div>
               </div>
-              {itemsInCart.map((item) => (
+              {itemsInCart.map((item, i) => (
                 <div
                   className="item-in-cart"
-                  key={`${item.product.title}-${item.size}`}
+                  key={
+                    item.size
+                      ? `${item.product.title}-${item.size}-${Math.trunc(
+                          Math.random() * 1000
+                        )}`
+                      : `${item.product.title}-${Math.trunc(
+                          Math.random() * 1000
+                        )}`
+                  }
                 >
                   <div>
                     <img src={item.product.img} alt={item.product.title} />
@@ -46,7 +62,7 @@ function ShoppingCart() {
                       {item.size ? <div>size : {item.size}</div> : null}
                     </div>
                   </div>
-                  <div>{item.product.price}</div>
+                  <div className="pt-5">{item.product.price}</div>
                   <div className="quantity-selector">
                     <QuantitySelector
                       title={item.product.title}
@@ -57,7 +73,7 @@ function ShoppingCart() {
                       {item.quantity}
                     </QuantitySelector>
                   </div>
-                  <div className="subtotal">
+                  <div className="subtotal pt-5">
                     <div>
                       $
                       {Number.isInteger(Number(item.product.price.slice(1)))
@@ -68,13 +84,15 @@ function ShoppingCart() {
                             Number(item.product.price.slice(1)) * item.quantity
                           }`}
                     </div>
-                    <BtnRemove
-                      itemTitle={item.product.title}
-                      itemQuantity={item.quantity}
-                      setCount={setCount}
-                      setItemsInCart={setItemsInCart}
-                    />
                   </div>
+                  <BtnRemove
+                    itemTitle={item.product.title}
+                    itemQuantity={item.quantity}
+                    itemSize={item.size}
+                    setCount={setCount}
+                    setItemsInCart={setItemsInCart}
+                    number={i}
+                  />
                 </div>
               ))}
             </div>
@@ -96,14 +114,14 @@ function ShoppingCart() {
                   ${Number.isInteger(sumPrice) ? `${sumPrice}.00` : sumPrice}
                 </div>
               </div>
-              <button className="button mt-20">
+              <button className="button mt-20" onClick={handleAlertMessage}>
                 {`Continue To Check Out`.toUpperCase()}
               </button>
             </div>
           </>
         ) : (
           <>
-            <h1>your cart is currently empty</h1>
+            <AlertNoResult>your cart is currently empty</AlertNoResult>
             <Link to={`/store?${newParam}`}>
               <button className="button mt-20 ">
                 {`Continue Shopping`.toUpperCase()}
@@ -112,6 +130,7 @@ function ShoppingCart() {
           </>
         )}
       </div>
+      <AlertWarning closeAlert={closeAlert} setCloseAlert={setCloseAlert} />
       <Footer />
     </>
   );

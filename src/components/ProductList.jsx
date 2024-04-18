@@ -20,8 +20,13 @@ function ProductList({
       ${content.length >= 7 && "grid-3-row"}
       ${content.length >= 10 && "grid-4-row"}`}
     >
-      {content.map((itemData, i) => {
-        return <Item itemData={itemData} key={`${itemData.title}-${i}`} />;
+      {content.map((itemData) => {
+        return (
+          <Item
+            itemData={itemData}
+            key={`${itemData.title}-${Math.trunc(Math.random() * 1000)}`}
+          />
+        );
       })}
     </div>
   );

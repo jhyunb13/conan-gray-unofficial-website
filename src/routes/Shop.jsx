@@ -9,18 +9,26 @@ function Shop() {
   const categoryALL = ["All", "CD", "LP", "Cassette", "Merch"];
   const categoryMusic = ["All", "CD", "LP", "Cassette"];
   const categoryMerch = ["All", "Tops", "Outerwear", "Accessories"];
+
   const uniqueData = music
     .concat(merch)
     .filter(
       (obj, i) =>
         i === music.concat(merch).findIndex((o) => obj.title === o.title)
     );
+  const comesFirst = uniqueData.filter((data) =>
+    data.title.includes(`found heaven`.toUpperCase())
+  );
+  const comesSecond = uniqueData.filter(
+    (data) => !data.title.includes(`found heaven`.toUpperCase())
+  );
+  const sortedData = comesFirst.concat(comesSecond);
 
   const [count, setCount] = useState(0);
   const [itemsInCart, setItemsInCart] = useState([]);
   const [allProductData, setAllProdcutData] = useState([
     categoryALL,
-    uniqueData,
+    sortedData,
   ]);
   const [merchData, setMerchData] = useState([categoryMerch, merch]);
   const [musicData, setMusicData] = useState([categoryMusic, music]);

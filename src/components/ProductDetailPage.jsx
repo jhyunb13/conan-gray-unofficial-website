@@ -104,7 +104,7 @@ function ProductDetailPage() {
                 </Button>
               )}
             </div>
-            <div className="description">
+            <p className="description">
               This is not the official website of conan gray. If you want to
               purchase the product, please{" "}
               <a
@@ -115,7 +115,7 @@ function ProductDetailPage() {
               >
                 click here
               </a>
-            </div>
+            </p>
           </div>
         </div>
       )}

@@ -55,8 +55,8 @@ function QuantitySelector({
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          width="70%"
+          height="70%"
           fill="currentColor"
           className="bi bi-dash-lg"
           viewBox="0 0 16 16"
@@ -76,8 +76,8 @@ function QuantitySelector({
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          width="70%"
+          height="70%"
           fill="currentColor"
           className="bi bi-plus-lg"
           viewBox="0 0 16 16"
