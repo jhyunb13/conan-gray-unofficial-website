@@ -550,6 +550,10 @@ nav a:visited {
   text-align: center;
 }
 
+.product-detail .quantity-selector button {
+  color: var(--color-button-text);
+}
+
 .description {
   margin-top: 30px;
   width: 80%;
@@ -640,6 +644,7 @@ nav a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   margin-top: 50px;
 }
 
@@ -651,15 +656,10 @@ nav a:visited {
   display: flex;
   justify-content: center;
   border: none;
-  margin-right: 20px;
   font-family: "Bebas Neue", sans-serif;
   font-size: var(--text-lg);
   background: none;
   cursor: pointer;
-}
-
-.pagination a:last-child > button {
-  margin-right: 0;
 }
 
 .pagination svg {
@@ -962,15 +962,15 @@ footer a:last-child {
   }
 
   .grid-2-row-md {
-    grid-template-rows: repeat(2, 50vw);
+    grid-template-rows: repeat(2, 60vw);
   }
 
   .grid-4-row-md {
-    grid-template-rows: repeat(4, 50vw);
+    grid-template-rows: repeat(4, 60vw);
   }
 
   .grid-6-row-md {
-    grid-template-rows: repeat(6, 50vw);
+    grid-template-rows: repeat(6, 60vw);
   }
 
   .main-page img {
@@ -1118,8 +1118,8 @@ footer a:last-child {
     height: 25px;
   }
 
-  .pagination button {
-    margin-right: 10px;
+  .pagination {
+    gap: 10px;
   }
 
   .warning-text {
