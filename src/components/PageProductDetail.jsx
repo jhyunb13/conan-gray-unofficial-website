@@ -2,8 +2,8 @@ import { useParams, useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import musicData from "../assets/musicData.json";
 import merchData from "../assets/merchData.json";
-import QuantitySelector from "./QuantitySelector";
-import SizeSelector from "./SizeSelector";
+import SelectorQuantity from "./SelectorQuantity";
+import SelectorSize from "./SelectorSize";
 import BtnMultiuse from "./BtnMultiuse";
 import Footer from "./Footer";
 
@@ -103,14 +103,14 @@ function PageProductDetail() {
               alt={correspondingData.title}
             />
           </div>
-          <div className="product-detail">
+          <div className="product-title">
             <h1>{correspondingData.title}</h1>
             <div>{correspondingData.price}</div>
             {correspondingData.title.includes("TEE") ||
             correspondingData.title.includes("SWEATER") ||
             correspondingData.title.includes("HOODIE") ? (
               <>
-                <SizeSelector
+                <SelectorSize
                   sizeSelected={sizeSelected}
                   setSizeSelected={setSizeSelected}
                   correspondingData={correspondingData}
@@ -120,13 +120,13 @@ function PageProductDetail() {
             ) : null}
             <div className="quantity-selector mt-20 ">
               <div>quantity</div>
-              <QuantitySelector
+              <SelectorQuantity
                 availability={correspondingData.availability}
                 handleSubtraction={handleSubtraction}
                 handleAddition={handleAddition}
               >
                 {quantity}
-              </QuantitySelector>
+              </SelectorQuantity>
             </div>
             <div className="btn-add-item mt-20">
               {correspondingData.availability ? (

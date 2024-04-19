@@ -1,4 +1,4 @@
-import Item from "./Item";
+import Product from "./Product";
 import propTypes from "prop-types";
 
 function ProductList({ content }) {
@@ -12,11 +12,11 @@ function ProductList({ content }) {
       ${content.length >= 7 && "grid-3-row"}
       ${content.length >= 10 && "grid-4-row"}`}
     >
-      {content.map((itemData) => {
+      {content.map((productData) => {
         return (
-          <Item
-            itemData={itemData}
-            key={`${itemData.title}-${Math.trunc(Math.random() * 1000)}`}
+          <Product
+            productData={productData}
+            key={`${productData.title}-${Math.trunc(Math.random() * 1000)}`}
           />
         );
       })}

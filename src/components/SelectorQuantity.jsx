@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-function QuantitySelector({
+function SelectorQuantity({
   id,
   availability,
   children,
@@ -54,7 +54,7 @@ function QuantitySelector({
   );
 }
 
-QuantitySelector.propTypes = {
+SelectorQuantity.propTypes = {
   id: propTypes.string,
   availability: propTypes.string,
   children: propTypes.number,
@@ -62,4 +62,4 @@ QuantitySelector.propTypes = {
   handleAddition: propTypes.func,
 };
 
-export default QuantitySelector;
+export default SelectorQuantity;

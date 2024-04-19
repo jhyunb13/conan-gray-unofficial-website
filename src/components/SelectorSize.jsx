@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-function SizeSelector({
+function SelectorSize({
   availability,
   sizeSelected,
   setSizeSelected,
@@ -63,11 +63,11 @@ function SizeSelector({
   );
 }
 
-SizeSelector.propTypes = {
+SelectorSize.propTypes = {
   availability: propTypes.string,
   sizeSelected: propTypes.string,
   setSizeSelected: propTypes.func,
   correspondingData: propTypes.object,
 };
 
-export default SizeSelector;
+export default SelectorSize;

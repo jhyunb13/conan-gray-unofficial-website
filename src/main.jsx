@@ -12,7 +12,7 @@ import PageStore from "./components/PageStore.jsx";
 import PageMerch from "./components/PageMerch";
 import PageMusic from "./components/PageMusic";
 import PageProductDetail from "./components/PageProductDetail";
-import ShoppingCart from "./components/ShoppingCart";
+import PageShoppingCart from "./components/PageShoppingCart";
 import ErrorPage from "./routes/ErrorPage.jsx";
 
 const router = createHashRouter([
@@ -55,7 +55,7 @@ const router = createHashRouter([
       },
       {
         path: "shopping-cart",
-        element: <ShoppingCart />,
+        element: <PageShoppingCart />,
       },
     ],
   },

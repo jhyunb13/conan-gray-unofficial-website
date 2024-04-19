@@ -1,13 +1,12 @@
 import { useOutletContext, Link } from "react-router-dom";
 import { useState } from "react";
-import BtnMultiuse from "./BtnMultiuse";
 import BtnRemove from "./BtnRemove";
-import QuantitySelector from "./QuantitySelector";
+import SelectorQuantity from "./SelectorQuantity";
 import Footer from "./Footer";
 import AlertNoResult from "./AlertNoResult";
 import AlertWarning from "./AlertWarning";
 
-function ShoppingCart() {
+function PageShoppingCart() {
   const {
     count: [count, setCount],
     cartItem: [itemsInCart, setItemsInCart],
@@ -70,7 +69,7 @@ function ShoppingCart() {
                 <div className="item-in-cart" key={item.id}>
                   <div>
                     <img
-                      src={`http:${item.product.img}`}
+                      src={`https:${item.product.img}`}
                       alt={item.product.title}
                     />
                     <div>
@@ -80,13 +79,13 @@ function ShoppingCart() {
                   </div>
                   <div className="pt-5">{item.product.price}</div>
                   <div className="quantity-selector">
-                    <QuantitySelector
+                    <SelectorQuantity
                       id={item.id}
                       handleSubtraction={handleSubtraction}
                       handleAddition={handleAddition}
                     >
                       {item.quantity}
-                    </QuantitySelector>
+                    </SelectorQuantity>
                   </div>
                   <div className="subtotal pt-5">
                     <div>
@@ -145,4 +144,4 @@ function ShoppingCart() {
   );
 }
 
-export default ShoppingCart;
+export default PageShoppingCart;
