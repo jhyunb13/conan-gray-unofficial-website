@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import SongInfo from "./SongInfo";
-import SocialMediaList from "./SocialMediaList";
 import Footer from "./Footer";
 
-function VideosPage() {
+function PageVideos() {
   const [allVideosPlaylist, setAllVideosPlaylist] = useState([]);
   const [foundHeavenPlaylist, setFoundHeavenPlaylist] = useState([]);
   const [superachePlaylist, setSuperachePlaylist] = useState([]);
@@ -164,16 +163,16 @@ function VideosPage() {
                         ></div>
                       </div>
                       <div className="video-info">
-                        <SongInfo>
-                          {[
-                            el.snippet.title
-                              .split(" ")
-                              .slice(3)
-                              .slice(0, -3)
-                              .join(" "),
-                            new Date(el.snippet.publishedAt).getFullYear(),
-                          ]}
-                        </SongInfo>
+                        <SongInfo
+                          title={el.snippet.title
+                            .split(" ")
+                            .slice(3)
+                            .slice(0, -3)
+                            .join(" ")}
+                          releaseDate={new Date(
+                            el.snippet.publishedAt
+                          ).getFullYear()}
+                        />
                       </div>
                     </div>
                   );
@@ -199,8 +198,8 @@ function VideosPage() {
                       </div>
                       <div>
                         <div className="video-info">
-                          <SongInfo>
-                            {[
+                          <SongInfo
+                            title={
                               el.snippet.title.includes("Official Video")
                                 ? el.snippet.title
                                     .split(" ")
@@ -211,10 +210,12 @@ function VideosPage() {
                                     .split(" ")
                                     .slice(3)
                                     .slice(0, -3)
-                                    .join(" "),
-                              new Date(el.snippet.publishedAt).getFullYear(),
-                            ]}
-                          </SongInfo>
+                                    .join(" ")
+                            }
+                            releaseDate={new Date(
+                              el.snippet.publishedAt
+                            ).getFullYear()}
+                          />
                         </div>
                       </div>
                     </div>
@@ -234,19 +235,18 @@ function VideosPage() {
                 </div>
                 <div>
                   <div className="video-info">
-                    <SongInfo>
-                      {[
+                    <SongInfo
+                      title={
                         el.snippet.title.includes("Official Video")
                           ? el.snippet.title
                               .split(" ")
                               .slice(3)
                               .slice(0, -2)
                               .join(" ")
-                          : el.snippet.title.split(" ").slice(-1).join(),
-
-                        2020,
-                      ]}
-                    </SongInfo>
+                          : el.snippet.title.split(" ").slice(-1).join()
+                      }
+                      releaseDate={2020}
+                    />
                   </div>
                 </div>
               </div>
@@ -259,4 +259,4 @@ function VideosPage() {
   );
 }
 
-export default VideosPage;
+export default PageVideos;

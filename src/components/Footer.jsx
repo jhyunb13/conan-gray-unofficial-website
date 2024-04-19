@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import socialMediaData from "../assets/socialMediaData.json";
 
 function Footer({ social, style }) {
@@ -33,5 +34,10 @@ function Footer({ social, style }) {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  social: propTypes.string,
+  style: propTypes.object,
+};
 
 export default Footer;

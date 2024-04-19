@@ -1,15 +1,7 @@
 import Item from "./Item";
 import propTypes from "prop-types";
 
-function ProductList({
-  content,
-  cdClick,
-  vinylClick,
-  cassetteClick,
-  setCdClick,
-  setVinylClick,
-  setCassetteClick,
-}) {
+function ProductList({ content }) {
   return (
     <div
       className={`music-list grid-2-col-md grid-3-col

@@ -48,6 +48,9 @@ function Category({ options, setFilterOption, setCategoryOption }) {
 
 Category.propTypes = {
   children: propTypes.string,
+  options: propTypes.array,
+  setFilterOption: propTypes.func,
+  setCategoryOption: propTypes.func,
 };
 
 export default Category;

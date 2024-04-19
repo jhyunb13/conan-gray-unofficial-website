@@ -1,6 +1,6 @@
 import symbol from "../assets/TifglrGlV2cJ.mp4_snapshot_00.00.002.png";
 
-function MainPage() {
+function PageMain() {
   return (
     <div className="main-page pt-35">
       <img src={symbol} />
@@ -19,4 +19,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default PageMain;

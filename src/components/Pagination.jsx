@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function Pagination({
@@ -59,5 +60,13 @@ function Pagination({
     </div>
   );
 }
+
+Pagination.propTypes = {
+  pathName: propTypes.string,
+  currentParam: propTypes.number,
+  totalPage: propTypes.number,
+  pageNumbers: propTypes.array,
+  scrollToTop: propTypes.func,
+};
 
 export default Pagination;

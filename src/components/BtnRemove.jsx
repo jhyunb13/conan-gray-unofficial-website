@@ -1,47 +1,24 @@
-function BtnRemove({
-  setCount,
-  setItemsInCart,
-  itemTitle,
-  itemQuantity,
-  itemSize,
-  number,
-}) {
-  function handleRemoveItem(title, quantity, size, num) {
+import propTypes from "prop-types";
+
+function BtnRemove({ setCount, setItemsInCart, itemQuantity, id }) {
+  function handleRemoveItem(quantity, id) {
     setCount((num) => num - quantity);
 
     setItemsInCart((items) => {
-      let result;
-
-      return items.filter((item, i) => {
-        if (size) {
-          if (item.product.title === title && item.size === size) {
-            if (item.quantity === quantity) return (result = i !== num);
-            else return (result = item.quantity !== quantity);
-          }
-          if (item.product.title === title && item.size !== size)
-            result = item.size !== size;
-          else result = item.product.title !== title;
-        } else {
-          if (item.product.title === title) {
-            if (item.quantity === quantity) return (result = i !== num);
-            else return (result = item.quantity !== quantity);
-          } else result = item.product.title !== title;
-        }
-
-        return result;
-      });
+      return items.filter((item) => item.id !== id);
     });
   }
 
   return (
-    <button
-      onClick={() =>
-        handleRemoveItem(itemTitle, itemQuantity, itemSize, number)
-      }
-    >
-      remove
-    </button>
+    <button onClick={() => handleRemoveItem(itemQuantity, id)}>remove</button>
   );
 }
+
+BtnRemove.propTypes = {
+  setCount: propTypes.func,
+  setItemsInCarte: propTypes.func,
+  itemQuantity: propTypes.number,
+  id: propTypes.string,
+};
 
 export default BtnRemove;

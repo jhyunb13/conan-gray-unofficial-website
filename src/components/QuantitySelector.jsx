@@ -1,54 +1,16 @@
+import propTypes from "prop-types";
+
 function QuantitySelector({
-  quantity,
-  count,
+  id,
   availability,
-  setQuantity,
-  setItemsInCart,
-  setCount,
   children,
-  title,
+  handleSubtraction,
+  handleAddition,
 }) {
-  function handleSubtraction(itemTitle) {
-    if (!itemTitle && !availability) {
-      if (quantity === 0) return;
-      setQuantity((num) => (num -= 1));
-    }
-
-    if (itemTitle) {
-      setItemsInCart((items) => {
-        return items.map((item) => {
-          if (item.product.title === itemTitle) {
-            if (item.quantity === 0) return item;
-            else return { ...item, quantity: item.quantity - 1 };
-          } else return item;
-        });
-      });
-
-      if (!count) return;
-      setCount((num) => num - 1);
-    }
-  }
-
-  function handleAddition(itemTitle) {
-    if (!itemTitle && !availability) setQuantity((num) => (num += 1));
-
-    if (itemTitle) {
-      setItemsInCart((items) => {
-        return items.map((item) => {
-          if (item.product.title === itemTitle) {
-            return { ...item, quantity: item.quantity + 1 };
-          } else return item;
-        });
-      });
-
-      setCount((num) => num + 1);
-    }
-  }
-
   return (
     <div>
       <button
-        onClick={() => handleSubtraction(title)}
+        onClick={() => handleSubtraction(id)}
         className={
           availability ? "quantity-btn inactive" : "quantity-btn active"
         }
@@ -69,7 +31,7 @@ function QuantitySelector({
       </button>
       <span>{children}</span>
       <button
-        onClick={() => handleAddition(title)}
+        onClick={() => handleAddition(id)}
         className={
           availability ? "quantity-btn inactive" : "quantity-btn active"
         }
@@ -91,5 +53,13 @@ function QuantitySelector({
     </div>
   );
 }
+
+QuantitySelector.propTypes = {
+  id: propTypes.string,
+  availability: propTypes.string,
+  children: propTypes.number,
+  handleSubtraction: propTypes.func,
+  handleAddition: propTypes.func,
+};
 
 export default QuantitySelector;

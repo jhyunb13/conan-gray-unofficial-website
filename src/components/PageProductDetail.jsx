@@ -4,10 +4,10 @@ import musicData from "../assets/musicData.json";
 import merchData from "../assets/merchData.json";
 import QuantitySelector from "./QuantitySelector";
 import SizeSelector from "./SizeSelector";
-import Button from "./Button";
+import BtnMultiuse from "./BtnMultiuse";
 import Footer from "./Footer";
 
-function ProductDetailPage() {
+function PageProductDetail() {
   const { productId } = useParams();
   const {
     count: [count, setCount],
@@ -18,6 +18,48 @@ function ProductDetailPage() {
   const [sizeSelected, setSizeSelected] = useState("S");
 
   const footerStyle = { position: "relative", top: "80px" };
+  const randomNum = Math.trunc(Math.random() * 10000);
+  const regularId = `${
+    correspondingData && `${correspondingData.title}-${quantity}-${randomNum}`
+  }`;
+  const clothingId = `${
+    correspondingData &&
+    `${correspondingData.title}-${sizeSelected}-${quantity}-${randomNum}`
+  }`;
+
+  function handleSubtraction() {
+    if (!correspondingData.availability) {
+      if (quantity <= 1) return;
+      setQuantity((num) => (num -= 1));
+    }
+  }
+
+  function handleAddition() {
+    if (!correspondingData.availability) setQuantity((num) => (num += 1));
+  }
+
+  function handleAddToCart() {
+    setCount((num) => num + quantity);
+    setItemsInCart((item) => {
+      return [
+        ...item,
+        correspondingData.title.includes("TEE") ||
+        correspondingData.title.includes("HOODIE") ||
+        correspondingData.title.includes("SWEATER")
+          ? {
+              id: clothingId,
+              product: correspondingData,
+              size: sizeSelected,
+              quantity,
+            }
+          : {
+              id: regularId,
+              product: correspondingData,
+              quantity,
+            },
+      ];
+    });
+  }
 
   useEffect(() => {
     function getData() {
@@ -79,29 +121,25 @@ function ProductDetailPage() {
             <div className="quantity-selector mt-20 ">
               <div>quantity</div>
               <QuantitySelector
-                quantity={quantity}
-                setQuantity={setQuantity}
                 availability={correspondingData.availability}
+                handleSubtraction={handleSubtraction}
+                handleAddition={handleAddition}
               >
                 {quantity}
               </QuantitySelector>
             </div>
             <div className="btn-add-item mt-20">
               {correspondingData.availability ? (
-                <Button availability={correspondingData.availability}>
+                <BtnMultiuse availability={correspondingData.availability}>
                   {correspondingData.availability.toUpperCase()}
-                </Button>
+                </BtnMultiuse>
               ) : (
-                <Button
-                  setCount={setCount}
-                  setItemsInCart={setItemsInCart}
-                  correspondingData={correspondingData}
-                  quantity={quantity}
-                  sizeSelected={sizeSelected}
+                <BtnMultiuse
                   availability={correspondingData.availability}
+                  handleBtnClick={handleAddToCart}
                 >
                   {`Add To Cart`.toUpperCase()}
-                </Button>
+                </BtnMultiuse>
               )}
             </div>
             <p className="description">
@@ -124,4 +162,4 @@ function ProductDetailPage() {
   );
 }
 
-export default ProductDetailPage;
+export default PageProductDetail;

@@ -2,7 +2,7 @@ import songsData from "../assets/songsData.json";
 import Footer from "./Footer";
 import Song from "./Song";
 
-function ListenPage() {
+function PageListen() {
   return (
     <>
       <div className="listen-page pt-35 pb-50">
@@ -18,4 +18,4 @@ function ListenPage() {
   );
 }
 
-export default ListenPage;
+export default PageListen;

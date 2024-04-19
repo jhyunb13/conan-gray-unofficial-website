@@ -1,10 +1,10 @@
-import { useOutletContext } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
+import { useState } from "react";
+import BtnMultiuse from "./BtnMultiuse";
 import BtnRemove from "./BtnRemove";
 import QuantitySelector from "./QuantitySelector";
 import Footer from "./Footer";
 import AlertNoResult from "./AlertNoResult";
-import { useState } from "react";
 import AlertWarning from "./AlertWarning";
 
 function ShoppingCart() {
@@ -16,14 +16,38 @@ function ShoppingCart() {
   const newParam = new URLSearchParams([["page", "1"]]).toString();
 
   let sumPrice = 0;
-
   itemsInCart.map((item) => {
     return (sumPrice =
       sumPrice + Number(item.product.price.slice(1)) * item.quantity);
   });
+  const totalPriceInUSD = `${
+    Number.isInteger(sumPrice) ? `${sumPrice}.00` : sumPrice
+  }`;
 
-  function handleAlertMessage() {
+  function handleAlertWarning() {
     setCloseAlert(false);
+  }
+
+  function handleSubtraction(id) {
+    setItemsInCart((items) => {
+      return items.map((item) => {
+        if (item.id === id && item.quantity > 1) {
+          setCount((num) => num - 1);
+          return { ...item, quantity: item.quantity - 1 };
+        } else return item;
+      });
+    });
+  }
+
+  function handleAddition(id) {
+    setItemsInCart((items) => {
+      return items.map((item) => {
+        if (item.id === id) {
+          setCount((num) => num + 1);
+          return { ...item, quantity: item.quantity + 1 };
+        } else return item;
+      });
+    });
   }
 
   return (
@@ -42,21 +66,13 @@ function ShoppingCart() {
                 <div>Quantity</div>
                 <div>Subtotal</div>
               </div>
-              {itemsInCart.map((item, i) => (
-                <div
-                  className="item-in-cart"
-                  key={
-                    item.size
-                      ? `${item.product.title}-${item.size}-${Math.trunc(
-                          Math.random() * 1000
-                        )}`
-                      : `${item.product.title}-${Math.trunc(
-                          Math.random() * 1000
-                        )}`
-                  }
-                >
+              {itemsInCart.map((item) => (
+                <div className="item-in-cart" key={item.id}>
                   <div>
-                    <img src={item.product.img} alt={item.product.title} />
+                    <img
+                      src={`http:${item.product.img}`}
+                      alt={item.product.title}
+                    />
                     <div>
                       <div>{item.product.title}</div>
                       {item.size ? <div>size : {item.size}</div> : null}
@@ -65,10 +81,9 @@ function ShoppingCart() {
                   <div className="pt-5">{item.product.price}</div>
                   <div className="quantity-selector">
                     <QuantitySelector
-                      title={item.product.title}
-                      count={count}
-                      setItemsInCart={setItemsInCart}
-                      setCount={setCount}
+                      id={item.id}
+                      handleSubtraction={handleSubtraction}
+                      handleAddition={handleAddition}
                     >
                       {item.quantity}
                     </QuantitySelector>
@@ -86,12 +101,10 @@ function ShoppingCart() {
                     </div>
                   </div>
                   <BtnRemove
-                    itemTitle={item.product.title}
+                    id={item.id}
                     itemQuantity={item.quantity}
-                    itemSize={item.size}
                     setCount={setCount}
                     setItemsInCart={setItemsInCart}
-                    number={i}
                   />
                 </div>
               ))}
@@ -100,9 +113,7 @@ function ShoppingCart() {
               <div className="pb-10">Order Summary</div>
               <div className="grid-2-col pt-20 pb-10">
                 <div>Subtotal</div>
-                <div>
-                  ${Number.isInteger(sumPrice) ? `${sumPrice}.00` : sumPrice}
-                </div>
+                <div>{totalPriceInUSD}</div>
               </div>
               <div className="grid-2-col pb-20">
                 <div>Shipping</div>
@@ -110,11 +121,9 @@ function ShoppingCart() {
               </div>
               <div className="grid-2-col pt-20 pb-20">
                 <div>Total</div>
-                <div>
-                  ${Number.isInteger(sumPrice) ? `${sumPrice}.00` : sumPrice}
-                </div>
+                <div>{totalPriceInUSD}</div>
               </div>
-              <button className="button mt-20" onClick={handleAlertMessage}>
+              <button className="button mt-20" onClick={handleAlertWarning}>
                 {`Continue To Check Out`.toUpperCase()}
               </button>
             </div>

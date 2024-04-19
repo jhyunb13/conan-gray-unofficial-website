@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import Button from "./Button";
+import BtnMultiuse from "./BtnMultiuse";
 
 function Tour({ tourData }) {
   const dateString = tourData.startDate;
@@ -20,7 +20,7 @@ function Tour({ tourData }) {
       </div>
       <span>{tourData.location.address}</span>
       <div>
-        <Button url="https://www.conangray.com/">Tickets</Button>
+        <BtnMultiuse url="https://www.conangray.com/">Tickets</BtnMultiuse>
       </div>
     </div>
   );

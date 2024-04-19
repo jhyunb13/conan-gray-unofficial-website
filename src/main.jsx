@@ -1,32 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import "./assets/style.css";
 import Root from "./routes/Root.jsx";
 import Shop from "./routes/Shop.jsx";
-import MainPage from "./components/MainPage.jsx";
-import ListenPage from "./components/ListenPage.jsx";
-import VideosPage from "./components/VideosPage";
-import TourPage from "./components/TourPage.jsx";
-import StorePage from "./components/StorePage.jsx";
-import MerchPage from "./components/MerchPage";
-import MusicPage from "./components/MusicPage";
-import InfoPage from "./components/InfoPage";
-import ProductDetailPage from "./components/ProductDetailPage";
+import PageMain from "./components/PageMain.jsx";
+import PageListen from "./components/PageListen.jsx";
+import PageVideos from "./components/PageVideos";
+import PageTour from "./components/PageTour.jsx";
+import PageStore from "./components/PageStore.jsx";
+import PageMerch from "./components/PageMerch";
+import PageMusic from "./components/PageMusic";
+import PageProductDetail from "./components/PageProductDetail";
 import ShoppingCart from "./components/ShoppingCart";
 import ErrorPage from "./routes/ErrorPage.jsx";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <MainPage /> },
-      { path: "/listen", element: <ListenPage /> },
-      { path: "/videos", element: <VideosPage /> },
-      { path: "/tour", element: <TourPage /> },
-      { path: "/info", element: <InfoPage /> },
+      { path: "", element: <PageMain /> },
+      { path: "listen", element: <PageListen /> },
+      { path: "videos", element: <PageVideos /> },
+      { path: "tour", element: <PageTour /> },
     ],
   },
 
@@ -34,29 +32,29 @@ const router = createBrowserRouter([
     path: "/store",
     element: <Shop />,
     children: [
-      { path: "/store", element: <StorePage /> },
+      { path: "", element: <PageStore /> },
       {
-        path: "/store/merch",
-        element: <MerchPage />,
+        path: "merch",
+        element: <PageMerch />,
       },
       {
-        path: "/store/music",
-        element: <MusicPage />,
+        path: "music",
+        element: <PageMusic />,
       },
       {
-        path: "/store/products/:productId",
-        element: <ProductDetailPage />,
+        path: "products/:productId",
+        element: <PageProductDetail />,
       },
       {
-        path: "/store/music/products/:productId",
-        element: <ProductDetailPage />,
+        path: "music/products/:productId",
+        element: <PageProductDetail />,
       },
       {
-        path: "/store/merch/products/:productId",
-        element: <ProductDetailPage />,
+        path: "merch/products/:productId",
+        element: <PageProductDetail />,
       },
       {
-        path: "/store/shopping-cart",
+        path: "shopping-cart",
         element: <ShoppingCart />,
       },
     ],

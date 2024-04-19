@@ -1,3 +1,5 @@
+import propTypes from "prop-types";
+
 function SizeSelector({
   availability,
   sizeSelected,
@@ -60,5 +62,12 @@ function SizeSelector({
     </form>
   );
 }
+
+SizeSelector.propTypes = {
+  availability: propTypes.string,
+  sizeSelected: propTypes.string,
+  setSizeSelected: propTypes.func,
+  correspondingData: propTypes.object,
+};
 
 export default SizeSelector;

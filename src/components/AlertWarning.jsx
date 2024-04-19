@@ -1,4 +1,5 @@
-import Button from "./Button";
+import propTypes from "prop-types";
+import Button from "./BtnMultiuse";
 
 function AlertWarning({ closeAlert, setCloseAlert }) {
   function handleAlertClose() {
@@ -43,5 +44,10 @@ function AlertWarning({ closeAlert, setCloseAlert }) {
     </div>
   );
 }
+
+AlertWarning.propTypes = {
+  closeAlert: propTypes.bool,
+  setCloseAlert: propTypes.func,
+};
 
 export default AlertWarning;

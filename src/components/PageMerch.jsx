@@ -6,15 +6,16 @@ import { useState, useEffect, useMemo } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import AlertNoResult from "./AlertNoResult";
 
-function StorePage() {
+function PageMerch() {
   const {
-    allData: [allProductData, setAllProdcutData],
+    merchData: [merchData, setMerchData],
   } = useOutletContext();
   const location = useLocation();
-  const category = allProductData[0];
+
+  const category = merchData[0];
 
   const [productData, setProductData] = useState(
-    allProductData[1].filter((data) => !data.availability)
+    merchData[1].filter((data) => !data.availability)
   );
   const [categoryOption, setCategoryOption] = useState("All");
   const [filterOption, setFilterOption] = useState("In Stock");
@@ -44,44 +45,38 @@ function StorePage() {
         currentParam === num &&
         setContent(filteredData.slice(12 * (num - 1), 12 * num))
     );
-  }, [currentParam, pageNumbers, filteredData]);
+  }, [currentParam, pageNumbers, productData, filteredData]);
 
   useEffect(() => {
-    if (filterOption === "All") setProductData(allProductData[1]);
+    if (filterOption === "All") setProductData(merchData[1]);
     else if (filterOption === "Out of Stock")
-      setProductData(allProductData[1].filter((data) => data.availability));
+      setProductData(merchData[1].filter((data) => data.availability));
     else if (filterOption === "In Stock")
-      setProductData(allProductData[1].filter((data) => !data.availability));
-  }, [filterOption, allProductData]);
+      setProductData(merchData[1].filter((data) => !data.availability));
+  }, [filterOption, merchData]);
 
   useEffect(() => {
     if (categoryOption === "All") setFilteredData(productData);
-    else if (categoryOption === "Merch")
+    else if (categoryOption === "Tops")
+      setFilteredData(
+        productData.filter((data) => {
+          return data.title.includes("TEE") || data.title.includes("SWEATER");
+        })
+      );
+    else if (categoryOption === "Outerwear")
+      setFilteredData(
+        productData.filter((data) => {
+          return data.title.includes("HOODIE");
+        })
+      );
+    else if (categoryOption === "Accessories")
       setFilteredData(
         productData.filter((data) => {
           return (
-            !data.title.includes(category[1]) &&
-            !data.title.includes(category[2]) &&
-            !data.title.includes(category[3])
+            !data.title.includes("TEE") &&
+            !data.title.includes("HOODIE") &&
+            !data.title.includes("SWEATER")
           );
-        })
-      );
-    else if (categoryOption === "CD")
-      setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("CD") || data.title.includes("Box");
-        })
-      );
-    else if (categoryOption === "LP")
-      setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("LP");
-        })
-      );
-    else if (categoryOption === "Cassette")
-      setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("Cassette");
         })
       );
   }, [categoryOption, productData, category]);
@@ -99,7 +94,7 @@ function StorePage() {
           <ProductList content={content} />
         ) : (
           <AlertNoResult>no results found</AlertNoResult>
-        )}
+        )}{" "}
         <Pagination
           totalPage={totalPage}
           pageNumbers={pageNumbers}
@@ -113,4 +108,4 @@ function StorePage() {
   );
 }
 
-export default StorePage;
+export default PageMerch;

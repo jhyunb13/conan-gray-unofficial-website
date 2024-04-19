@@ -2,7 +2,7 @@ import { useState } from "react";
 import TourList from "./TourList";
 import Footer from "./Footer";
 
-function TourPage() {
+function PageTour() {
   const [search, setSearch] = useState("");
 
   function handleSearch(e) {
@@ -33,4 +33,4 @@ function TourPage() {
   );
 }
 
-export default TourPage;
+export default PageTour;

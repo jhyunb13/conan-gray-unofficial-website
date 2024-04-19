@@ -1,10 +1,17 @@
-function SongInfo({ children }) {
+import propTypes from "prop-types";
+
+function SongInfo({ title, releaseDate }) {
   return (
     <>
-      <h2>{children[0]}</h2>
-      <div className="song-info">{children[1]}</div>
+      <h2>{title}</h2>
+      <div className="song-info">{releaseDate}</div>
     </>
   );
 }
+
+SongInfo.propTypes = {
+  title: propTypes.string,
+  releaseDate: propTypes.number,
+};
 
 export default SongInfo;
