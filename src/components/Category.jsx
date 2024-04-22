@@ -16,8 +16,8 @@ function Category({ options, setFilterOption, setCategoryOption }) {
   }
 
   return (
-    <div className="search-options grid-2-col">
-      <div className="category">
+    <div id="search-options" className="grid-2-col-lg">
+      <div className="filtering">
         <div>{`Category`.toUpperCase()}</div>
         <select onChange={handleSettingCategory}>
           {options.map((option) => (

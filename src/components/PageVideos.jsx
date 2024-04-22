@@ -7,21 +7,9 @@ function PageVideos() {
   const [foundHeavenPlaylist, setFoundHeavenPlaylist] = useState([]);
   const [superachePlaylist, setSuperachePlaylist] = useState([]);
 
-  function handleToFh() {
+  function handleScrollTo(id) {
     document
-      .querySelector(".found-heaven-era")
-      .scrollIntoView({ block: "start", behavior: "auto" });
-  }
-
-  function handleToSuperache() {
-    document
-      .querySelector(".superache-era")
-      .scrollIntoView({ block: "start", behavior: "auto" });
-  }
-
-  function handleToKidKrow() {
-    document
-      .querySelector(".kid-krow-era")
+      .querySelector(`#${id}`)
       .scrollIntoView({ block: "start", behavior: "auto" });
   }
 
@@ -66,9 +54,7 @@ function PageVideos() {
     let foundHeavenVideoId;
     let superacheVideoId;
     let allVideosId;
-    let player1;
-    let player2;
-    let player3;
+    let player;
 
     if (
       foundHeavenPlaylist.length &&
@@ -96,30 +82,10 @@ function PageVideos() {
     const firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    function onYouTubeIframeAPIReady(id, i) {
-      player1 = new YT.Player(`video-player-fh-${i + 1}`, {
+    function onYouTubeIframeAPIReady(playerId, videoId, i) {
+      player = new YT.Player(`${playerId}-${i + 1}`, {
         width: "100%",
-        videoId: id,
-        playerVars: {
-          playsinline: 1,
-        },
-      });
-    }
-
-    function sIframeReady(id, i) {
-      player2 = new YT.Player(`video-player-s-${i + 1}`, {
-        width: "100%",
-        videoId: id,
-        playerVars: {
-          playsinline: 1,
-        },
-      });
-    }
-
-    function kkIframeReady(id, i) {
-      player3 = new YT.Player(`video-player-kk-${i + 1}`, {
-        width: "100%",
-        videoId: id,
+        videoId: videoId,
         playerVars: {
           playsinline: 1,
         },
@@ -127,36 +93,42 @@ function PageVideos() {
     }
 
     if (YT && foundHeavenPlaylist.length && superachePlaylist.length) {
-      allVideosId.map((el, i) => kkIframeReady(el, i));
-      foundHeavenVideoId.map((el, i) => onYouTubeIframeAPIReady(el, i));
-      superacheVideoId.map((el, i) => sIframeReady(el, i));
+      allVideosId.map((id, i) =>
+        onYouTubeIframeAPIReady("video-player-kk", id, i)
+      );
+      foundHeavenVideoId.map((id, i) =>
+        onYouTubeIframeAPIReady("video-player-fh", id, i)
+      );
+      superacheVideoId.map((id, i) =>
+        onYouTubeIframeAPIReady("video-player-s", id, i)
+      );
     }
   }, [foundHeavenPlaylist, superachePlaylist, allVideosPlaylist]);
 
   return (
     <>
-      <div className="pt-35 pb-50">
-        <div className="eras-list mt-30">
-          <button onClick={handleToFh}>
+      <main id="video-page">
+        <header id="video-menu">
+          <button onClick={() => handleScrollTo(`found-heaven-era`)}>
             <h1>Found Heaven</h1>
           </button>
           <h1>/</h1>
-          <button onClick={handleToSuperache}>
+          <button onClick={() => handleScrollTo(`superache-era`)}>
             <h1>Superache</h1>
           </button>
           <h1>/</h1>
-          <button onClick={handleToKidKrow}>
+          <button onClick={() => handleScrollTo(`kid-krow-era`)}>
             <h1>Kid Krow</h1>
           </button>
-        </div>
-        <div className="found-heaven-era mt-20">
+        </header>
+        <div id="found-heaven-era" className="video-list">
           {foundHeavenPlaylist.length
             ? foundHeavenPlaylist
                 .filter((el) => !el.snippet.title.includes("Lyric"))
                 .map((el, i) => {
                   return (
                     <div className="video" key={el.snippet.title}>
-                      <div className="video-container">
+                      <div className="player-container">
                         <div
                           className="video-player"
                           id={`video-player-fh-${i + 1}`}
@@ -179,7 +151,7 @@ function PageVideos() {
                 })
             : null}
         </div>
-        <div className="superache-era ">
+        <div id="superache-era" className="video-list">
           {superachePlaylist.length
             ? superachePlaylist
                 .filter(
@@ -190,7 +162,7 @@ function PageVideos() {
                 .map((el, i) => {
                   return (
                     <div className="video" key={el.snippet.title}>
-                      <div className="video-container">
+                      <div className="player-container">
                         <div
                           className="video-player"
                           id={`video-player-s-${i + 1}`}
@@ -223,11 +195,11 @@ function PageVideos() {
                 })
             : null}
         </div>
-        <div className="kid-krow-era">
+        <div id="kid-krow-era" className="video-list">
           {allVideosPlaylist.slice(4, 10).map((el, i) => {
             return (
               <div className="video" key={el.snippet.title}>
-                <div className="video-container">
+                <div className="player-container">
                   <div
                     className="video-player"
                     id={`video-player-kk-${i + 1}`}
@@ -253,7 +225,7 @@ function PageVideos() {
             );
           })}
         </div>
-      </div>
+      </main>
       <Footer social="true" />
     </>
   );

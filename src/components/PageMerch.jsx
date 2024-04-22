@@ -35,10 +35,6 @@ function PageMerch() {
   const pathName = location.pathname;
   let currentParam = parseInt(new URLSearchParams(location.search).get("page"));
 
-  function handleScrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
   useEffect(() => {
     pageNumbers.map(
       (num) =>
@@ -83,12 +79,11 @@ function PageMerch() {
 
   return (
     <>
-      <div className="store-page pt-35 pb-50">
+      <main className="store-page">
         <Category
           options={category}
           setCategoryOption={setCategoryOption}
           setFilterOption={setFilterOption}
-          pathName={pathName}
         />
         {filteredData.length ? (
           <ProductList content={content} />
@@ -100,9 +95,8 @@ function PageMerch() {
           pageNumbers={pageNumbers}
           pathName={pathName}
           currentParam={currentParam}
-          scrollToTop={handleScrollToTop}
         />
-      </div>
+      </main>
       <Footer />
     </>
   );

@@ -10,7 +10,7 @@ import Footer from "./Footer";
 function PageProductDetail() {
   const { productId } = useParams();
   const {
-    count: [count, setCount],
+    cartCount: [cartCount, setCartCount],
     cartItem: [itemsInCart, setItemsInCart],
   } = useOutletContext();
   const [correspondingData, setCorrespondingData] = useState(null);
@@ -39,7 +39,7 @@ function PageProductDetail() {
   }
 
   function handleAddToCart() {
-    setCount((num) => num + quantity);
+    setCartCount((num) => num + quantity);
     setItemsInCart((item) => {
       return [
         ...item,
@@ -96,14 +96,14 @@ function PageProductDetail() {
   return (
     <>
       {correspondingData && (
-        <div className="product-detail-page grid-2-col pt-35 pb-50">
-          <div>
+        <main className="product-detail-page grid-2-col-lg grid-1-col-md">
+          <div className="img-container">
             <img
               src={`https:${correspondingData.img}`}
               alt={correspondingData.title}
             />
           </div>
-          <div className="product-title">
+          <div className="product-detail">
             <h1>{correspondingData.title}</h1>
             <div>{correspondingData.price}</div>
             {correspondingData.title.includes("TEE") ||
@@ -119,7 +119,7 @@ function PageProductDetail() {
               </>
             ) : null}
             <div className="quantity-selector mt-20 ">
-              <div>quantity</div>
+              <div className="selector-title">Quantity</div>
               <SelectorQuantity
                 availability={correspondingData.availability}
                 handleSubtraction={handleSubtraction}
@@ -155,7 +155,7 @@ function PageProductDetail() {
               </a>
             </p>
           </div>
-        </div>
+        </main>
       )}
       <Footer style={footerStyle} />
     </>

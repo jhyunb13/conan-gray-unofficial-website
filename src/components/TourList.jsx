@@ -8,7 +8,7 @@ function TourList({ search }) {
   );
 
   return (
-    <div>
+    <div className="tour-list">
       {filteredData.map((data) => (
         <Tour tourData={data} key={data.location.name} />
       ))}

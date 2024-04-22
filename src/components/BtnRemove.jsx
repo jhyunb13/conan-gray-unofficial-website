@@ -1,8 +1,8 @@
 import propTypes from "prop-types";
 
-function BtnRemove({ setCount, setItemsInCart, itemQuantity, id }) {
+function BtnRemove({ setCartCount, setItemsInCart, itemQuantity, id }) {
   function handleRemoveItem(quantity, id) {
-    setCount((num) => num - quantity);
+    setCartCount((num) => num - quantity);
 
     setItemsInCart((items) => {
       return items.filter((item) => item.id !== id);
@@ -10,12 +10,17 @@ function BtnRemove({ setCount, setItemsInCart, itemQuantity, id }) {
   }
 
   return (
-    <button onClick={() => handleRemoveItem(itemQuantity, id)}>remove</button>
+    <button
+      className="btn-remove-item"
+      onClick={() => handleRemoveItem(itemQuantity, id)}
+    >
+      remove
+    </button>
   );
 }
 
 BtnRemove.propTypes = {
-  setCount: propTypes.func,
+  setCartCount: propTypes.func,
   setItemsInCarte: propTypes.func,
   itemQuantity: propTypes.number,
   id: propTypes.string,

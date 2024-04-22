@@ -18,11 +18,11 @@ function SelectorSize({
 
   return (
     <form className="size-selector mt-20">
-      <div>size</div>
+      <div className="selector-title">Size</div>
       <div className="size">
         {sizeOptions.map((option) => {
           return (
-            <div key={option}>
+            <div id={`size-${option}`} key={option}>
               {availability ? (
                 <label
                   className={"size-option inactive"}
@@ -44,6 +44,7 @@ function SelectorSize({
                       ? "size-option size-selected"
                       : "size-option"
                   }
+                  key={`${option}-active`}
                 >
                   <input
                     type="radio"

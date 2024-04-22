@@ -14,12 +14,12 @@ function Tour({ tourData }) {
 
   return (
     <div className="tour">
-      <div>
-        <div className="tour-date mb-10">{tourdate}</div>
+      <div className="tour-date-venue">
+        <div className="tour-date">{tourdate}</div>
         <div>{tourData.location.name}</div>
       </div>
-      <span>{tourData.location.address}</span>
-      <div>
+      <div className="tour-city">{tourData.location.address}</div>
+      <div className="ticket-link">
         <BtnMultiuse url="https://www.conangray.com/">Tickets</BtnMultiuse>
       </div>
     </div>

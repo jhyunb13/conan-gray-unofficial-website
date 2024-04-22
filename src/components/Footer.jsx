@@ -12,7 +12,7 @@ function Footer({ social, style }) {
   ];
 
   return (
-    <footer className="pb-50" style={style}>
+    <footer id="info-links" style={style}>
       <ul>
         {social
           ? socialMediaList.map((data) => (

@@ -5,14 +5,16 @@ import Song from "./Song";
 function PageListen() {
   return (
     <>
-      <div className="listen-page pt-35 pb-50">
-        <h1 className="mt-30">Releases</h1>
-        <div className="song-list grid-2-col grid-1-col-md">
+      <main id="listen-page">
+        <header>
+          <h1>Releases</h1>
+        </header>
+        <div id="song-list" className="grid-2-col-lg grid-1-col-md">
           {songsData.map((itemData, i) => (
             <Song itemData={itemData} key={i} />
           ))}
         </div>
-      </div>
+      </main>
       <Footer social="true" />
     </>
   );

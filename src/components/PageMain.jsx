@@ -2,7 +2,7 @@ import symbol from "../assets/TifglrGlV2cJ.mp4_snapshot_00.00.002.png";
 
 function PageMain() {
   return (
-    <div className="main-page pt-35">
+    <main id="main-page">
       <img src={symbol} />
       <h1>conan gray ✪ found heaven</h1>
       <iframe
@@ -15,7 +15,7 @@ function PageMain() {
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
       ></iframe>
-    </div>
+    </main>
   );
 }
 

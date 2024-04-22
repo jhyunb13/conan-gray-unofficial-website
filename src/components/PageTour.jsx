@@ -15,8 +15,8 @@ function PageTour() {
 
   return (
     <>
-      <div className="tour-page pt-35 pb-50">
-        <div className="center-align mt-30">
+      <main id="tour-page">
+        <header>
           <h1 className="mb-10">Find Found Heaven tour near you</h1>
           <input
             className="input-field"
@@ -25,9 +25,9 @@ function PageTour() {
             value={search}
             onChange={handleSearch}
           />
-        </div>
+        </header>
         <TourList search={search} />
-      </div>
+      </main>
       <Footer social="true" />
     </>
   );

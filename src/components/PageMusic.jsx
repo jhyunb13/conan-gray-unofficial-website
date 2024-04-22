@@ -36,10 +36,6 @@ function PageMusic() {
 
   let currentParam = parseInt(new URLSearchParams(location.search).get("page"));
 
-  function handleScrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
   useEffect(() => {
     pageNumbers.map(
       (num) =>
@@ -90,7 +86,7 @@ function PageMusic() {
 
   return (
     <>
-      <div className="store-page pt-35 pb-50">
+      <main className="store-page">
         <Category
           options={category}
           setCategoryOption={setCategoryOption}
@@ -105,9 +101,9 @@ function PageMusic() {
           totalPage={totalPage}
           pageNumbers={pageNumbers}
           currentParam={currentParam}
-          scrollToTop={handleScrollToTop}
+          pathName={pathName}
         />
-      </div>
+      </main>
       <Footer />
     </>
   );

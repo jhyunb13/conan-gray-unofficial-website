@@ -8,7 +8,7 @@ import AlertWarning from "./AlertWarning";
 
 function PageShoppingCart() {
   const {
-    count: [count, setCount],
+    cartCount: [cartCount, setCartCount],
     cartItem: [itemsInCart, setItemsInCart],
   } = useOutletContext();
   const [closeAlert, setCloseAlert] = useState(true);
@@ -31,7 +31,7 @@ function PageShoppingCart() {
     setItemsInCart((items) => {
       return items.map((item) => {
         if (item.id === id && item.quantity > 1) {
-          setCount((num) => num - 1);
+          setCartCount((num) => num - 1);
           return { ...item, quantity: item.quantity - 1 };
         } else return item;
       });
@@ -42,7 +42,7 @@ function PageShoppingCart() {
     setItemsInCart((items) => {
       return items.map((item) => {
         if (item.id === id) {
-          setCount((num) => num + 1);
+          setCartCount((num) => num + 1);
           return { ...item, quantity: item.quantity + 1 };
         } else return item;
       });
@@ -51,10 +51,12 @@ function PageShoppingCart() {
 
   return (
     <>
-      <div
+      <main
         className={`${
-          itemsInCart.length ? "shopping-cart" : "empty-shopping-cart"
-        } pt-35`}
+          itemsInCart.length
+            ? "shopping-cart grid-1-col-md "
+            : "empty-shopping-cart"
+        }`}
       >
         {itemsInCart.length ? (
           <>
@@ -87,7 +89,7 @@ function PageShoppingCart() {
                       {item.quantity}
                     </SelectorQuantity>
                   </div>
-                  <div className="subtotal pt-5">
+                  <div className="subtotal-for-item pt-5">
                     <div>
                       $
                       {Number.isInteger(Number(item.product.price.slice(1)))
@@ -102,7 +104,7 @@ function PageShoppingCart() {
                   <BtnRemove
                     id={item.id}
                     itemQuantity={item.quantity}
-                    setCount={setCount}
+                    setCartCount={setCartCount}
                     setItemsInCart={setItemsInCart}
                   />
                 </div>
@@ -110,17 +112,17 @@ function PageShoppingCart() {
             </div>
             <div className="order-summary">
               <div className="pb-10">Order Summary</div>
-              <div className="grid-2-col pt-20 pb-10">
+              <div className="grid-2-col-lg pt-20 pb-10">
                 <div>Subtotal</div>
-                <div>{totalPriceInUSD}</div>
+                <div>${totalPriceInUSD}</div>
               </div>
-              <div className="grid-2-col pb-20">
+              <div className="grid-2-col-lg pb-20">
                 <div>Shipping</div>
                 <div>Calculated at next step</div>
               </div>
-              <div className="grid-2-col pt-20 pb-20">
+              <div className="grid-2-col-lg pt-20 pb-20">
                 <div>Total</div>
-                <div>{totalPriceInUSD}</div>
+                <div>${totalPriceInUSD}</div>
               </div>
               <button className="button mt-20" onClick={handleAlertWarning}>
                 {`Continue To Check Out`.toUpperCase()}
@@ -137,7 +139,7 @@ function PageShoppingCart() {
             </Link>
           </>
         )}
-      </div>
+      </main>
       <AlertWarning closeAlert={closeAlert} setCloseAlert={setCloseAlert} />
       <Footer />
     </>

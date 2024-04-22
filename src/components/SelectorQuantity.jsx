@@ -12,7 +12,7 @@ function SelectorQuantity({
       <button
         onClick={() => handleSubtraction(id)}
         className={
-          availability ? "quantity-btn inactive" : "quantity-btn active"
+          availability ? "btn-quantity inactive" : "btn-quantity active"
         }
       >
         <svg
@@ -33,7 +33,7 @@ function SelectorQuantity({
       <button
         onClick={() => handleAddition(id)}
         className={
-          availability ? "quantity-btn inactive" : "quantity-btn active"
+          availability ? "btn-quantity inactive" : "btn-quantity active"
         }
       >
         <svg

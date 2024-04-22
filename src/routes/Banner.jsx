@@ -7,7 +7,7 @@ function Banner() {
     );
   }
 
-  return <div className="info-banner">{infoText}</div>;
+  return <footer id="info-banner">{infoText}</footer>;
 }
 
 export default Banner;

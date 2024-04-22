@@ -1,17 +1,10 @@
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import propTypes from "prop-types";
 
-function Nav() {
+function Nav({ navList, cartCount }) {
   const location = useLocation();
   const currentPath = location.pathname;
-
-  const nav = [
-    { category: "Home", link: `/` },
-    { category: "listen", link: `listen` },
-    { category: "videos", link: `videos` },
-    { category: "tour", link: `tour` },
-    { category: "store", link: `store` },
-  ];
+  const newParam = new URLSearchParams([["page", "1"]]).toString();
 
   function handleScrollToTop() {
     window.scrollTo(0, 0);
@@ -20,17 +13,26 @@ function Nav() {
   return (
     <nav>
       <ul>
-        {nav.map((n) => {
+        {navList.map((n) => {
           return (
             <li onClick={handleScrollToTop} key={n.category}>
               {(currentPath === n.link || currentPath === `/${n.link}`) && (
                 <div className="nav-clicked">✪</div>
               )}
-              {n.category === "store" ? (
-                <Link to={`${n.link}?page=1`}>{n.category.toUpperCase()}</Link>
-              ) : (
-                <Link to={n.link}>{n.category.toUpperCase()}</Link>
+              {currentPath === `/store/${n.link}` && (
+                <div className="nav-clicked">✪</div>
               )}
+              {currentPath.includes(`${n.link}/products`) && (
+                <div className="nav-clicked">✪</div>
+              )}
+              <Link to={`${n.link}?${newParam}`}>
+                {n.category.toUpperCase()}
+              </Link>
+              {n.link === "shopping-cart" && cartCount ? (
+                <div id="cart-count">
+                  <span>{cartCount}</span>
+                </div>
+              ) : null}
             </li>
           );
         })}
@@ -38,5 +40,10 @@ function Nav() {
     </nav>
   );
 }
+
+Nav.propTypes = {
+  navList: propTypes.array,
+  cartCount: propTypes.number,
+};
 
 export default Nav;

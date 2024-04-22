@@ -22,7 +22,7 @@ function Product({ productData }) {
         <div className="product-img-container">
           <img src={`https:${productData.img}`} alt={productData.title} />
         </div>
-        <div className="product-detail center-align">
+        <div className="product-info">
           <div>
             {productData.status && (
               <Badge>{productData.status.toUpperCase()}</Badge>
@@ -32,7 +32,7 @@ function Product({ productData }) {
               <Badge>{productData.availability.toUpperCase()}</Badge>
             )}
           </div>
-          <div className="product-info">
+          <div className="product-title-price">
             <div>{productData.title}</div>
             <div>{productData.price}</div>
           </div>
