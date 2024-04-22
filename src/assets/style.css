@@ -983,12 +983,13 @@ footer a:last-child {
     font-size: var(--text-xs);
   }
 
-  .product:nth-child(2n) {
-    border-right: none;
-  }
-
   .product:nth-child(3n) {
     border-right: var(--border-default);
+  }
+
+  .product:nth-child(2n),
+  .product:nth-child(6n) {
+    border-right: none;
   }
 
   .product-img-container {
