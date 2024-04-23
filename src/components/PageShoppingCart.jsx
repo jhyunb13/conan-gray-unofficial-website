@@ -64,23 +64,22 @@ function PageShoppingCart() {
             <div className="item-summary">
               <div>
                 <div className="pb-10">Item Summary</div>
-                <div>Price</div>
                 <div>Quantity</div>
                 <div>Subtotal</div>
               </div>
               {itemsInCart.map((item) => (
                 <div className="item-in-cart" key={item.id}>
-                  <div>
+                  <div className="item-info">
                     <img
                       src={`https:${item.product.img}`}
                       alt={item.product.title}
                     />
-                    <div>
+                    <div className="title-price">
                       <div>{item.product.title}</div>
-                      {item.size ? <div>size : {item.size}</div> : null}
+                      <div>Price : {item.product.price}</div>
+                      {item.size ? <div>Size : {item.size}</div> : null}
                     </div>
                   </div>
-                  <div className="pt-5">{item.product.price}</div>
                   <div className="quantity-selector">
                     <SelectorQuantity
                       id={item.id}
@@ -90,7 +89,7 @@ function PageShoppingCart() {
                       {item.quantity}
                     </SelectorQuantity>
                   </div>
-                  <div className="subtotal-for-item pt-5">
+                  <div className="item-subtotal pt-5">
                     <div>
                       $
                       {Number.isInteger(Number(item.product.price.slice(1)))
