@@ -5,6 +5,7 @@ import SelectorQuantity from "./SelectorQuantity";
 import Footer from "./Footer";
 import AlertNoResult from "./AlertNoResult";
 import AlertWarning from "./AlertWarning";
+import BtnMultiuse from "./BtnMultiuse";
 
 function PageShoppingCart() {
   const {
@@ -124,19 +125,24 @@ function PageShoppingCart() {
                 <div>Total</div>
                 <div>${totalPriceInUSD}</div>
               </div>
-              <button className="button mt-20" onClick={handleAlertWarning}>
+              <BtnMultiuse
+                classForBtn="btn-to-checkout"
+                handleBtnClick={handleAlertWarning}
+              >
                 {`Continue To Check Out`.toUpperCase()}
-              </button>
+              </BtnMultiuse>
             </div>
           </>
         ) : (
           <>
             <AlertNoResult>your cart is currently empty</AlertNoResult>
-            <Link to={`/store?${newParam}`}>
-              <button className="button mt-20 ">
-                {`Continue Shopping`.toUpperCase()}
-              </button>
-            </Link>
+            <div className="btn-back-to-store">
+              <Link to={`/store?${newParam}`}>
+                <button className="button mt-20 ">
+                  {`Continue Shopping`.toUpperCase()}
+                </button>
+              </Link>
+            </div>
           </>
         )}
       </main>

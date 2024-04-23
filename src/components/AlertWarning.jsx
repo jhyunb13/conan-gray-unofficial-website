@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import Button from "./BtnMultiuse";
+import BtnMultiuse from "./BtnMultiuse";
 
 function AlertWarning({ closeAlert, setCloseAlert }) {
   function handleAlertClose() {
@@ -37,9 +37,12 @@ function AlertWarning({ closeAlert, setCloseAlert }) {
             This is not the official website of Conan Gray. If you want to
             purchase the products, please click the button below.
           </p>
-          <Button url="https://shop.conangray.com/?utm_campaign=nav&utm_medium=referral&utm_source=conangray.com">
+          <BtnMultiuse
+            url="https://shop.conangray.com/?utm_campaign=nav&utm_medium=referral&utm_source=conangray.com"
+            classForBtn={"btn-to-official-website"}
+          >
             {`go to the official website`.toUpperCase()}
-          </Button>
+          </BtnMultiuse>
         </div>
       </div>
     </div>

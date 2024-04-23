@@ -19,9 +19,12 @@ function Tour({ tourData }) {
         <div>{tourData.location.name}</div>
       </div>
       <div className="tour-city">{tourData.location.address}</div>
-      <div className="ticket-link">
-        <BtnMultiuse url="https://www.conangray.com/">Tickets</BtnMultiuse>
-      </div>
+      <BtnMultiuse
+        url="https://www.conangray.com/"
+        classForBtn="btn-ticket-link"
+      >
+        Tickets
+      </BtnMultiuse>
     </div>
   );
 }

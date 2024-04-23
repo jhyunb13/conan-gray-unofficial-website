@@ -128,20 +128,22 @@ function PageProductDetail() {
                 {quantity}
               </SelectorQuantity>
             </div>
-            <div className="btn-add-item mt-20">
-              {correspondingData.availability ? (
-                <BtnMultiuse availability={correspondingData.availability}>
-                  {correspondingData.availability.toUpperCase()}
-                </BtnMultiuse>
-              ) : (
-                <BtnMultiuse
-                  availability={correspondingData.availability}
-                  handleBtnClick={handleAddToCart}
-                >
-                  {`Add To Cart`.toUpperCase()}
-                </BtnMultiuse>
-              )}
-            </div>
+            {correspondingData.availability ? (
+              <BtnMultiuse
+                availability={correspondingData.availability}
+                classForBtn="btn-add-item"
+              >
+                {correspondingData.availability.toUpperCase()}
+              </BtnMultiuse>
+            ) : (
+              <BtnMultiuse
+                availability={correspondingData.availability}
+                handleBtnClick={handleAddToCart}
+                classForBtn="btn-add-item"
+              >
+                {`Add To Cart`.toUpperCase()}
+              </BtnMultiuse>
+            )}
             <p className="description">
               This is not the official website of conan gray. If you want to
               purchase the product, please{" "}

@@ -93,6 +93,7 @@
   border: none;
   border-radius: 3px;
   font-weight: var(--text-weight-medium);
+  color: var(--color-button-text);
   white-space: nowrap;
   cursor: pointer;
 }
@@ -574,6 +575,14 @@ footer a:last-child {
   background: rgba(212, 212, 212, 0.4);
 }
 
+.btn-add-item {
+  margin-top: 20px;
+}
+
+.btn-add-item a {
+  text-decoration: none;
+}
+
 .btn-add-item button {
   width: 200px;
   height: 40px;
@@ -636,7 +645,7 @@ footer a:last-child {
   height: 75vh;
 }
 
-.empty-shopping-cart .button {
+.btn-back-to-store .button {
   width: 200px;
   height: 40px;
   border: none;
@@ -680,11 +689,13 @@ footer a:last-child {
   border-bottom: 3px solid var(--color-border);
 }
 
-.order-summary > button {
+.btn-to-checkout button {
   width: 100%;
+  margin-top: 20px;
   border-radius: 3px;
   background-color: var(--color-theme-secondary);
   color: var(--color-button-text);
+  font-size: var(--text-md);
   border: none;
 }
 
@@ -778,13 +789,14 @@ footer a:last-child {
 .btn-close {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .btn-close svg {
   padding-right: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
-  cursor: pointer;
+  color: var(--color-button-text);
 }
 
 .warning-text > div {
@@ -799,7 +811,7 @@ footer a:last-child {
   text-align: center;
 }
 
-.warning-text .button {
+.btn-to-official-website .button {
   width: inherit;
   height: inherit;
   padding: 10px 20px 10px 20px;
@@ -965,10 +977,15 @@ footer a:last-child {
     text-align: center;
   }
 
-  .ticket-link button {
+  .btn-ticket-link a {
+    text-decoration: none;
+  }
+
+  .btn-ticket-link button {
     margin-top: 15px;
     width: 200px;
     font-size: var(--text-sm);
+    color: var(--color-button-text);
   }
 
   #search-options {
@@ -1027,7 +1044,7 @@ footer a:last-child {
 
   .description {
     text-align: center;
-    width: 100%;
+    width: 77%;
   }
 
   .shopping-cart {
@@ -1058,7 +1075,7 @@ footer a:last-child {
   }
 
   .warning-text p,
-  .warning-text button {
+  .btn-to-official-website button {
     font-size: var(--text-sm);
   }
 
