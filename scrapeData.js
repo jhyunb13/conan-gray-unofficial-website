@@ -1,184 +1,148 @@
 import axios from "axios";
-import * as cheerio from "cheerio";
 import express from "express";
 import fs from "fs";
+import * as cheerio from "cheerio";
 
 const PORT = 8000;
 const app = express();
-const officialUrl = "https://www.conangray.com/";
+const officialWebsiteUrl = "https://www.conangray.com/";
 const musicUrl = "https://shop.conangray.com/collections/music";
-const merchUrl = "https://shop.conangray.com/collections/merch";
+const merchUrl1 = "https://shop.conangray.com/collections/merch";
 const merchUrl2 = "https://shop.conangray.com/collections/merch?page=2";
-const tourData = [];
-const musicData = [];
-const merchData = [];
-const songData = [];
-const socialMediaData = [];
 const tourDataPath = "src/assets/tourData.json";
 const musicDataPath = "src/assets/musicData.json";
 const merchDataPath = "src/assets/merchData.json";
-const songsDataPath = "src/assets/songsData.json";
 const socialMediaPath = "src/assets/socialMediaData.json";
+const tourData = [];
+const musicData = [];
+const merchData = [];
+const socialMediaData = [];
 
-async function scrapeTourData() {
+async function getHtml(url) {
   try {
-    const res = await axios.get(officialUrl);
-    const html = res.data;
-    const $ = cheerio.load(html);
-    const obj = $("script[type='application/ld+json']");
-
-    console.log($(".seated-event-link").attr("href"));
-    // for (var i in obj) {
-    //   for (var j in obj[i].children) {
-    //     var data = obj[i].children[j].data;
-    //     if (data) {
-    //       const script = JSON.parse(data);
-    //       tourData.push(script);
-    //     }
-    //   }
-    // }
-
-    // fs.writeFileSync(tourDataPath, JSON.stringify(tourData[1]));
-
-    // $("#social-links > li").each((index, el) => {
-    //   const socialMedia = { platform: "", url: "" };
-
-    //   socialMedia.platform = $(el).find("a").text();
-    //   socialMedia.url = $(el).find("a").attr("href");
-
-    //   socialMediaData.push(socialMedia);
-    // });
-
-    // fs.writeFileSync(socialMediaPath, JSON.stringify(socialMediaData));
-  } catch (err) {
-    console.log(err);
+    const res = await axios.get(url);
+    return res.data;
+  } catch (error) {
+    console.error(error);
   }
 }
 
-// scrapeTourData();
-
-async function scrapeSongsData() {
+async function scrapeNStoreData(url, scrapeFunction, filePath, dataArr) {
   try {
-    const res = await axios.get(officialUrl);
-    const html = res.data;
-    const $ = cheerio.load(html);
+    const html = await getHtml(url);
 
-    $(".article").each((index, el) => {
-      const song = { songTitle: "", url: "", cover: "" };
-
-      song.songTitle = $(el)
-        .find(".article-header")
-        .find(".title")
-        .find("h3")
-        .text();
-      song.cover = $(el).find(".album").find("img").attr("src");
-      song.url = $(el)
-        .find(".article-header")
-        .find(".cta")
-        .find("a")
-        .attr("href");
-
-      songData.push(song);
-
-      fs.writeFileSync(songsDataPath, JSON.stringify(songData));
-    });
+    scrapeFunction(html);
+    storeData(filePath, dataArr);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
-// scrapeSongsData();
+function storeData(filePath, dataArr) {
+  fs.writeFileSync(filePath, JSON.stringify(dataArr));
+}
 
-async function scrapemusicData() {
-  try {
-    const res = await axios.get(musicUrl);
-    const html = res.data;
-    const $ = cheerio.load(html);
+function scrapeTourData(html) {
+  const $ = cheerio.load(html);
+  const obj = $("script[type='application/ld+json']");
 
-    $(".product-container").each((index, el) => {
-      const item = {
-        title: "",
-        price: "",
-        availability: "",
-        status: "",
-        img: "",
-        url: "",
-      };
-
-      item.title = $(el).find(".product-title").children("a").text();
-      item.img = $(el).find("img").attr("srcset");
-      item.price = $(el).find(".product-price").text();
-      item.status = $(el).find(".product-status").children(".signed").text();
-      item.availability = $(el).find(".product-availability").text();
-      item.url = $(el).find("a").attr("href");
-
-      musicData.push(item);
-    });
-
-    fs.writeFileSync(musicDataPath, JSON.stringify(musicData));
-  } catch (err) {
-    console.log(err);
+  for (var i in obj) {
+    for (var j in obj[i].children) {
+      var data = obj[i].children[j].data;
+      if (data) {
+        const script = JSON.parse(data);
+        tourData.push(script);
+      }
+    }
   }
 }
 
-// scrapemusicData();
+function scrapeSocialMediaData(html) {
+  const $ = cheerio.load(html);
 
-async function scrapeMerchData() {
-  try {
-    const res = await axios.get(merchUrl);
-    const html = res.data;
-    const $ = cheerio.load(html);
+  $("#social-links > li").each((index, el) => {
+    const socialMedia = { platform: "", url: "" };
 
-    const res2 = await axios.get(merchUrl2);
-    const html2 = res2.data;
-    const $$ = cheerio.load(html2);
+    socialMedia.platform = $(el).find("a").text();
+    socialMedia.url = $(el).find("a").attr("href");
 
-    $(".product-container").each((index, el) => {
-      const item = {
-        title: "",
-        price: "",
-        availability: "",
-        status: "",
-        img: "",
-        url: "",
-      };
-
-      item.title = $(el).find(".product-title").children("a").text();
-      item.img = $(el).find("img").attr("srcset");
-      item.price = $(el).find(".product-price").text();
-      item.status = $(el).find(".product-status").children(".signed").text();
-      item.availability = $(el).find(".product-availability").text();
-      item.url = $(el).find("a").attr("href");
-
-      merchData.push(item);
-    });
-
-    $$(".product-container").each((index, el) => {
-      const item = {
-        title: "",
-        price: "",
-        availability: "",
-        status: "",
-        img: "",
-        url: "",
-      };
-
-      item.title = $(el).find(".product-title").children("a").text();
-      item.img = $(el).find("img").attr("srcset");
-      item.price = $(el).find(".product-price").text();
-      item.status = $(el).find(".product-status").children(".signed").text();
-      item.availability = $(el).find(".product-availability").text();
-      item.url = $(el).find("a").attr("href");
-
-      merchData.push(item);
-    });
-
-    fs.writeFileSync(merchDataPath, JSON.stringify(merchData));
-  } catch (err) {
-    console.log(err);
-  }
+    socialMediaData.push(socialMedia);
+  });
 }
 
-scrapeMerchData();
+function scrapeMusicData(html) {
+  const $ = cheerio.load(html);
+
+  $(".product-container").each((index, el) => {
+    const item = {
+      title: "",
+      price: "",
+      availability: "",
+      status: "",
+      img: "",
+      url: "",
+    };
+
+    item.title = $(el).find(".product-title").children("a").text();
+    item.img = $(el).find("img").attr("srcset");
+    item.price = $(el).find(".product-price").text();
+    item.status = $(el).find(".product-status").children(".signed").text();
+    item.availability = $(el).find(".product-availability").text();
+    item.url = $(el).find("a").attr("href");
+
+    musicData.push(item);
+  });
+}
+
+function scrapeMerchData(html) {
+  const $ = cheerio.load(html);
+
+  $(".product-container").each((index, el) => {
+    const item = {
+      title: "",
+      price: "",
+      availability: "",
+      status: "",
+      img: "",
+      url: "",
+    };
+
+    item.title = $(el).find(".product-title").children("a").text();
+    item.img = $(el).find("img").attr("srcset");
+    item.price = $(el).find(".product-price").text();
+    item.status = $(el).find(".product-status").children(".signed").text();
+    item.availability = $(el).find(".product-availability").text();
+    item.url = $(el).find("a").attr("href");
+
+    merchData.push(item);
+  });
+}
+
+// scrapeNStoreData(officialWebsiteUrl, scrapeTourData, tourDataPath, tourData);
+scrapeNStoreData(
+  officialWebsiteUrl,
+  scrapeSocialMediaData,
+  socialMediaPath,
+  socialMediaData
+);
+// scrapeNStoreData(
+//   musicUrl,
+//   scrapeMusicData,
+//   musicPath,
+//   musicData
+// );
+// scrapeNStoreData(merchUrl2, scrapeMerchData, merchDataPath, merchData);
+// scrapeNStoreData(merchUrl1, scrapeMerchData, merchDataPath, merchData);
+
+// async function scrapeTourData() {
+//   try {
+//     const html = await getHtml(officialWebsiteUrl);
+
+//     tourDataCheerio(html);
+//     storeData(tourDataPath, tourData[1]);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 app.listen(PORT, () => console.log(`server is running on PORT ${PORT}`));

@@ -9,8 +9,8 @@ function TourList({ search }) {
 
   return (
     <div className="tour-list">
-      {filteredData.map((data) => (
-        <Tour tourData={data} key={data.location.name} />
+      {filteredData.map((data, i) => (
+        <Tour tourData={data} key={`${data.location.name}-${i}`} />
       ))}
     </div>
   );

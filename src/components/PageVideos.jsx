@@ -13,37 +13,38 @@ function PageVideos() {
       .scrollIntoView({ block: "start", behavior: "auto" });
   }
 
+  function getYoutubeData(url) {
+    return fetch(url)
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
+  }
+
   useEffect(() => {
     async function getVideos() {
-      const API_SECRET = import.meta.env.VITE_YOUTUBE_API_KEY;
-      const youtubeEndPoint =
-        "https://www.googleapis.com/youtube/v3/playlistItems";
-      const parameters = "part=snippet&maxResults=5";
-      const parametersVer2 = "part=snippet&maxResults=10";
-      const foundHeaven = "PL3exoAUOZJZns5FNKYhFVM5gT_vQYOtP8";
-      const superache = "PL3exoAUOZJZnmrJYh9wgTHxSilgEldP_B";
-      const allVideos = "PL3exoAUOZJZkAxjqVQc6GcQK7C9bgvCcg";
+      try {
+        const API_SECRET = import.meta.env.VITE_YOUTUBE_API_KEY;
+        const youtubeEndPoint =
+          "https://www.googleapis.com/youtube/v3/playlistItems";
+        const allVideosId = "PL3exoAUOZJZkAxjqVQc6GcQK7C9bgvCcg";
+        const foundHeavenId = "PL3exoAUOZJZns5FNKYhFVM5gT_vQYOtP8";
+        const superacheId = "PL3exoAUOZJZnmrJYh9wgTHxSilgEldP_B";
+        const allvideosUrl = `${youtubeEndPoint}?part=snippet&maxResults=10&playlistId=${allVideosId}&key=${API_SECRET}`;
+        const foundHeavenUrl = `${youtubeEndPoint}?part=snippet&maxResults=5&playlistId=${foundHeavenId}&key=${API_SECRET}`;
+        const superacheUrl = `${youtubeEndPoint}?part=snippet&maxResults=5&playlistId=${superacheId}&key=${API_SECRET}`;
 
-      const allVideosRes = await fetch(
-        `${youtubeEndPoint}?${parametersVer2}&playlistId=${allVideos}&key=${API_SECRET}`
-      );
-      const allVideosData = await allVideosRes.json();
+        const videoLists = await Promise.all([
+          getYoutubeData(allvideosUrl),
+          getYoutubeData(foundHeavenUrl),
+          getYoutubeData(superacheUrl),
+        ]);
 
-      const foundHeavenRes = await fetch(
-        `${youtubeEndPoint}?${parameters}&playlistId=${foundHeaven}&key=${API_SECRET}`
-      );
-      const foundHeavenData = await foundHeavenRes.json();
-
-      const superacheRes = await fetch(
-        `${youtubeEndPoint}?${parameters}&playlistId=${superache}&key=${API_SECRET}`
-      );
-      const superacheData = await superacheRes.json();
-
-      setAllVideosPlaylist(allVideosData.items);
-      setFoundHeavenPlaylist(foundHeavenData.items);
-      setSuperachePlaylist(superacheData.items);
+        setAllVideosPlaylist(videoLists[0].items);
+        setFoundHeavenPlaylist(videoLists[1].items);
+        setSuperachePlaylist(videoLists[2].items);
+      } catch (error) {
+        console.error(error.message);
+      }
     }
-
     getVideos();
   }, []);
 
