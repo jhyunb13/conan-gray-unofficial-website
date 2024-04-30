@@ -2,6 +2,8 @@ import Product from "./Product";
 import propTypes from "prop-types";
 
 function ProductList({ content }) {
+  console.log(content.length);
+
   return (
     <div
       id="product-list"
@@ -11,11 +13,11 @@ function ProductList({ content }) {
         content.length >= 5 ? "grid-3-row-md" : ""
       } ${content.length >= 7 ? "grid-4-row-md" : ""} ${
         content.length >= 9 ? "grid-5-row-md" : ""
-      }${content.length >= 11 ? "grid-6-row-md" : ""} ${
+      } ${content.length >= 11 ? "grid-6-row-md" : ""} ${
         content.length <= 3 ? "grid-1-row-lg" : ""
       } ${content.length >= 4 ? "grid-2-row-lg" : ""} ${
         content.length >= 7 ? "grid-3-row-lg" : ""
-      }${content.length >= 10 ? "grid-4-row-lg" : ""}`}
+      } ${content.length >= 10 ? "grid-4-row-lg" : ""}`}
     >
       {content.map((productData) => {
         return (
