@@ -3,10 +3,7 @@ import propTypes from "prop-types";
 function BtnRemove({ setCartCount, setItemsInCart, itemQuantity, id }) {
   function handleRemoveItem(quantity, id) {
     setCartCount((num) => num - quantity);
-
-    setItemsInCart((items) => {
-      return items.filter((item) => item.id !== id);
-    });
+    setItemsInCart((items) => items.filter((item) => item.id !== id));
   }
 
   return (
@@ -21,7 +18,7 @@ function BtnRemove({ setCartCount, setItemsInCart, itemQuantity, id }) {
 
 BtnRemove.propTypes = {
   setCartCount: propTypes.func,
-  setItemsInCarte: propTypes.func,
+  setItemsInCart: propTypes.func,
   itemQuantity: propTypes.number,
   id: propTypes.string,
 };

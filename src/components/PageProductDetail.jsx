@@ -1,7 +1,5 @@
-import { useParams, useOutletContext } from "react-router-dom";
+import { useParams, useOutletContext, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
-import musicData from "../assets/musicData.json";
-import merchData from "../assets/merchData.json";
 import SelectorQuantity from "./SelectorQuantity";
 import SelectorSize from "./SelectorSize";
 import BtnMultiuse from "./BtnMultiuse";
@@ -12,8 +10,12 @@ function PageProductDetail() {
   const {
     cartCount: [cartCount, setCartCount],
     cartItem: [itemsInCart, setItemsInCart],
+    musicData: [musicData, setMusicData],
+    merchData: [merchData, setMerchData],
   } = useOutletContext();
-  const [correspondingData, setCorrespondingData] = useState(null);
+  const capitalizeLetters = useLoaderData();
+
+  const [correspondingData, setCorrespondingData] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [sizeSelected, setSizeSelected] = useState("S");
 
@@ -28,14 +30,14 @@ function PageProductDetail() {
   }`;
 
   function handleSubtraction() {
-    if (!correspondingData.availability) {
-      if (quantity <= 1) return;
-      setQuantity((num) => (num -= 1));
-    }
+    if (correspondingData.soldOut) return;
+    if (quantity <= 1) return;
+    setQuantity((num) => (num -= 1));
   }
 
   function handleAddition() {
-    if (!correspondingData.availability) setQuantity((num) => (num += 1));
+    if (correspondingData.soldOut) return;
+    setQuantity((num) => (num += 1));
   }
 
   function handleAddToCart() {
@@ -61,37 +63,25 @@ function PageProductDetail() {
     });
   }
 
+  function findMatchingData(data, id, stateSetter) {
+    data.map((data) => {
+      if (
+        id ===
+        data.title
+          .toLowerCase()
+          .replace("(", "")
+          .replace(")", "")
+          .split(" ")
+          .join("-")
+      )
+        stateSetter(data);
+    });
+  }
+
   useEffect(() => {
-    function getData() {
-      musicData.forEach((data) => {
-        if (
-          productId ===
-          data.title
-            .toLowerCase()
-            .replace("(", "")
-            .replace(")", "")
-            .split(" ")
-            .join("-")
-        )
-          setCorrespondingData(data);
-      });
-
-      merchData.forEach((data) => {
-        if (
-          productId ===
-          data.title
-            .toLowerCase()
-            .replace("(", "")
-            .replace(")", "")
-            .split(" ")
-            .join("-")
-        )
-          setCorrespondingData(data);
-      });
-    }
-
-    getData();
-  }, [productId]);
+    findMatchingData(merchData[1], productId, setCorrespondingData);
+    findMatchingData(musicData[1], productId, setCorrespondingData);
+  }, [productId, musicData, merchData]);
 
   return (
     <>
@@ -114,34 +104,34 @@ function PageProductDetail() {
                   sizeSelected={sizeSelected}
                   setSizeSelected={setSizeSelected}
                   correspondingData={correspondingData}
-                  availability={correspondingData.availability}
+                  soldOut={correspondingData.soldOut}
                 />
               </>
             ) : null}
             <div className="quantity-selector mt-20 ">
               <div className="selector-title">Quantity</div>
               <SelectorQuantity
-                availability={correspondingData.availability}
+                soldOut={correspondingData.soldOut}
                 handleSubtraction={handleSubtraction}
                 handleAddition={handleAddition}
               >
                 {quantity}
               </SelectorQuantity>
             </div>
-            {correspondingData.availability ? (
+            {correspondingData.soldOut ? (
               <BtnMultiuse
-                availability={correspondingData.availability}
+                soldOut={correspondingData.soldOut}
                 classForBtn="btn-add-item"
               >
-                {correspondingData.availability.toUpperCase()}
+                {capitalizeLetters(correspondingData.soldOut)}
               </BtnMultiuse>
             ) : (
               <BtnMultiuse
-                availability={correspondingData.availability}
+                soldOut={correspondingData.soldOut}
                 handleBtnClick={handleAddToCart}
                 classForBtn="btn-add-item"
               >
-                {`Add To Cart`.toUpperCase()}
+                {capitalizeLetters(`Add To Cart`)}
               </BtnMultiuse>
             )}
             <p className="description">

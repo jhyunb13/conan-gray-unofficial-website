@@ -15,9 +15,16 @@ import PageProductDetail from "./components/PageProductDetail";
 import PageShoppingCart from "./components/PageShoppingCart";
 import ErrorPage from "./routes/ErrorPage.jsx";
 
+function loader() {
+  return function (str) {
+    return str.toUpperCase();
+  };
+}
+
 const router = createHashRouter([
   {
     path: "/",
+    loader: loader,
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
@@ -31,30 +38,39 @@ const router = createHashRouter([
   {
     path: "/store",
     element: <Shop />,
+    loader: loader,
     children: [
-      { path: "", element: <PageStore /> },
+      { path: "", loader: loader, element: <PageStore /> },
       {
         path: "merch",
+        loader: loader,
         element: <PageMerch />,
       },
       {
         path: "music",
+        loader: loader,
+
         element: <PageMusic />,
       },
       {
         path: "products/:productId",
+        loader: loader,
+
         element: <PageProductDetail />,
       },
       {
         path: "music/products/:productId",
+        loader: loader,
         element: <PageProductDetail />,
       },
       {
         path: "merch/products/:productId",
+        loader: loader,
         element: <PageProductDetail />,
       },
       {
         path: "shopping-cart",
+        loader: loader,
         element: <PageShoppingCart />,
       },
     ],

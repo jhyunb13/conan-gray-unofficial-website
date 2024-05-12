@@ -1,3 +1,4 @@
+import ScrollToTop from "../components/ScrollToTop";
 import Banner from "./Banner";
 import Nav from "./Nav";
 import { Outlet } from "react-router-dom";
@@ -18,6 +19,7 @@ function Root() {
       <Nav navList={nav} />
       <Outlet />
       <Banner />
+      <ScrollToTop />
     </>
   );
 }

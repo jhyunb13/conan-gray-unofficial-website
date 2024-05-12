@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 
 function SelectorSize({
-  availability,
+  soldOut,
   sizeSelected,
   setSizeSelected,
   correspondingData,
@@ -23,7 +23,7 @@ function SelectorSize({
         {sizeOptions.map((option) => {
           return (
             <div id={`size-${option}`} key={option}>
-              {availability ? (
+              {soldOut ? (
                 <label
                   className={"size-option inactive"}
                   key={`${option}-inactive`}
@@ -65,7 +65,7 @@ function SelectorSize({
 }
 
 SelectorSize.propTypes = {
-  availability: propTypes.string,
+  soldOut: propTypes.string,
   sizeSelected: propTypes.string,
   setSizeSelected: propTypes.func,
   correspondingData: propTypes.object,

@@ -2,7 +2,7 @@ import propTypes from "prop-types";
 
 function SelectorQuantity({
   id,
-  availability,
+  soldOut,
   children,
   handleSubtraction,
   handleAddition,
@@ -11,9 +11,7 @@ function SelectorQuantity({
     <div>
       <button
         onClick={() => handleSubtraction(id)}
-        className={
-          availability ? "btn-quantity inactive" : "btn-quantity active"
-        }
+        className={soldOut ? "btn-quantity inactive" : "btn-quantity active"}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,9 +30,7 @@ function SelectorQuantity({
       <span>{children}</span>
       <button
         onClick={() => handleAddition(id)}
-        className={
-          availability ? "btn-quantity inactive" : "btn-quantity active"
-        }
+        className={soldOut ? "btn-quantity inactive" : "btn-quantity active"}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +52,7 @@ function SelectorQuantity({
 
 SelectorQuantity.propTypes = {
   id: propTypes.string,
-  availability: propTypes.string,
+  soldOut: propTypes.string,
   children: propTypes.number,
   handleSubtraction: propTypes.func,
   handleAddition: propTypes.func,

@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import merch from "../assets/merchData.json";
 import music from "../assets/musicData.json";
 import Banner from "./Banner";
 import Nav from "./Nav";
+import ScrollToTop from "../components/ScrollToTop";
 
 function Shop() {
   const categoryALL = ["All", "CD", "LP", "Cassette", "Merch"];
@@ -17,28 +18,57 @@ function Shop() {
     { category: "Cart", link: `shopping-cart` },
   ];
 
-  const uniqueData = music
-    .concat(merch)
-    .filter(
-      (obj, i) =>
-        i === music.concat(merch).findIndex((o) => obj.title === o.title)
-    );
-  const comesFirst = uniqueData.filter((data) =>
-    data.title.includes(`found heaven`.toUpperCase())
+  const [cartCount, setCartCount] = useState(
+    getLocalstorageData("cartCount", 0)
   );
-  const comesSecond = uniqueData.filter(
-    (data) => !data.title.includes(`found heaven`.toUpperCase())
+  const [itemsInCart, setItemsInCart] = useState(
+    getLocalstorageData("itemsInCart", [])
   );
-  const sortedData = comesFirst.concat(comesSecond);
-
-  const [cartCount, setCartCount] = useState(0);
-  const [itemsInCart, setItemsInCart] = useState([]);
   const [allProductData, setAllProdcutData] = useState([
     categoryALL,
-    sortedData,
+    sortData(getUniqueData(music, merch)),
   ]);
   const [merchData, setMerchData] = useState([categoryMerch, merch]);
   const [musicData, setMusicData] = useState([categoryMusic, music]);
+
+  function getUniqueData(data1, data2) {
+    return data1
+      .concat(data2)
+      .filter(
+        (obj, i) =>
+          i === data1.concat(data2).findIndex((o) => obj.title === o.title)
+      );
+  }
+
+  function sortData(data) {
+    const dataIncludingFh = data.filter((data) =>
+      data.title.includes(`found heaven`.toUpperCase())
+    );
+    const dataExcludingFh = data.filter(
+      (data) => !data.title.includes(`found heaven`.toUpperCase())
+    );
+
+    return dataIncludingFh.concat(dataExcludingFh);
+  }
+
+  function storeInLocalstorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  function getLocalstorageData(key, initialValue) {
+    const storage = localStorage.getItem(key);
+    const storedItems = JSON.parse(storage);
+    return storage ? storedItems : initialValue;
+  }
+
+  useEffect(() => {
+    storeInLocalstorage("itemsInCart", itemsInCart);
+    storeInLocalstorage("cartCount", cartCount);
+  }, [itemsInCart, cartCount]);
+
+  // useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
 
   return (
     <>
@@ -53,6 +83,7 @@ function Shop() {
         }}
       />
       <Banner />
+      <ScrollToTop />
     </>
   );
 }

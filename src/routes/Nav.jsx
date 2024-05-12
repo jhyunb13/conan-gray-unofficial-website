@@ -1,38 +1,33 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
 import propTypes from "prop-types";
 
 function Nav({ navList, cartCount }) {
   const location = useLocation();
   const currentPath = location.pathname;
   const newParam = new URLSearchParams([["page", "1"]]).toString();
-
-  function handleScrollToTop() {
-    window.scrollTo(0, 0);
-  }
+  const capitalizeLetters = useLoaderData();
+  const starSign = <div className="nav-clicked">✪</div>;
 
   return (
     <nav>
       <ul>
         {navList.map((n) => {
           return (
-            <li onClick={handleScrollToTop} key={n.category}>
-              {(currentPath === n.link || currentPath === `/${n.link}`) && (
-                <div className="nav-clicked">✪</div>
-              )}
-              {currentPath === `/store/${n.link}` && (
-                <div className="nav-clicked">✪</div>
-              )}
-              {currentPath.includes(`${n.link}/products`) && (
-                <div className="nav-clicked">✪</div>
-              )}
+            <li key={n.category}>
+              {(currentPath === n.link || currentPath === `/${n.link}`) &&
+                starSign}
+              {currentPath === `/store/${n.link}` && starSign}
+              {currentPath.includes(`${n.link}/products`) && starSign}
               <Link to={`${n.link}?${newParam}`}>
-                {n.category.toUpperCase()}
+                {capitalizeLetters(n.category)}
               </Link>
               {n.link === "shopping-cart" && cartCount ? (
                 <div id="cart-count">
                   <span>{cartCount}</span>
                 </div>
-              ) : null}
+              ) : (
+                ""
+              )}
             </li>
           );
         })}

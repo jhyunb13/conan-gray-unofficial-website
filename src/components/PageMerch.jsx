@@ -1,8 +1,8 @@
-import Category from "./Category";
+import FilterList from "./FilterList";
 import ProductList from "./ProductList";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import AlertNoResult from "./AlertNoResult";
 
@@ -10,92 +10,83 @@ function PageMerch() {
   const {
     merchData: [merchData, setMerchData],
   } = useOutletContext();
-  const location = useLocation();
-
   const category = merchData[0];
 
   const [productData, setProductData] = useState(
-    merchData[1].filter((data) => !data.availability)
+    merchData[1].filter((data) => !data.soldOut)
   );
   const [categoryOption, setCategoryOption] = useState("All");
   const [filterOption, setFilterOption] = useState("In Stock");
   const [filteredData, setFilteredData] = useState(productData);
-  const [content, setContent] = useState(
-    productData.slice(12 * (1 - 1), 12 * 1)
+  const [pageContent, setPageContent] = useState(productData.slice(0, 12));
+
+  const location = useLocation();
+  const currentPage = parseInt(
+    new URLSearchParams(location.search).get("page")
   );
 
-  const contentLimitPerPage = 12;
-  const totalPage = Math.ceil(filteredData.length / contentLimitPerPage);
-  const pageNumbers = useMemo(() => {
-    const arr = [];
-    for (let i = 0; i < totalPage; i++) arr.push(i + 1);
-    return arr;
-  }, [totalPage]);
-
-  const pathName = location.pathname;
-  let currentParam = parseInt(new URLSearchParams(location.search).get("page"));
+  const resultsPerPage = 12;
+  const totalPage = Math.ceil(filteredData.length / resultsPerPage);
+  const resultsStart = resultsPerPage * (currentPage - 1);
+  const resultsEnd = resultsPerPage * currentPage;
 
   useEffect(() => {
-    pageNumbers.map(
-      (num) =>
-        currentParam === num &&
-        setContent(filteredData.slice(12 * (num - 1), 12 * num))
-    );
-  }, [currentParam, pageNumbers, productData, filteredData]);
+    setPageContent(filteredData.slice(resultsStart, resultsEnd));
+  }, [filteredData, resultsEnd, resultsStart]);
 
   useEffect(() => {
-    if (filterOption === "All") setProductData(merchData[1]);
-    else if (filterOption === "Out of Stock")
-      setProductData(merchData[1].filter((data) => data.availability));
-    else if (filterOption === "In Stock")
-      setProductData(merchData[1].filter((data) => !data.availability));
+    function filterAvailability() {
+      if (filterOption === "All") setProductData(merchData[1]);
+      if (filterOption === "Out of Stock")
+        setProductData(merchData[1].filter((data) => data.soldOut));
+      if (filterOption === "In Stock")
+        setProductData(merchData[1].filter((data) => !data.soldOut));
+    }
+    filterAvailability();
   }, [filterOption, merchData]);
 
   useEffect(() => {
-    if (categoryOption === "All") setFilteredData(productData);
-    else if (categoryOption === "Tops")
-      setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("TEE") || data.title.includes("SWEATER");
-        })
-      );
-    else if (categoryOption === "Outerwear")
-      setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("HOODIE");
-        })
-      );
-    else if (categoryOption === "Accessories")
-      setFilteredData(
-        productData.filter((data) => {
-          return (
-            !data.title.includes("TEE") &&
-            !data.title.includes("HOODIE") &&
-            !data.title.includes("SWEATER")
-          );
-        })
-      );
+    function filterByCategory() {
+      if (categoryOption === "All") setFilteredData(productData);
+      if (categoryOption === "Tops")
+        setFilteredData(
+          productData.filter(
+            (data) =>
+              data.title.includes("TEE") || data.title.includes("SWEATER")
+          )
+        );
+      if (categoryOption === "Outerwear")
+        setFilteredData(
+          productData.filter((data) => data.title.includes("HOODIE"))
+        );
+      if (categoryOption === "Accessories")
+        setFilteredData(
+          productData.filter((data) => {
+            return (
+              !data.title.includes("TEE") &&
+              !data.title.includes("HOODIE") &&
+              !data.title.includes("SWEATER")
+            );
+          })
+        );
+    }
+    filterByCategory();
   }, [categoryOption, productData, category]);
 
   return (
     <>
       <main className="store-page">
-        <Category
-          options={category}
+        <FilterList
+          category={category}
           setCategoryOption={setCategoryOption}
           setFilterOption={setFilterOption}
         />
         {filteredData.length ? (
-          <ProductList content={content} />
+          <ProductList pageContent={pageContent} />
         ) : (
           <AlertNoResult>no results found</AlertNoResult>
         )}{" "}
-        <Pagination
-          totalPage={totalPage}
-          pageNumbers={pageNumbers}
-          pathName={pathName}
-          currentParam={currentParam}
-        />
+        <Pagination totalPage={totalPage} currentPage={currentPage} />
       </main>
       <Footer />
     </>

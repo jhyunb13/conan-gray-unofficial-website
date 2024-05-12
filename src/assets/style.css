@@ -123,6 +123,10 @@
   color: var(--color-text);
 }
 
+.not-allowed {
+  cursor: not-allowed;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -574,6 +578,7 @@ footer a:last-child {
 
 .inactive {
   background: rgba(212, 212, 212, 0.4);
+  cursor: not-allowed;
 }
 
 .btn-add-item {
@@ -655,38 +660,52 @@ footer a:last-child {
   color: var(--color-button-text);
 }
 
-.item-summary > div {
-  border-bottom: 0.7px solid rgba(214, 218, 227, 0.5);
+table {
+  border-collapse: collapse;
 }
 
-.item-summary > div:first-child {
+.item-summary > thead tr {
   display: grid;
   grid-template-columns: 2.5fr 1fr 1fr;
   gap: 10px;
   border-bottom: 3px solid var(--color-border);
 }
 
-.item-summary > div:first-child > div {
+.item-summary > thead tr th {
   text-align: center;
+  font-weight: var(--text-weight-regular);
 }
 
-.item-summary > div:first-child > div:first-child {
+.item-summary > thead tr th:first-child {
   text-align: left;
 }
 
-.item-summary > div:last-child {
-  border-bottom: 3px solid var(--color-border);
-}
-
-.order-summary > div:first-child {
-  border-bottom: 3px solid var(--color-border);
-}
-
-.order-summary > div:nth-child(3) {
+.item-summary > tbody tr {
   border-bottom: 0.7px solid rgba(214, 218, 227, 0.5);
 }
 
-.order-summary > div:nth-child(4) {
+.item-summary > tbody tr:last-child {
+  border-bottom: 3px solid var(--color-border);
+}
+
+.order-summary {
+  height: 150px;
+}
+
+.order-summary > thead tr {
+  border-bottom: 3px solid var(--color-border);
+}
+
+.order-summary > thead tr th {
+  text-align: left;
+  font-weight: var(--text-weight-regular);
+}
+
+.order-summary > tbody tr {
+  border-bottom: 0.7px solid rgba(214, 218, 227, 0.5);
+}
+
+.order-summary > tbody tr:nth-child(2) {
   border-bottom: 3px solid var(--color-border);
 }
 
@@ -729,7 +748,7 @@ footer a:last-child {
   align-items: center;
 }
 
-.item-in-cart > div > img {
+.item-in-cart > td > img {
   display: flex;
   width: 80%;
 }
@@ -754,8 +773,7 @@ footer a:last-child {
   padding: 1px 3px 1px 3px;
 }
 
-.item-in-cart > .btn-remove-item {
-  grid-column: 3/4;
+.item-subtotal > .btn-remove-item {
   background: none;
   border: none;
   text-decoration: underline;

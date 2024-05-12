@@ -1,18 +1,12 @@
 import propTypes from "prop-types";
 
-function BtnMultiuse({
-  children,
-  url,
-  availability,
-  handleBtnClick,
-  classForBtn,
-}) {
+function BtnMultiuse({ children, url, soldOut, handleBtnClick, classForBtn }) {
   return (
     <div className={classForBtn}>
       <a href={url} target="_blank" rel="noopener" className="no-link-style">
         <button
-          className="button"
-          disabled={availability ? true : false}
+          className={soldOut ? "button not-allowed" : "button"}
+          disabled={soldOut ? true : false}
           onClick={handleBtnClick}
         >
           {children}
@@ -25,7 +19,7 @@ function BtnMultiuse({
 BtnMultiuse.propTypes = {
   children: propTypes.string,
   url: propTypes.string,
-  availability: propTypes.string,
+  soldOut: propTypes.string,
   handleBtnClick: propTypes.func,
   classForBtn: propTypes.string,
 };

@@ -28,8 +28,8 @@ function Product({ productData }) {
               <Badge>{productData.status.toUpperCase()}</Badge>
             )}
 
-            {productData.availability && (
-              <Badge>{productData.availability.toUpperCase()}</Badge>
+            {productData.soldOut && (
+              <Badge>{productData.soldOut.toUpperCase()}</Badge>
             )}
           </div>
           <div className="product-title-price">

@@ -2,7 +2,7 @@ import propTypes from "prop-types";
 import BtnMultiuse from "./BtnMultiuse";
 
 function AlertWarning({ closeAlert, setCloseAlert }) {
-  function handleAlertClose() {
+  function handleCloseAlert1() {
     setCloseAlert(true);
 
     document.addEventListener("keydown", function (e) {
@@ -16,10 +16,17 @@ function AlertWarning({ closeAlert, setCloseAlert }) {
     });
   }
 
+  function handleCloserAlert2(e) {
+    e.target.classList.contains("warning") && setCloseAlert(true);
+  }
+
   return (
-    <div className={closeAlert ? "warning hidden" : "warning"}>
+    <div
+      className={closeAlert ? "warning hidden" : "warning"}
+      onClick={handleCloserAlert2}
+    >
       <div className="warning-text">
-        <button className="btn-close" onClick={handleAlertClose}>
+        <button className="btn-close" onClick={handleCloseAlert1}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

@@ -1,8 +1,8 @@
-import Category from "./Category";
+import FilterList from "./FilterList";
 import ProductList from "./ProductList";
 import Pagination from "./Pagination";
 import Footer from "./Footer";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
 import AlertNoResult from "./AlertNoResult";
 
@@ -10,49 +10,41 @@ function PageStore() {
   const {
     allData: [allProductData, setAllProdcutData],
   } = useOutletContext();
-  const location = useLocation();
   const category = allProductData[0];
 
   const [productData, setProductData] = useState(
-    allProductData[1].filter((data) => !data.availability)
+    allProductData[1].filter((data) => !data.soldOut)
   );
   const [categoryOption, setCategoryOption] = useState("All");
   const [filterOption, setFilterOption] = useState("In Stock");
   const [filteredData, setFilteredData] = useState(productData);
-  const [content, setContent] = useState(
-    productData.slice(12 * (1 - 1), 12 * 1)
+  const [pageContent, setPageContent] = useState(productData.slice(0, 12));
+
+  const location = useLocation();
+  const currentPage = parseInt(
+    new URLSearchParams(location.search).get("page")
   );
 
-  const contentLimitPerPage = 12;
-  const totalPage = Math.ceil(filteredData.length / contentLimitPerPage);
-  const pageNumbers = useMemo(() => {
-    const arr = [];
-    for (let i = 0; i < totalPage; i++) arr.push(i + 1);
-    return arr;
-  }, [totalPage]);
-
-  const pathName = location.pathname;
-  let currentParam = parseInt(new URLSearchParams(location.search).get("page"));
+  const resultsPerPage = 12;
+  const totalPage = Math.ceil(filteredData.length / resultsPerPage);
+  const resultsStart = resultsPerPage * (currentPage - 1);
+  const resultsEnd = resultsPerPage * currentPage;
 
   useEffect(() => {
-    pageNumbers.map(
-      (num) =>
-        currentParam === num &&
-        setContent(filteredData.slice(12 * (num - 1), 12 * num))
-    );
-  }, [currentParam, pageNumbers, filteredData]);
+    setPageContent(filteredData.slice(resultsStart, resultsEnd));
+  }, [filteredData, resultsEnd, resultsStart]);
 
   useEffect(() => {
     if (filterOption === "All") setProductData(allProductData[1]);
-    else if (filterOption === "Out of Stock")
-      setProductData(allProductData[1].filter((data) => data.availability));
-    else if (filterOption === "In Stock")
-      setProductData(allProductData[1].filter((data) => !data.availability));
+    if (filterOption === "Out of Stock")
+      setProductData(allProductData[1].filter((data) => data.soldOut));
+    if (filterOption === "In Stock")
+      setProductData(allProductData[1].filter((data) => !data.soldOut));
   }, [filterOption, allProductData]);
 
   useEffect(() => {
     if (categoryOption === "All") setFilteredData(productData);
-    else if (categoryOption === "Merch")
+    if (categoryOption === "Merch")
       setFilteredData(
         productData.filter((data) => {
           return (
@@ -62,45 +54,34 @@ function PageStore() {
           );
         })
       );
-    else if (categoryOption === "CD")
+    if (categoryOption === "CD")
       setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("CD") || data.title.includes("Box");
-        })
+        productData.filter(
+          (data) => data.title.includes("CD") || data.title.includes("Box")
+        )
       );
-    else if (categoryOption === "LP")
+    if (categoryOption === "LP")
+      setFilteredData(productData.filter((data) => data.title.includes("LP")));
+    if (categoryOption === "Cassette")
       setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("LP");
-        })
-      );
-    else if (categoryOption === "Cassette")
-      setFilteredData(
-        productData.filter((data) => {
-          return data.title.includes("Cassette");
-        })
+        productData.filter((data) => data.title.includes("Cassette"))
       );
   }, [categoryOption, productData, category]);
 
   return (
     <>
       <main className="store-page">
-        <Category
-          options={category}
+        <FilterList
+          category={category}
           setCategoryOption={setCategoryOption}
           setFilterOption={setFilterOption}
         />
         {filteredData.length ? (
-          <ProductList content={content} />
+          <ProductList pageContent={pageContent} />
         ) : (
           <AlertNoResult>no results found</AlertNoResult>
         )}
-        <Pagination
-          totalPage={totalPage}
-          pageNumbers={pageNumbers}
-          pathName={pathName}
-          currentParam={currentParam}
-        />
+        <Pagination totalPage={totalPage} currentPage={currentPage} />
       </main>
       <Footer />
     </>
