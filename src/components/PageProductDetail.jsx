@@ -4,6 +4,7 @@ import SelectorQuantity from "./SelectorQuantity";
 import SelectorSize from "./SelectorSize";
 import BtnMultiuse from "./BtnMultiuse";
 import Footer from "./Footer";
+import { nanoid } from "nanoid";
 
 function PageProductDetail() {
   const { productId } = useParams();
@@ -20,14 +21,6 @@ function PageProductDetail() {
   const [sizeSelected, setSizeSelected] = useState("S");
 
   const footerStyle = { position: "relative", top: "80px" };
-  const randomNum = Math.trunc(Math.random() * 10000);
-  const regularId = `${
-    correspondingData && `${correspondingData.title}-${quantity}-${randomNum}`
-  }`;
-  const clothingId = `${
-    correspondingData &&
-    `${correspondingData.title}-${sizeSelected}-${quantity}-${randomNum}`
-  }`;
 
   function handleSubtraction() {
     if (correspondingData.soldOut) return;
@@ -49,13 +42,13 @@ function PageProductDetail() {
         correspondingData.title.includes("HOODIE") ||
         correspondingData.title.includes("SWEATER")
           ? {
-              id: clothingId,
+              id: nanoid(),
               product: correspondingData,
               size: sizeSelected,
               quantity,
             }
           : {
-              id: regularId,
+              id: nanoid(),
               product: correspondingData,
               quantity,
             },

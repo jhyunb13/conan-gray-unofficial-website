@@ -18,10 +18,10 @@ function Shop() {
     { category: "Cart", link: `shopping-cart` },
   ];
 
-  const [cartCount, setCartCount] = useState(
+  const [cartCount, setCartCount] = useState(() =>
     getLocalstorageData("cartCount", 0)
   );
-  const [itemsInCart, setItemsInCart] = useState(
+  const [itemsInCart, setItemsInCart] = useState(() =>
     getLocalstorageData("itemsInCart", [])
   );
   const [allProductData, setAllProdcutData] = useState([

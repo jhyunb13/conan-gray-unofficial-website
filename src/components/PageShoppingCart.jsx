@@ -1,5 +1,5 @@
 import { useOutletContext, useLoaderData, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BtnRemove from "./BtnRemove";
 import SelectorQuantity from "./SelectorQuantity";
 import Footer from "./Footer";

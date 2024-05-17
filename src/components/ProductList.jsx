@@ -1,5 +1,6 @@
 import Product from "./Product";
 import propTypes from "prop-types";
+import { nanoid } from "nanoid";
 
 function ProductList({ pageContent }) {
   return (
@@ -18,12 +19,7 @@ function ProductList({ pageContent }) {
       } ${pageContent.length >= 10 ? "grid-4-row-lg" : ""}`}
     >
       {pageContent.map((productData) => {
-        return (
-          <Product
-            productData={productData}
-            key={`${productData.title}-${Math.trunc(Math.random() * 1000)}`}
-          />
-        );
+        return <Product productData={productData} key={nanoid()} />;
       })}
     </div>
   );
