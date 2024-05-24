@@ -1,11 +1,12 @@
 import { useOutletContext, useLoaderData, Link } from "react-router-dom";
 import { useState } from "react";
-import BtnRemove from "./BtnRemove";
-import SelectorQuantity from "./SelectorQuantity";
-import Footer from "./Footer";
-import AlertNoResult from "./AlertNoResult";
-import AlertWarning from "./AlertWarning";
-import BtnMultiuse from "./BtnMultiuse";
+import BtnRemove from "../components/BtnRemove";
+import SelectorQuantity from "../components/SelectorQuantity";
+import Footer from "../components/Footer";
+import AlertNoResult from "../components/AlertNoResult";
+import AlertWarning from "../components/AlertWarning";
+import BtnMultiuse from "../components/BtnMultiuse";
+import styles from "./PageShoppingCart.module.css";
 
 function PageShoppingCart() {
   const {
@@ -72,15 +73,13 @@ function PageShoppingCart() {
   return (
     <>
       <main
-        className={`${
-          itemsInCart.length
-            ? "shopping-cart grid-1-col-md "
-            : "empty-shopping-cart"
-        }`}
+        className={
+          itemsInCart.length ? styles.shoppingCart : styles.emptyShoppingCart
+        }
       >
         {itemsInCart.length ? (
           <>
-            <table className="item-summary">
+            <table className={styles.itemSummary}>
               <thead>
                 <tr>
                   <th className="pb-10">Item Summary</th>
@@ -90,13 +89,13 @@ function PageShoppingCart() {
               </thead>
               <tbody>
                 {itemsInCart.map((item) => (
-                  <tr className="item-in-cart" key={item.id}>
-                    <td className="item-info">
+                  <tr className={styles.itemInCart} key={item.id}>
+                    <td className={styles.itemInfo}>
                       <img
                         src={`https:${item.product.img}`}
                         alt={item.product.title}
                       />
-                      <div className="title-price">
+                      <div className={styles.titlePrice}>
                         <div>{item.product.title}</div>
                         <div>Price : {item.product.price}</div>
                         {item.size ? <div>Size : {item.size}</div> : ""}
@@ -111,7 +110,7 @@ function PageShoppingCart() {
                         {item.quantity}
                       </SelectorQuantity>
                     </td>
-                    <td className="item-subtotal pt-5">
+                    <td className={`${styles.itemSubtotal} pt-5"`}>
                       <div>
                         {formatPriceInUSD(
                           convertToNum(item.product.price),
@@ -129,7 +128,7 @@ function PageShoppingCart() {
                 ))}
               </tbody>
             </table>
-            <table className="order-summary">
+            <table className={styles.orderSummary}>
               <thead>
                 <tr>
                   <th className="pb-10">Order Summary</th>
@@ -153,7 +152,7 @@ function PageShoppingCart() {
                   </td>
                 </tr>
                 <BtnMultiuse
-                  classForBtn="btn-to-checkout"
+                  classForBtn={styles.btnToCheckout}
                   handleBtnClick={handleAlertWarning}
                 >
                   {capitalizeLetters(`Continue To Check Out`)}
@@ -163,7 +162,9 @@ function PageShoppingCart() {
           </>
         ) : (
           <>
-            <AlertNoResult>your cart is currently empty</AlertNoResult>
+            <AlertNoResult dataAvail={itemsInCart.length}>
+              your cart is currently empty
+            </AlertNoResult>
             <div className="btn-back-to-store">
               <Link to={`/store?${newParam}`}>
                 <button className="button mt-20 ">

@@ -1,6 +1,7 @@
 import propTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import Badge from "./Badge";
+import styles from "./Product.module.css";
 
 function Product({ productData }) {
   const urlParam = productData.title
@@ -14,15 +15,15 @@ function Product({ productData }) {
   const currentPath = location.pathname;
 
   return (
-    <div className="product">
+    <div className={styles.product}>
       <Link
         to={`${currentPath}/products/${urlParam}`}
         className="no-link-style"
       >
-        <div className="product-img-container">
+        <div className={styles.productImgContainer}>
           <img src={`https:${productData.img}`} alt={productData.title} />
         </div>
-        <div className="product-info">
+        <div className={styles.productInfo}>
           <div>
             {productData.status && (
               <Badge>{productData.status.toUpperCase()}</Badge>
@@ -32,7 +33,7 @@ function Product({ productData }) {
               <Badge>{productData.soldOut.toUpperCase()}</Badge>
             )}
           </div>
-          <div className="product-title-price">
+          <div className={styles.productTitlePrice}>
             <div>{productData.title}</div>
             <div>{productData.price}</div>
           </div>

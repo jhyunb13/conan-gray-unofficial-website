@@ -1,10 +1,11 @@
 import { useParams, useOutletContext, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SelectorQuantity from "./SelectorQuantity";
-import SelectorSize from "./SelectorSize";
-import BtnMultiuse from "./BtnMultiuse";
-import Footer from "./Footer";
+import SelectorQuantity from "../components/SelectorQuantity";
+import SelectorSize from "../components/SelectorSize";
+import BtnMultiuse from "../components/BtnMultiuse";
+import Footer from "../components/Footer";
 import { nanoid } from "nanoid";
+import styles from "./PageProductDetail.module.css";
 
 function PageProductDetail() {
   const { productId } = useParams();
@@ -79,14 +80,16 @@ function PageProductDetail() {
   return (
     <>
       {correspondingData && (
-        <main className="product-detail-page grid-2-col-lg grid-1-col-md">
-          <div className="img-container">
+        <main
+          className={`${styles.productDetailPage} grid-2-col-lg grid-1-col-md`}
+        >
+          <div className={styles.imgContainer}>
             <img
               src={`https:${correspondingData.img}`}
               alt={correspondingData.title}
             />
           </div>
-          <div className="product-detail">
+          <div className={styles.productDetail}>
             <h1>{correspondingData.title}</h1>
             <div>{correspondingData.price}</div>
             {correspondingData.title.includes("TEE") ||

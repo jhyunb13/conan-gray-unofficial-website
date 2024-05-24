@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
-import Footer from "./Footer";
-import VideoList from "./VideoList";
-import BtnScrollToSection from "./BtnScrollToSection";
+import { useEffect, useState, useRef } from "react";
+import Footer from "../components/Footer";
+import VideoList from "../components/VideoList";
+import BtnScrollToSection from "../components/BtnScrollToSection";
 
 function PageVideos() {
   const [allVideosPlaylist, setAllVideosPlaylist] = useState([]);
   const [foundHeavenPlaylist, setFoundHeavenPlaylist] = useState([]);
   const [superachePlaylist, setSuperachePlaylist] = useState([]);
+
+  const foundHeavenElement = useRef(null);
+  const superacheElement = useRef(null);
+  const kidKrowElement = useRef(null);
 
   function getYoutubeData(url) {
     return fetch(url)
@@ -47,26 +51,35 @@ function PageVideos() {
     <>
       <main id="video-page">
         <header id="video-menu">
-          <BtnScrollToSection name="Found Heaven" section="found-heaven-era" />
+          <BtnScrollToSection
+            textContent="Found Heaven"
+            element={foundHeavenElement}
+          />
           <h1>/</h1>
-          <BtnScrollToSection name="Superache" section="superache-era" />
+          <BtnScrollToSection
+            textContent="Superache"
+            element={superacheElement}
+          />
           <h1>/</h1>
-          <BtnScrollToSection name="Kid Krow" section="kid-krow-era" />
+          <BtnScrollToSection textContent="Kid Krow" element={kidKrowElement} />
         </header>
         <VideoList
           elementId="found-heaven"
           playlist={foundHeavenPlaylist}
           albumTitle="fh"
+          element={foundHeavenElement}
         />
         <VideoList
           elementId="superache"
           playlist={superachePlaylist}
           albumTitle="s"
+          element={superacheElement}
         />
         <VideoList
           elementId="kid-krow"
           playlist={allVideosPlaylist}
           albumTitle="kk"
+          element={kidKrowElement}
         />
       </main>
       <Footer social="true" />

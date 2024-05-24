@@ -4,15 +4,15 @@ import { RouterProvider, createHashRouter } from "react-router-dom";
 import "./assets/style.css";
 import Root from "./routes/Root.jsx";
 import Shop from "./routes/Shop.jsx";
-import PageMain from "./components/PageMain.jsx";
-import PageListen from "./components/PageListen.jsx";
-import PageVideos from "./components/PageVideos";
-import PageTour from "./components/PageTour.jsx";
-import PageStore from "./components/PageStore.jsx";
-import PageMerch from "./components/PageMerch";
-import PageMusic from "./components/PageMusic";
-import PageProductDetail from "./components/PageProductDetail";
-import PageShoppingCart from "./components/PageShoppingCart";
+import PageMain from "./pages/PageMain.jsx";
+import PageListen from "./pages/PageListen.jsx";
+import PageVideos from "./pages/PageVideos";
+import PageTour from "./pages/PageTour.jsx";
+import PageStore from "./pages/PageStore.jsx";
+import PageMerch from "./pages/PageMerch";
+import PageMusic from "./pages/PageMusic";
+import PageProductDetail from "./pages/PageProductDetail";
+import PageShoppingCart from "./pages/PageShoppingCart";
 import ErrorPage from "./routes/ErrorPage.jsx";
 
 function loader() {
@@ -24,9 +24,9 @@ function loader() {
 const router = createHashRouter([
   {
     path: "/",
-    loader: loader,
     element: <Root />,
     errorElement: <ErrorPage />,
+    loader: loader,
     children: [
       { path: "", element: <PageMain /> },
       { path: "listen", element: <PageListen /> },
@@ -38,6 +38,7 @@ const router = createHashRouter([
   {
     path: "/store",
     element: <Shop />,
+    errorElement: <ErrorPage />,
     loader: loader,
     children: [
       { path: "", loader: loader, element: <PageStore /> },

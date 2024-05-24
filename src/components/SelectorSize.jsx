@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import styles from "./SelectorSize.module.css";
 
 function SelectorSize({
   soldOut,
@@ -17,15 +18,15 @@ function SelectorSize({
   }
 
   return (
-    <form className="size-selector mt-20">
+    <form className={`${styles.sizeSelector} mt-20`}>
       <div className="selector-title">Size</div>
-      <div className="size">
+      <div className={styles.size}>
         {sizeOptions.map((option) => {
           return (
             <div id={`size-${option}`} key={option}>
               {soldOut ? (
                 <label
-                  className={"size-option inactive"}
+                  className={`${styles.sizeOption} inactive`}
                   key={`${option}-inactive`}
                 >
                   <input
@@ -41,8 +42,8 @@ function SelectorSize({
                 <label
                   className={
                     sizeSelected === option
-                      ? "size-option size-selected"
-                      : "size-option"
+                      ? `${styles.sizeOption} ${styles.sizeSelected}`
+                      : styles.sizeOption
                   }
                   key={`${option}-active`}
                 >

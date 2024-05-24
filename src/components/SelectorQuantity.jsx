@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import styles from "./SelectorQuantity.module.css";
 
 function SelectorQuantity({
   id,

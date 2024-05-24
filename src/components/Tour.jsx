@@ -1,5 +1,6 @@
 import propTypes from "prop-types";
 import BtnMultiuse from "./BtnMultiuse";
+import styles from "./Tour.module.css";
 
 function Tour({ tourData }) {
   const dateString = tourData.startDate;
@@ -13,9 +14,9 @@ function Tour({ tourData }) {
   const tourdate = new Intl.DateTimeFormat("en-US", formatOptions).format(date);
 
   return (
-    <div className="tour">
+    <div className={styles.tour}>
       <div className="tour-date-venue">
-        <div className="tour-date">{tourdate}</div>
+        <div className={styles.tourDate}>{tourdate}</div>
         <div>{tourData.location.name}</div>
       </div>
       <div className="tour-city">{tourData.location.address}</div>

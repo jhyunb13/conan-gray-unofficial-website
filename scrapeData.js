@@ -76,6 +76,8 @@ function scrapeSocialMediaData(html) {
 function scrapeProductData(html, arr) {
   const $ = cheerio.load(html);
 
+  console.log(html);
+
   $(".product-container").each((index, el) => {
     const item = {
       title: "",
@@ -104,7 +106,7 @@ scrapeNStoreData(
   socialMediaPath,
   socialMediaData
 );
-scrapeNStoreData(musicUrl, scrapeProductData, musicDataPath, musicData);
+// scrapeNStoreData(musicUrl, scrapeProductData, musicDataPath, musicData);
 // scrapeNStoreData(merchUrl2, scrapeProductData, merchDataPath, merchData);
 // scrapeNStoreData(merchUrl1, scrapeProductData, merchDataPath, merchData);
 

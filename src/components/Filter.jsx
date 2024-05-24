@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import propTypes from "prop-types";
+import styles from "./Filter.module.css";
 
 function Filter({
   filterName,
@@ -10,7 +11,7 @@ function Filter({
   const capitalizeLetters = useLoaderData();
 
   return (
-    <div className="filtering">
+    <div className={styles.filtering}>
       <div>{capitalizeLetters(filterName)}</div>
       <select onChange={handleSettingValue} defaultValue={defaultValue}>
         {filterOptions.map((option) => (

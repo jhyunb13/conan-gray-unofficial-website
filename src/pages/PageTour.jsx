@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TourList from "./TourList";
-import Footer from "./Footer";
+import TourList from "../components/TourList";
+import Footer from "../components/Footer";
 
 function PageTour() {
   const [search, setSearch] = useState("");

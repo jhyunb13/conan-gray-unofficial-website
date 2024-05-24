@@ -1,0 +1,31 @@
+.song {
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.song img {
+  width: 30vw;
+  margin-bottom: 10px;
+}
+
+.song h2,
+.song div {
+  white-space: nowrap;
+}
+
+.song-info {
+  font-size: var(--text-sm);
+}
+
+.song button {
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .song img {
+    width: 60vw;
+    margin-bottom: 10px;
+  }
+}

@@ -1,32 +1,39 @@
 import propTypes from "prop-types";
 import BtnMultiuse from "./BtnMultiuse";
+import styles from "./AlertWarning.module.css";
+import { useEffect, useRef } from "react";
 
 function AlertWarning({ closeAlert, setCloseAlert }) {
+  const warningEl = useRef(null);
+
   function handleCloseAlert1() {
     setCloseAlert(true);
-
-    document.addEventListener("keydown", function (e) {
-      if (
-        e.key === "Escape" &&
-        !document.querySelector(".warning").classList.contains("hidden")
-      ) {
-        setCloseAlert(true);
-        document.querySelector(".warning").classList.add("hidden");
-      }
-    });
   }
 
   function handleCloserAlert2(e) {
-    e.target.classList.contains("warning") && setCloseAlert(true);
+    e.target.classList.contains(styles.warning) && setCloseAlert(true);
   }
+
+  useEffect(() => {
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "Escape" &&
+        !warningEl.current.classList.contains("hidden")
+      ) {
+        setCloseAlert(true);
+        warningEl.current.classList.add("hidden");
+      }
+    });
+  }, [setCloseAlert]);
 
   return (
     <div
-      className={closeAlert ? "warning hidden" : "warning"}
+      className={closeAlert ? `${styles.warning} hidden` : styles.warning}
       onClick={handleCloserAlert2}
+      ref={warningEl}
     >
-      <div className="warning-text">
-        <button className="btn-close" onClick={handleCloseAlert1}>
+      <div className={styles.warningText}>
+        <button className={styles.btnClose} onClick={handleCloseAlert1}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

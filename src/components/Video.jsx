@@ -1,5 +1,6 @@
 import SongInfo from "./SongInfo";
 import propTypes from "prop-types";
+import styles from "./Video.module.css";
 
 function Video({ video, albumTitle, index }) {
   function extractSongTitle(string, sliceStart, sliceEnd) {
@@ -16,10 +17,10 @@ function Video({ video, albumTitle, index }) {
   }
 
   return (
-    <div className="video">
-      <div className="player-container">
+    <div className={styles.video}>
+      <div className={styles.playerContainer}>
         <div
-          className="video-player"
+          className={styles.videoPlayer}
           id={`video-player-${albumTitle}-${index + 1}`}
         ></div>
       </div>

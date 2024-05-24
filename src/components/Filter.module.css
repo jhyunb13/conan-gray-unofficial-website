@@ -1,0 +1,28 @@
+.filtering {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.filtering:first-child {
+  border-right: var(--border-default);
+}
+
+.filtering > div {
+  font-size: var(--text-sm);
+}
+
+.filtering select {
+  width: 70px;
+  border: none;
+  border-radius: 3px;
+  color: var(--color-button-text);
+}
+
+@media (max-width: 768px) {
+  .filtering > div {
+    font-size: var(--text-xs);
+  }
+}

@@ -1,6 +1,7 @@
 import propTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 import PageNumbering from "./PageNumbering";
+import styles from "./Pagination.module.css";
 
 function Pagination({ totalPage, currentPage }) {
   const location = useLocation();
@@ -21,7 +22,9 @@ function Pagination({ totalPage, currentPage }) {
   }
 
   return (
-    <div className={totalPage ? "pagination" : "pagination hidden"}>
+    <div
+      className={totalPage ? styles.pagination : `${styles.pagination} hidden`}
+    >
       <button
         disabled={currentPage === 1 ? true : false}
         onClick={handleGoBack}

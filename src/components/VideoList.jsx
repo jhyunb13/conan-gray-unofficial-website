@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import propTypes from "prop-types";
 import Video from "./Video";
 
-function VideoList({ elementId, playlist, albumTitle }) {
+function VideoList({ elementId, playlist, albumTitle, element }) {
   const selectVideos = useCallback(
     (elementId) => {
       if (elementId === "kid-krow") return playlist.slice(4, 10);
@@ -50,7 +50,7 @@ function VideoList({ elementId, playlist, albumTitle }) {
   }, [playlist, selectVideos, elementId, albumTitle]);
 
   return (
-    <div id={`${elementId}-era`} className="video-list">
+    <div id={`${elementId}-era`} className="video-list" ref={element}>
       {playlist.length
         ? selectVideos(elementId).map((video, i) => (
             <Video
@@ -69,6 +69,7 @@ VideoList.propTypes = {
   elementId: propTypes.string,
   playlist: propTypes.array,
   albumTitle: propTypes.string,
+  element: propTypes.object,
 };
 
 export default VideoList;

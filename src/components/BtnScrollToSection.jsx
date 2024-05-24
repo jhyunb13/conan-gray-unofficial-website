@@ -1,22 +1,21 @@
 import propTypes from "prop-types";
 
-function BtnScrollToSection({ name, section }) {
-  function handleScrollTo(elementId) {
-    document
-      .querySelector(`#${elementId}`)
-      .scrollIntoView({ block: "start", behavior: "auto" });
+function BtnScrollToSection({ textContent, element }) {
+  function handleScrollTo() {
+    element.current.scrollIntoView({ block: "start", behavior: "auto" });
   }
 
   return (
-    <button onClick={() => handleScrollTo(section)}>
-      <h1>{name}</h1>
+    <button onClick={handleScrollTo}>
+      <h1>{textContent}</h1>
     </button>
   );
 }
 
 BtnScrollToSection.propTypes = {
-  name: propTypes.string,
+  textContent: propTypes.string,
   section: propTypes.string,
+  element: propTypes.object,
 };
 
 export default BtnScrollToSection;

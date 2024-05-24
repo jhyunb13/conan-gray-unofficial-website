@@ -1,6 +1,6 @@
 import songsData from "../assets/songsData.json";
-import Footer from "./Footer";
-import Song from "./Song";
+import Footer from "../components/Footer";
+import Song from "../components/Song";
 
 function PageListen() {
   return (
