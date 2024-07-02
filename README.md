@@ -3,10 +3,12 @@
 ## Project Description
 
 Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray’s discography, including music videos and tour dates. Also imitate his merch shop with add-to-cart functionality.
+&nbsp;
 
 ## Built With
 
-![Static Badge](https://img.shields.io/badge/React-61DAFB?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/YouTube%20Data%20API-FF0000?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Cheerio-E88C1F?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/localStorage-AECBFA?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/React-61DAFB?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/YouTube%20Data%20API-FF0000?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Cheerio-E88C1F?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/localStorage-AECBFA?style=for-the-badge)  
+&nbsp;
 
 ## Features
 
@@ -19,6 +21,8 @@ Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray�
 | Add-to-Cart Function on the Store Page | - Select item with size and quantity<br> - Click add-to-cart button to store each item data in the browser using localStorage API<br> - Read the data from localStorage and display it on the shopping cart page<br> - Remove and update quantity of each item in the shopping cart page |
 | Filter Function on the Store Page      | - Filter items by product category and stock status for a better user experience<br> - Quickly find items with the applied filters                                                                                                                                                       |
 | Store State for Each Item in URL       | - Place state in the URL using params in React Router<br> - Read data from the URL and display relevant item information on the product detail page                                                                                                                                      |
+
+&nbsp;
 
 ## Problem Solving Process
 
