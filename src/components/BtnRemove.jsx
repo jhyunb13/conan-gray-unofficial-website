@@ -1,9 +1,11 @@
 import propTypes from "prop-types";
+import { useCartItem } from "../contexts/CartItemContext";
 
-function BtnRemove({ setCartCount, setItemsInCart, itemQuantity, id }) {
+function BtnRemove({ itemQuantity, id }) {
+  const { dispatch } = useCartItem();
+
   function handleRemoveItem(quantity, id) {
-    setCartCount((num) => num - quantity);
-    setItemsInCart((items) => items.filter((item) => item.id !== id));
+    dispatch({ type: "cartItem/remove", payload: { quantity, id } });
   }
 
   return (

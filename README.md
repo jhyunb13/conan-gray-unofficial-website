@@ -1,41 +1,29 @@
-# Re-creation of Conan Gray’s website
+# Conan Gray Unofficial Website
 
-### 1. The Purpose of My Website (What To Build)
+## Project Description
 
-to re-create [Conan Gray’s official website](https://www.conangray.com)
+Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray’s discography, including music videos and tour dates. Also imitate his merch shop with add-to-cart functionality.
 
-### 2. Website description
+## Built With
 
-- title: Conan Gray | A fan made website
-- description: a fan made website
+![Static Badge](https://img.shields.io/badge/React-61DAFB?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/YouTube%20Data%20API-FF0000?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Cheerio-E88C1F?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/localStorage-AECBFA?style=for-the-badge)
 
-### 3. Things To Keep In Mind
+## Features
 
-- use React (Cite)
-- use main colors of his latest album Found Heaven
-- create separate pages
-- build an online store (without a checkout page)
+| Feature                                | Description                                                                                                                                                                                                                                                                              |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SPA with React Router                  | - Built multiple pages with React Router to organize lots of data<br> - Navigate between pages to find desired information as needed                                                                                                                                                     |
+| Scape Data                             | - Scrape latest tour dates, and merchandise list data using Cheerio from Conan Gray’s official website to reduce data collection time<br> - Display tour date in a list on the tour page<br> - Display merchandise items with pagination on the store page                               |
+| Fetch Video Data                       | - Fetch music video data using YouTube Data API<br> - Display videos with a player                                                                                                                                                                                                       |
+| Search Function on the Tour Page       | - Input city name to find an event in the city of interest<br> - Display search results under the input field                                                                                                                                                                            |
+| Add-to-Cart Function on the Store Page | - Select item with size and quantity<br> - Click add-to-cart button to store each item data in the browser using localStorage API<br> - Read the data from localStorage and display it on the shopping cart page<br> - Remove and update quantity of each item in the shopping cart page |
+| Filter Function on the Store Page      | - Filter items by product category and stock status for a better user experience<br> - Quickly find items with the applied filters                                                                                                                                                       |
+| Store State for Each Item in URL       | - Place state in the URL using params in React Router<br> - Read data from the URL and display relevant item information on the product detail page                                                                                                                                      |
 
-### 4. Research
+## Problem Solving Process
 
-- Design-wise reference
-  - layout
-    [A—Book. Website concept](https://www.behance.net/gallery/109721759/ABook-Website-concept)
-    [Éminente Behance](https://dribbble.com/shots/23235298--minente-Behance)
-  - landing page
-    [Graustufen Podcast](https://www.behance.net/gallery/77383405/Graustufen-Podcast?tracking_source=best_of_behance_big_covers)
-  - store
-    [🌟 E-commerce Website - Exploring Bookin](https://dribbble.com/shots/10833572-Design-of-a-bookstore)
+#### Adding Search Functionality to Improve UX
 
-### 5. Goal (decide based on the research)
-
-- improve readability
-- easy access to the information
-
-### 6. Design
-
-[Wireframes](https://www.figma.com/file/FdAe70jCgwjYUPv45L2xO7/Conan-Gray---a-fan-made-website?type=design&node-id=1604%3A15&mode=design&t=F54l8wK2iMw9vibD-1)
-
-### 0. For more information
-
-[click here](https://copper-snail-e31.notion.site/Re-creation-of-Conan-Gray-s-website-24-03-26-04-23-33b03581ee584b87a463efeb7e48a673?pvs=4)
+- Problem Identification : Poor UX due to requiring users to scroll through a long list to find event information for their cities of interest on the tour-date list page
+- Solution: Added search functionality and a results display interface
+- Outcome : Improved UX by allowing users to quickly access information about events in specific cities of interest

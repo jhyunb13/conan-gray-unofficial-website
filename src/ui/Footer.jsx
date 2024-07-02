@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+
 import socialMediaData from "../assets/socialMediaData.json";
 
 function Footer({ social, style }) {

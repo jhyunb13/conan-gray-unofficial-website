@@ -1,5 +1,6 @@
 import propTypes from "prop-types";
-import BtnMultiuse from "./BtnMultiuse";
+
+import BtnMultiuse from "../ui/BtnMultiuse";
 import styles from "./Tour.module.css";
 
 function Tour({ tourData }) {

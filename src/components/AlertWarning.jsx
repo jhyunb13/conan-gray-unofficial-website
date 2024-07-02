@@ -1,7 +1,8 @@
-import propTypes from "prop-types";
-import BtnMultiuse from "./BtnMultiuse";
-import styles from "./AlertWarning.module.css";
 import { useEffect, useRef } from "react";
+import propTypes from "prop-types";
+
+import BtnMultiuse from "../ui/BtnMultiuse";
+import styles from "./AlertWarning.module.css";
 
 function AlertWarning({ closeAlert, setCloseAlert }) {
   const warningEl = useRef(null);

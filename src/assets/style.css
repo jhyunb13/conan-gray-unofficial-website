@@ -142,6 +142,10 @@ table {
   border-collapse: collapse;
 }
 
+thead tr th:first-child {
+  padding-bottom: 10px;
+}
+
 #main-page {
   display: flex;
   flex-direction: column;

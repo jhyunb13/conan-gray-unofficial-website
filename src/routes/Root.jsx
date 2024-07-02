@@ -5,18 +5,18 @@ import { Outlet } from "react-router-dom";
 
 console.log("Built by Bae");
 
-function Root() {
-  const nav = [
-    { category: "Home", link: `/` },
-    { category: "listen", link: `listen` },
-    { category: "videos", link: `videos` },
-    { category: "tour", link: `tour` },
-    { category: "store", link: `store` },
-  ];
+const NAV = [
+  { category: "Home", link: `/` },
+  { category: "listen", link: `listen` },
+  { category: "videos", link: `videos` },
+  { category: "tour", link: `tour` },
+  { category: "store", link: `store` },
+];
 
+function Root() {
   return (
     <>
-      <Nav navList={nav} />
+      <Nav navList={NAV} />
       <Outlet />
       <Banner />
       <ScrollToTop />

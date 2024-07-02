@@ -1,13 +1,14 @@
-import propTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
+import propTypes from "prop-types";
+
 import PageNumbering from "./PageNumbering";
 import styles from "./Pagination.module.css";
 
 function Pagination({ totalPage, currentPage }) {
   const location = useLocation();
-  const pathName = location.pathname;
-
   const navigate = useNavigate();
+
+  const pathName = location.pathname;
 
   function handleGoBack() {
     if (currentPage > 1) {

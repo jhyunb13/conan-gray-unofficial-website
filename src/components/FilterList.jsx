@@ -1,9 +1,11 @@
-import propTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import Filter from "./Filter";
+import propTypes from "prop-types";
+
+import Filter from "../ui/Filter";
+
+const FILTERS = ["All", "In Stock", "Out of Stock"];
 
 function FilterList({ category, setFilterOption, setCategoryOption }) {
-  const filters = ["All", "In Stock", "Out of Stock"];
   const navigate = useNavigate();
 
   function handleSettingCategory(e) {
@@ -26,7 +28,7 @@ function FilterList({ category, setFilterOption, setCategoryOption }) {
         />
         <Filter
           filterName="filter"
-          filterOptions={filters}
+          filterOptions={FILTERS}
           handleSettingValue={handleSettingFilter}
           defaultValue="In Stock"
         />

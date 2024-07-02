@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createHashRouter } from "react-router-dom";
+
 import "./assets/style.css";
 import Root from "./routes/Root.jsx";
 import Shop from "./routes/Shop.jsx";
@@ -15,18 +16,14 @@ import PageProductDetail from "./pages/PageProductDetail";
 import PageShoppingCart from "./pages/PageShoppingCart";
 import ErrorPage from "./routes/ErrorPage.jsx";
 
-function loader() {
-  return function (str) {
-    return str.toUpperCase();
-  };
-}
+import { CartItemProvider } from "./contexts/CartItemContext";
+import { DataProvider } from "./contexts/DataContext";
 
 const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    loader: loader,
     children: [
       { path: "", element: <PageMain /> },
       { path: "listen", element: <PageListen /> },
@@ -39,39 +36,30 @@ const router = createHashRouter([
     path: "/store",
     element: <Shop />,
     errorElement: <ErrorPage />,
-    loader: loader,
     children: [
-      { path: "", loader: loader, element: <PageStore /> },
+      { path: "", element: <PageStore /> },
       {
         path: "merch",
-        loader: loader,
         element: <PageMerch />,
       },
       {
         path: "music",
-        loader: loader,
-
         element: <PageMusic />,
       },
       {
         path: "products/:productId",
-        loader: loader,
-
         element: <PageProductDetail />,
       },
       {
         path: "music/products/:productId",
-        loader: loader,
         element: <PageProductDetail />,
       },
       {
         path: "merch/products/:productId",
-        loader: loader,
         element: <PageProductDetail />,
       },
       {
         path: "shopping-cart",
-        loader: loader,
         element: <PageShoppingCart />,
       },
     ],
@@ -80,6 +68,10 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartItemProvider>
+      <DataProvider>
+        <RouterProvider router={router} />
+      </DataProvider>
+    </CartItemProvider>
   </React.StrictMode>
 );

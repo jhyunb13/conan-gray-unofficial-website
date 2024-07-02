@@ -1,5 +1,6 @@
-import SongInfo from "./SongInfo";
 import propTypes from "prop-types";
+
+import SongInfo from "./SongInfo";
 import styles from "./Video.module.css";
 
 function Video({ video, albumTitle, index }) {

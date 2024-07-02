@@ -1,140 +1,82 @@
-import { useParams, useOutletContext, useLoaderData } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import SelectorQuantity from "../components/SelectorQuantity";
 import SelectorSize from "../components/SelectorSize";
-import BtnMultiuse from "../components/BtnMultiuse";
-import Footer from "../components/Footer";
-import { nanoid } from "nanoid";
+import BtnMultiuse from "../ui/BtnMultiuse";
+import Footer from "../ui/Footer";
 import styles from "./PageProductDetail.module.css";
 
-function PageProductDetail() {
-  const { productId } = useParams();
-  const {
-    cartCount: [cartCount, setCartCount],
-    cartItem: [itemsInCart, setItemsInCart],
-    musicData: [musicData, setMusicData],
-    merchData: [merchData, setMerchData],
-  } = useOutletContext();
-  const capitalizeLetters = useLoaderData();
+import { useData } from "../contexts/DataContext";
+import { useCartItem } from "../contexts/CartItemContext";
+import { convertUpperCase } from "../utils/helpers";
 
-  const [correspondingData, setCorrespondingData] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  const [sizeSelected, setSizeSelected] = useState("S");
+function PageProductDetail() {
+  const { quantity, dispatch } = useCartItem();
+  const { currentProduct, soldOut, dispatch: dataDispatch } = useData();
+  const { productId } = useParams();
 
   const footerStyle = { position: "relative", top: "80px" };
 
   function handleSubtraction() {
-    if (correspondingData.soldOut) return;
+    if (soldOut) return;
     if (quantity <= 1) return;
-    setQuantity((num) => (num -= 1));
+    dispatch({ type: "quantity/subtract" });
   }
 
   function handleAddition() {
-    if (correspondingData.soldOut) return;
-    setQuantity((num) => (num += 1));
+    if (soldOut) return;
+    dispatch({ type: "quantity/add" });
   }
 
   function handleAddToCart() {
-    setCartCount((num) => num + quantity);
-    setItemsInCart((item) => {
-      return [
-        ...item,
-        correspondingData.title.includes("TEE") ||
-        correspondingData.title.includes("HOODIE") ||
-        correspondingData.title.includes("SWEATER")
-          ? {
-              id: nanoid(),
-              product: correspondingData,
-              size: sizeSelected,
-              quantity,
-            }
-          : {
-              id: nanoid(),
-              product: correspondingData,
-              quantity,
-            },
-      ];
-    });
-  }
-
-  function findMatchingData(data, id, stateSetter) {
-    data.map((data) => {
-      if (
-        id ===
-        data.title
-          .toLowerCase()
-          .replace("(", "")
-          .replace(")", "")
-          .split(" ")
-          .join("-")
-      )
-        stateSetter(data);
-    });
+    dispatch({ type: "item/add", payload: currentProduct });
   }
 
   useEffect(() => {
-    findMatchingData(merchData[1], productId, setCorrespondingData);
-    findMatchingData(musicData[1], productId, setCorrespondingData);
-  }, [productId, musicData, merchData]);
+    dispatch({ type: "reset" });
+    dataDispatch({ type: "product/matching", payload: productId });
+  }, [dispatch, dataDispatch, productId]);
 
   return (
     <>
-      {correspondingData && (
+      {currentProduct && (
         <main
           className={`${styles.productDetailPage} grid-2-col-lg grid-1-col-md`}
         >
           <div className={styles.imgContainer}>
             <img
-              src={`https:${correspondingData.img}`}
-              alt={correspondingData.title}
+              src={`https:${currentProduct.img}`}
+              alt={currentProduct.title}
             />
           </div>
           <div className={styles.productDetail}>
-            <h1>{correspondingData.title}</h1>
-            <div>{correspondingData.price}</div>
-            {correspondingData.title.includes("TEE") ||
-            correspondingData.title.includes("SWEATER") ||
-            correspondingData.title.includes("HOODIE") ? (
-              <>
-                <SelectorSize
-                  sizeSelected={sizeSelected}
-                  setSizeSelected={setSizeSelected}
-                  correspondingData={correspondingData}
-                  soldOut={correspondingData.soldOut}
-                />
-              </>
-            ) : null}
+            <h1>{currentProduct.title}</h1>
+            <div>{currentProduct.price}</div>
+            <SelectorSize />
             <div className="quantity-selector mt-20 ">
               <div className="selector-title">Quantity</div>
               <SelectorQuantity
-                soldOut={correspondingData.soldOut}
                 handleSubtraction={handleSubtraction}
                 handleAddition={handleAddition}
               >
                 {quantity}
               </SelectorQuantity>
             </div>
-            {correspondingData.soldOut ? (
-              <BtnMultiuse
-                soldOut={correspondingData.soldOut}
-                classForBtn="btn-add-item"
-              >
-                {capitalizeLetters(correspondingData.soldOut)}
+            {soldOut ? (
+              <BtnMultiuse classForBtn="btn-add-item">
+                {convertUpperCase(soldOut)}
               </BtnMultiuse>
             ) : (
-              <BtnMultiuse
-                soldOut={correspondingData.soldOut}
-                handleBtnClick={handleAddToCart}
-                classForBtn="btn-add-item"
-              >
-                {capitalizeLetters(`Add To Cart`)}
+              <BtnMultiuse onClick={handleAddToCart} classForBtn="btn-add-item">
+                {convertUpperCase(`Add To Cart`)}
               </BtnMultiuse>
             )}
             <p className="description">
               This is not the official website of conan gray. If you want to
               purchase the product, please{" "}
               <a
-                href={`https://shop.conangray.com/${correspondingData.url}`}
+                href={`https://shop.conangray.com/${currentProduct.url}`}
                 target="_blank"
                 rel="noopener"
                 className="click-here"

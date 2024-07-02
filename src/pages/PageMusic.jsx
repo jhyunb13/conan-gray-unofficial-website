@@ -1,54 +1,49 @@
+import { useState, useEffect } from "react";
+
 import FilterList from "../components/FilterList";
 import ProductList from "../components/ProductList";
 import Pagination from "../components/Pagination";
-import Footer from "../components/Footer";
-import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
-import AlertNoResult from "../components/AlertNoResult";
-import { useAvailProduct } from "../hooks/useAvailProduct";
+import Footer from "../ui/Footer";
+import AlertNoResult from "../ui/AlertNoResult";
+
+import { useCurrentList } from "../hooks/useCurrentList";
 import { usePageData } from "../hooks/usePageData";
+import { useData } from "../contexts/DataContext";
 
 function PageMusic() {
-  const {
-    musicData: [musicData, setMusicData],
-  } = useOutletContext();
-  const category = musicData[0];
-
-  const { setFilterOption, availProducts } = useAvailProduct(musicData);
+  const { musicData, category } = useData();
+  const { setFilterOption, currentList } = useCurrentList(musicData);
 
   const [categoryOption, setCategoryOption] = useState("All");
-  const [categorizedData, setCategorizedData] = useState(availProducts);
+  const [categorizedData, setCategorizedData] = useState(currentList);
 
-  const { pageContent, totalPage, currentPage } = usePageData(
-    availProducts,
-    categorizedData
-  );
+  const { pageContent, totalPage, currentPage } = usePageData(categorizedData);
 
   useEffect(() => {
-    if (categoryOption === "All") setCategorizedData(availProducts);
+    if (categoryOption === "All") setCategorizedData(currentList);
     if (categoryOption === "CD")
       setCategorizedData(
-        availProducts.filter(
+        currentList.filter(
           (data) => data.title.includes("CD") || data.title.includes("Box")
         )
       );
     if (categoryOption === "LP")
       setCategorizedData(
-        availProducts.filter(
+        currentList.filter(
           (data) => data.title.includes("LP") || data.title.includes("Vinyl")
         )
       );
     if (categoryOption === "Cassette")
       setCategorizedData(
-        availProducts.filter((data) => data.title.includes("Cassette"))
+        currentList.filter((data) => data.title.includes("Cassette"))
       );
-  }, [categoryOption, availProducts, category]);
+  }, [categoryOption, currentList]);
 
   return (
     <>
       <main id="store-page">
         <FilterList
-          category={category}
+          category={category.music}
           setCategoryOption={setCategoryOption}
           setFilterOption={setFilterOption}
         />

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import Footer from "../components/Footer";
+
+import Footer from "../ui/Footer";
 import VideoList from "../components/VideoList";
 import BtnScrollToSection from "../components/BtnScrollToSection";
 

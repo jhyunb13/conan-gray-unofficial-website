@@ -1,11 +1,15 @@
-import { Link, useLocation, useLoaderData } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import propTypes from "prop-types";
 
-function Nav({ navList, cartCount }) {
+import { useCartItem } from "../contexts/CartItemContext";
+import { convertUpperCase } from "../utils/helpers";
+
+function Nav({ navList }) {
   const location = useLocation();
+  const { numItems } = useCartItem();
+
   const currentPath = location.pathname;
   const newParam = new URLSearchParams([["page", "1"]]).toString();
-  const capitalizeLetters = useLoaderData();
   const starSign = <div className="nav-clicked">✪</div>;
 
   return (
@@ -19,11 +23,11 @@ function Nav({ navList, cartCount }) {
               {currentPath === `/store/${n.link}` && starSign}
               {currentPath.includes(`${n.link}/products`) && starSign}
               <Link to={`${n.link}?${newParam}`}>
-                {capitalizeLetters(n.category)}
+                {convertUpperCase(n.category)}
               </Link>
-              {n.link === "shopping-cart" && cartCount ? (
+              {n.link === "shopping-cart" && numItems ? (
                 <div id="cart-count">
-                  <span>{cartCount}</span>
+                  <span>{numItems}</span>
                 </div>
               ) : (
                 ""

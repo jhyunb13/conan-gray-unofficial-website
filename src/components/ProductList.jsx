@@ -1,6 +1,7 @@
-import Product from "./Product";
 import propTypes from "prop-types";
 import { nanoid } from "nanoid";
+
+import Product from "./Product";
 
 function ProductList({ pageContent, dataAvail }) {
   if (!dataAvail) return;

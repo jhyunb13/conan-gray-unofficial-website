@@ -1,0 +1,64 @@
+.itemInCart {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr;
+  grid-template-rows: 150px;
+  gap: 10px;
+  padding: 20px 0px 20px 0px;
+}
+
+.itemInCart > .itemInfo {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+}
+
+.itemInCart .titlePrice > div {
+  margin-bottom: 5px;
+}
+
+.itemInCart > td > img {
+  display: flex;
+  width: 80%;
+}
+
+.itemInCart > :global(.quantity-selector) {
+  display: flex;
+  justify-content: center;
+}
+
+.itemInCart :global(.quantity-selector) > div {
+  display: flex;
+}
+
+.itemInCart :global(.quantity-selector) > div > span {
+  height: 30px;
+  padding: 5px;
+}
+
+.itemInCart :global(.quantity-selector) :global(.btn-quantity) {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 9999px;
+  color: var(--color-button-bg);
+  background: none;
+  cursor: pointer;
+  padding: 1px 3px 1px 3px;
+}
+
+.itemSubtotal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .itemInCart {
+    gap: 10px;
+  }
+
+  .itemInCart :global(.quantity-selector) > div > span {
+    height: 25px;
+    padding: 5px;
+  }
+}

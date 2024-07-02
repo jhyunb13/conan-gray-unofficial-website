@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+
 import SongInfo from "./SongInfo";
 import styles from "./Song.module.css";
 

@@ -1,13 +1,11 @@
 import propTypes from "prop-types";
+
+import { useData } from "../contexts/DataContext";
 import styles from "./SelectorQuantity.module.css";
 
-function SelectorQuantity({
-  id,
-  soldOut,
-  children,
-  handleSubtraction,
-  handleAddition,
-}) {
+function SelectorQuantity({ id, children, handleSubtraction, handleAddition }) {
+  const { soldOut } = useData();
+
   return (
     <div>
       <button

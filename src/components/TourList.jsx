@@ -1,6 +1,7 @@
+import propTypes from "prop-types";
+
 import tourData from "../assets/tourData.json";
 import Tour from "./Tour";
-import propTypes from "prop-types";
 
 function TourList({ search }) {
   const filteredData = tourData.filter((data) =>
