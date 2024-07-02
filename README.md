@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray’s discography, including music videos and tour dates. Also imitate his merch shop with add-to-cart functionality.
+Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray’s discography, including music videos and tour dates. Also imitate his merch shop with add-to-cart functionality  
 &nbsp;
 
 ## Built With
@@ -30,4 +30,10 @@ Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray�
 
 - Problem Identification : Poor UX due to requiring users to scroll through a long list to find event information for their cities of interest on the tour-date list page
 - Solution: Added search functionality and a results display interface
-- Outcome : Improved UX by allowing users to quickly access information about events in specific cities of interest
+- Outcome : Improved UX by allowing users to quickly access information about events in specific cities of interest  
+  &nbsp;
+
+## Improvement Ideas
+
+- Build a payment page
+- Optimiza performance
