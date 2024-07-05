@@ -1,7 +1,8 @@
+import { Outlet } from "react-router-dom";
+
 import ScrollToTop from "../components/ScrollToTop";
 import Banner from "./Banner";
 import Nav from "./Nav";
-import { Outlet } from "react-router-dom";
 
 console.log("Built by Bae");
 

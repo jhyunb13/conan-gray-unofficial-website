@@ -17,25 +17,15 @@ function VideoList({ elementId, playlist, albumTitle, element }) {
     [playlist]
   );
 
+  const videoIdList =
+    playlist.length &&
+    selectVideos(elementId).map((video) => video.snippet.resourceId.videoId);
+
   useEffect(() => {
     const { YT } = window;
 
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-
-    const firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    let videoIdList;
-    let player;
-
-    if (playlist.length)
-      videoIdList = selectVideos(elementId).map(
-        (video) => video.snippet.resourceId.videoId
-      );
-
     function onYouTubeIframeAPIReady(playerId, videoId, index) {
-      player = new YT.Player(`${playerId}-${index + 1}`, {
+      return new YT.Player(`${playerId}-${index + 1}`, {
         width: "100%",
         videoId: videoId,
         playerVars: {
@@ -44,11 +34,11 @@ function VideoList({ elementId, playlist, albumTitle, element }) {
       });
     }
 
-    if (YT && playlist.length)
+    if (playlist.length)
       videoIdList.map((id, i) =>
         onYouTubeIframeAPIReady(`video-player-${albumTitle}`, id, i)
       );
-  }, [playlist, selectVideos, elementId, albumTitle]);
+  }, [videoIdList, playlist, albumTitle]);
 
   return (
     <div id={`${elementId}-era`} className="video-list" ref={element}>

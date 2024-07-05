@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createHashRouter } from "react-router-dom";
+import { QueryClient } from "@tanstack/react-query";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import "./assets/style.css";
 import Root from "./routes/Root.jsx";
@@ -18,6 +22,7 @@ import ErrorPage from "./routes/ErrorPage.jsx";
 
 import { CartItemProvider } from "./contexts/CartItemContext";
 import { DataProvider } from "./contexts/DataContext";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createHashRouter([
   {
@@ -66,12 +71,28 @@ const router = createHashRouter([
   },
 ]);
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { staleTime: 1000 * 60 * 60 * 24, gcTime: 1000 * 60 * 60 * 24 },
+  },
+});
+
+const asyncStoragePersister = createAsyncStoragePersister({
+  storage: AsyncStorage,
+});
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CartItemProvider>
-      <DataProvider>
-        <RouterProvider router={router} />
-      </DataProvider>
-    </CartItemProvider>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister: asyncStoragePersister }}
+    >
+      <ReactQueryDevtools initialIsOpen={false} />
+      <CartItemProvider>
+        <DataProvider>
+          <RouterProvider router={router} />
+        </DataProvider>
+      </CartItemProvider>
+    </PersistQueryClientProvider>
   </React.StrictMode>
 );

@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray’s discography, including music videos and tour dates. Also imitate his merch shop with add-to-cart functionality  
+Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray’s discography, including music videos and tour dates. Also, imitate his merch shop with add-to-cart functionality  
 &nbsp;
 
 ## Built With
@@ -26,6 +26,13 @@ Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray�
 
 ## Problem Solving Process
 
+#### Performance Improvement with React Query
+
+- Problem Identification : Users experienced delays because the same YouTube video data was being fetched every time the page was reloaded
+- Solution : Leveraged React Query’s caching mechanism to store and access fetched data
+- Outcome : Load time reduced by 66% by minimizing redundant API requests, which led to a smoother and faster user experience  
+  &nbsp;
+
 #### Adding Search Functionality to Improve UX
 
 - Problem Identification : Poor UX due to requiring users to scroll through a long list to find event information for their cities of interest on the tour-date list page
@@ -33,7 +40,16 @@ Recreation of Conan Gray’s website to enhance its usability. Show Conan Gray�
 - Outcome : Improved UX by allowing users to quickly access information about events in specific cities of interest  
   &nbsp;
 
+#### Assigning a Unique ID to Each Item for Tracking
+
+- Problem Identification : Instability in the item removal and quantity adjustment functions occurred when multiple items with the same name were added to the shopping cart
+- Solution : Implemented a unique ID assignment for each item upon clicking the add-to-cart button, ensuring accurate tracking and action execution
+- Outcome : Provided better UX by accurately tracking items within the shopping cart  
+  &nbsp;
+
 ## Improvement Ideas
 
 - Build a payment page
-- Optimiza performance
+- Optimize performance for a better user experience
+- Display a data loading indicator
+- Implement more realistic error and confirmation messages

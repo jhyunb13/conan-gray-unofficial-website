@@ -4,6 +4,8 @@ import Footer from "../ui/Footer";
 import VideoList from "../components/VideoList";
 import BtnScrollToSection from "../components/BtnScrollToSection";
 
+import { useYoutube } from "../hooks/useYoutube";
+
 function PageVideos() {
   const [allVideosPlaylist, setAllVideosPlaylist] = useState([]);
   const [foundHeavenPlaylist, setFoundHeavenPlaylist] = useState([]);
@@ -13,40 +15,17 @@ function PageVideos() {
   const superacheElement = useRef(null);
   const kidKrowElement = useRef(null);
 
-  function getYoutubeData(url) {
-    return fetch(url)
-      .then((response) => response.json())
-      .catch((err) => console.error(err));
-  }
+  const { isLoading, videoLists } = useYoutube();
 
   useEffect(() => {
-    async function getVideos() {
-      try {
-        const API_SECRET = import.meta.env.VITE_YOUTUBE_API_KEY;
-        const youtubeEndPoint =
-          "https://www.googleapis.com/youtube/v3/playlistItems";
-        const allVideosId = "PL3exoAUOZJZkAxjqVQc6GcQK7C9bgvCcg";
-        const foundHeavenId = "PL3exoAUOZJZns5FNKYhFVM5gT_vQYOtP8";
-        const superacheId = "PL3exoAUOZJZnmrJYh9wgTHxSilgEldP_B";
-        const allvideosUrl = `${youtubeEndPoint}?part=snippet&maxResults=10&playlistId=${allVideosId}&key=${API_SECRET}`;
-        const foundHeavenUrl = `${youtubeEndPoint}?part=snippet&maxResults=5&playlistId=${foundHeavenId}&key=${API_SECRET}`;
-        const superacheUrl = `${youtubeEndPoint}?part=snippet&maxResults=5&playlistId=${superacheId}&key=${API_SECRET}`;
-
-        const videoLists = await Promise.all([
-          getYoutubeData(allvideosUrl),
-          getYoutubeData(foundHeavenUrl),
-          getYoutubeData(superacheUrl),
-        ]);
-
-        setAllVideosPlaylist(videoLists[0].items);
-        setFoundHeavenPlaylist(videoLists[1].items);
-        setSuperachePlaylist(videoLists[2].items);
-      } catch (error) {
-        console.error(error.message);
-      }
+    if (videoLists) {
+      setAllVideosPlaylist(videoLists[0].items);
+      setFoundHeavenPlaylist(videoLists[1].items);
+      setSuperachePlaylist(videoLists[2].items);
     }
-    getVideos();
-  }, []);
+  }, [videoLists]);
+
+  if (isLoading) return <p>loading...</p>;
 
   return (
     <>
