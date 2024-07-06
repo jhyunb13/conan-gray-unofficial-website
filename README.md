@@ -7,7 +7,7 @@ Recreation of Conan Grayâ€™s website to enhance its usability. Show Conan Grayâ€
 
 ## Built With
 
-![Static Badge](https://img.shields.io/badge/React-61DAFB?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/YouTube%20Data%20API-FF0000?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Cheerio-E88C1F?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/localStorage-AECBFA?style=for-the-badge)  
+![Static Badge](https://img.shields.io/badge/React-61DAFB?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/React%20Query-FF4154?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/YouTube%20Data%20API-FF0000?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Cheerio-E88C1F?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/localStorage-AECBFA?style=for-the-badge)  
 &nbsp;
 
 ## Features
