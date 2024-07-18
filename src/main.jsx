@@ -7,18 +7,15 @@ import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persi
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import "./assets/style.css";
-import Root from "./routes/Root.jsx";
-import Shop from "./routes/Shop.jsx";
-import PageMain from "./pages/PageMain.jsx";
-import PageListen from "./pages/PageListen.jsx";
-import PageVideos from "./pages/PageVideos";
-import PageTour from "./pages/PageTour.jsx";
-import PageStore from "./pages/PageStore.jsx";
-import PageMerch from "./pages/PageMerch";
-import PageMusic from "./pages/PageMusic";
-import PageProductDetail from "./pages/PageProductDetail";
-import PageShoppingCart from "./pages/PageShoppingCart";
-import ErrorPage from "./routes/ErrorPage.jsx";
+import Root from "./layout/Root";
+import Main from "./pages/Main";
+import Listen from "./pages/Listen";
+import Videos from "./pages/Videos";
+import Tour from "./pages/Tour";
+import ProductListing from "./pages/ProductListing";
+import ProductPage from "./pages/ProductPage";
+import ShoppingCart from "./pages/ShoppingCart";
+import ErrorPage from "./pages/ErrorPage";
 
 import { CartItemProvider } from "./contexts/CartItemContext";
 import { DataProvider } from "./contexts/DataContext";
@@ -26,46 +23,46 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createHashRouter([
   {
-    path: "/",
+    path: "",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "", element: <PageMain /> },
-      { path: "listen", element: <PageListen /> },
-      { path: "videos", element: <PageVideos /> },
-      { path: "tour", element: <PageTour /> },
+      { path: "", element: <Main /> },
+      { path: "listen", element: <Listen /> },
+      { path: "videos", element: <Videos /> },
+      { path: "tour", element: <Tour /> },
     ],
   },
 
   {
-    path: "/store",
-    element: <Shop />,
+    path: "store",
+    element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "", element: <PageStore /> },
+      { path: "", element: <ProductListing /> },
       {
-        path: "merch",
-        element: <PageMerch />,
+        path: "found-heaven",
+        element: <ProductListing />,
       },
       {
-        path: "music",
-        element: <PageMusic />,
+        path: "superache",
+        element: <ProductListing />,
       },
       {
         path: "products/:productId",
-        element: <PageProductDetail />,
+        element: <ProductPage />,
       },
       {
-        path: "music/products/:productId",
-        element: <PageProductDetail />,
+        path: "found-heaven/products/:productId",
+        element: <ProductPage />,
       },
       {
-        path: "merch/products/:productId",
-        element: <PageProductDetail />,
+        path: "superache/products/:productId",
+        element: <ProductPage />,
       },
       {
         path: "shopping-cart",
-        element: <PageShoppingCart />,
+        element: <ShoppingCart />,
       },
     ],
   },

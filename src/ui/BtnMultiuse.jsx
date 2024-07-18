@@ -1,22 +1,53 @@
 import propTypes from "prop-types";
-import { useData } from "../contexts/DataContext";
+import { Link } from "react-router-dom";
 
-function BtnMultiuse({ children, url, onClick, classForBtn }) {
+import { useData } from "../contexts/DataContext";
+import { convertUpperCase } from "../utils/helpers";
+
+function BtnMultiuse({ children, url, onClick, classForBtn, type }) {
   const { soldOut } = useData();
 
-  return (
-    <div className={classForBtn}>
-      <a href={url} target="_blank" rel="noopener" className="no-link-style">
-        <button
-          className={soldOut ? "button not-allowed" : "button"}
-          disabled={soldOut ? true : false}
-          onClick={onClick}
-        >
+  const newParam = new URLSearchParams([["page", "1"]]).toString();
+
+  if (type === "empty-cart")
+    return (
+      <div className={classForBtn}>
+        <Link to={`/store?${newParam}`}>
+          <button className="button mt-20 ">
+            {convertUpperCase(`Continue Shopping`)}
+          </button>
+        </Link>
+      </div>
+    );
+
+  if (type === "sold-out" && soldOut)
+    return (
+      <div className={classForBtn}>
+        <button className="button not-allowed" disabled onClick={onClick}>
           {children}
         </button>
-      </a>
-    </div>
-  );
+      </div>
+    );
+
+  if ((type === "add-to-cart" && !soldOut) || type === "checkout")
+    return (
+      <div className={classForBtn}>
+        <button className="button" onClick={onClick}>
+          {children}
+        </button>
+      </div>
+    );
+
+  if (type === "tour-ticket" || type === "notification")
+    return (
+      <div className={classForBtn}>
+        <a href={url} target="_blank" rel="noopener" className="no-link-style">
+          <button className="button" onClick={onClick}>
+            {children}
+          </button>
+        </a>
+      </div>
+    );
 }
 
 BtnMultiuse.propTypes = {

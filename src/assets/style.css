@@ -197,6 +197,10 @@ thead tr th:first-child {
   align-items: center;
 }
 
+#tour-page h1 {
+  text-align: center;
+}
+
 #tour-page > header input[type="text"] {
   width: 300px !important;
   height: 40px;
@@ -204,6 +208,14 @@ thead tr th:first-child {
   border: 0;
   border-radius: 6px;
   font-size: var(--text-sm);
+}
+
+input[type="text"]:hover {
+  cursor: text;
+}
+
+input[type="text"]:focus {
+  outline: none;
 }
 
 #store-page h1,
@@ -236,6 +248,12 @@ thead tr th:first-child {
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+#product-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 @keyframes scroll-to-left {
@@ -491,27 +509,27 @@ thead tr th:first-child {
   }
 
   .grid-1-row-md {
-    grid-template-rows: repeat(1, 60vw);
+    grid-template-rows: repeat(1, 63vw);
   }
 
   .grid-2-row-md {
-    grid-template-rows: repeat(2, 60vw);
+    grid-template-rows: repeat(2, 63vw);
   }
 
   .grid-3-row-md {
-    grid-template-rows: repeat(3, 60vw);
+    grid-template-rows: repeat(3, 63vw);
   }
 
   .grid-4-row-md {
-    grid-template-rows: repeat(4, 60vw);
+    grid-template-rows: repeat(4, 63vw);
   }
 
   .grid-5-row-md {
-    grid-template-rows: repeat(5, 60vw);
+    grid-template-rows: repeat(5, 63vw);
   }
 
   .grid-6-row-md {
-    grid-template-rows: repeat(6, 60vw);
+    grid-template-rows: repeat(6, 63vw);
   }
 
   nav ul li {

@@ -40,7 +40,8 @@ function reducer(state, action) {
           ...state.itemsInCart,
           action.payload.title.includes("TEE") ||
           action.payload.title.includes("HOODIE") ||
-          action.payload.title.includes("SWEATER")
+          action.payload.title.includes("SWEATER") ||
+          action.payload.title.includes("PULLOVER")
             ? {
                 id: nanoid(),
                 product: action.payload,
@@ -110,11 +111,14 @@ function CartItemProvider({ children }) {
   function calcTotalPrice(itemsArr) {
     let totalPrice = 0;
 
-    itemsArr.map(
-      (item) =>
-        (totalPrice =
-          totalPrice + convertToNum(item.product.price) * item.quantity)
-    );
+    itemsArr.map((item) => {
+      const itemPrice = item.product.price
+        ? item.product.price
+        : item.product.currentPrice;
+
+      return (totalPrice =
+        totalPrice + convertToNum(itemPrice) * item.quantity);
+    });
 
     return totalPrice;
   }

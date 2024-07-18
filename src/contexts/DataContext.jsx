@@ -1,20 +1,38 @@
 import { createContext, useContext, useReducer } from "react";
 
-import merch from "../assets/merchData.json";
-import music from "../assets/musicData.json";
+import foundHeavenMerchData from "../data/found-heaven-merch/merchData.json";
+import foundHeavenMusicData from "../data/found-heaven-merch/musicData.json";
+
+import superacheMerch from "../data/superache-merch/merchData.json";
+
+import {
+  generateParams,
+  getUniqueData,
+  sortData,
+  trimName,
+} from "../utils/helpers";
 
 const DataContext = createContext();
 
-const CATEGORY_ALL = ["All", "CD", "LP", "Cassette", "Merch"];
-const CATEGORY_MUSIC = ["All", "CD", "LP", "Cassette"];
-const CATEGORY_MERCH = ["All", "Tops", "Outerwear", "Accessories"];
+const foundHeavenMusic = foundHeavenMusicData.filter(
+  (music) => !music.title.includes("Sunset Season")
+);
+const superacheMerchData = superacheMerch.map((data) => {
+  return { ...data, title: trimName(data.title) };
+});
+const foundHeavenItemData = getUniqueData(
+  foundHeavenMusic,
+  foundHeavenMerchData
+);
 
 const initialState = {
-  allProductData: sortData(getUniqueData(music, merch)),
-  merchData: merch,
-  musicData: music,
-  category: { all: CATEGORY_ALL, music: CATEGORY_MUSIC, merch: CATEGORY_MERCH },
-  currentList: [],
+  foundHeavenItemData,
+  superacheItemData: superacheMerchData,
+  allItemData: sortData(getUniqueData(foundHeavenItemData, superacheMerchData)),
+  itemCategories: ["All", "CD", "LP", "Cassette", "Digital", "Merch"],
+  inventoryStatuses: ["All", "In Stock", "Out of Stock"],
+  currentCategory: "All",
+  currentInventoryStatus: "In Stock",
   currentProduct: [],
 };
 
@@ -23,16 +41,22 @@ function reducer(state, action) {
     case "product/matching":
       return {
         ...state,
-        currentProduct: state.allProductData.filter(
-          (data) =>
-            action.payload ===
-            data.title
-              .toLowerCase()
-              .replace("(", "")
-              .replace(")", "")
-              .split(" ")
-              .join("-")
+        currentProduct: state.allItemData.filter(
+          (data) => action.payload === generateParams(data.title)
         ),
+      };
+
+    case "filter/inventoryStatus":
+      return { ...state, currentInventoryStatus: action.payload };
+
+    case "filter/itemCategory":
+      return { ...state, currentCategory: action.payload };
+
+    case "filter/reset":
+      return {
+        ...state,
+        currentInventoryStatus: "In Stock",
+        currentCategory: "All",
       };
 
     default:
@@ -40,34 +64,17 @@ function reducer(state, action) {
   }
 }
 
-function getUniqueData(data1, data2) {
-  return data1
-    .concat(data2)
-    .filter(
-      (obj, i) =>
-        i === data1.concat(data2).findIndex((o) => obj.title === o.title)
-    );
-}
-
-function sortData(data) {
-  const dataIncludingFh = data.filter((data) =>
-    data.title.includes(`found heaven`.toUpperCase())
-  );
-  const dataExcludingFh = data.filter(
-    (data) => !data.title.includes(`found heaven`.toUpperCase())
-  );
-
-  return dataIncludingFh.concat(dataExcludingFh);
-}
-
 function DataProvider({ children }) {
   const [
     {
-      allProductData,
-      merchData,
-      musicData,
-      category,
+      allItemData,
+      foundHeavenItemData,
+      superacheItemData,
+      itemCategories,
+      inventoryStatuses,
       currentProduct: curProduct,
+      currentCategory,
+      currentInventoryStatus,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -78,10 +85,13 @@ function DataProvider({ children }) {
   return (
     <DataContext.Provider
       value={{
-        allProductData,
-        merchData,
-        musicData,
-        category,
+        allItemData,
+        foundHeavenItemData,
+        superacheItemData,
+        itemCategories,
+        inventoryStatuses,
+        currentCategory,
+        currentInventoryStatus,
         currentProduct,
         soldOut,
         dispatch,
