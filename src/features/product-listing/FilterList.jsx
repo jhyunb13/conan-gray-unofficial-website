@@ -4,19 +4,23 @@ import propTypes from "prop-types";
 import Filter from "./Filter";
 
 import { useData } from "../../contexts/DataContext";
+import { useQueryString } from "../../hooks/useQueryString";
 
 function FilterList() {
-  const { itemCategories, inventoryStatuses, dispatch } = useData();
+  const { itemCategories, inventoryStatuses } = useData();
+  const { setQueryString, updatedQueryString } = useQueryString();
   const navigate = useNavigate();
 
   function handleCategory(e) {
-    dispatch({ type: "filter/itemCategory", payload: e.target.value });
-    navigate(`?page=1`);
+    setQueryString("category", e.target.value);
+    setQueryString("page", 1);
+    navigate(`?${updatedQueryString}`);
   }
 
   function handleInventoryStatus(e) {
-    dispatch({ type: "filter/inventoryStatus", payload: e.target.value });
-    navigate(`?page=1`);
+    setQueryString("status", e.target.value);
+    setQueryString("page", 1);
+    navigate(`?${updatedQueryString}`);
   }
 
   return (

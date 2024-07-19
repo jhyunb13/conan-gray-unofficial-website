@@ -2,10 +2,10 @@ import propTypes from "prop-types";
 import { useCartItem } from "../contexts/CartItemContext";
 
 function BtnRemove({ itemQuantity, id }) {
-  const { dispatch } = useCartItem();
+  const { cartDispatch } = useCartItem();
 
   function handleRemoveItem(quantity, id) {
-    dispatch({ type: "cartItem/remove", payload: { quantity, id } });
+    cartDispatch({ type: "cartItem/remove", payload: { quantity, id } });
   }
 
   return (

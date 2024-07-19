@@ -18,7 +18,7 @@ function Tour({ tourData }) {
     formatOptions
   ).format(tourDate);
 
-  if (today < tourDate)
+  if (today <= tourDate)
     return (
       <div className={styles.tour}>
         <div className="tour-date-venue">

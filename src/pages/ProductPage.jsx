@@ -13,33 +13,33 @@ import { useCartItem } from "../contexts/CartItemContext";
 import { convertUpperCase } from "../utils/helpers";
 
 function ProductPage() {
-  const { quantity, dispatch } = useCartItem();
-  const { currentProduct, soldOut, dispatch: dataDispatch } = useData();
+  const { quantity, cartDispatch } = useCartItem();
+  const { currentProduct, soldOut, dataDispatch } = useData();
   const { productId } = useParams();
 
-  const itemImage = currentProduct.img;
-  const itemName = currentProduct.title;
+  const itemImage = currentProduct?.img;
+  const itemName = currentProduct?.title;
   const footerStyle = { position: "relative", top: "80px" };
 
   function handleSubtraction() {
     if (soldOut) return;
     if (quantity <= 1) return;
-    dispatch({ type: "quantity/subtract" });
+    cartDispatch({ type: "quantity/subtract" });
   }
 
   function handleAddition() {
     if (soldOut) return;
-    dispatch({ type: "quantity/add" });
+    cartDispatch({ type: "quantity/add" });
   }
 
   function handleAddToCart() {
-    dispatch({ type: "item/add", payload: currentProduct });
+    cartDispatch({ type: "item/add", payload: currentProduct });
   }
 
   useEffect(() => {
-    dispatch({ type: "reset" });
+    cartDispatch({ type: "size-quantity/reset" });
     dataDispatch({ type: "product/matching", payload: productId });
-  }, [dispatch, dataDispatch, productId]);
+  }, [cartDispatch, dataDispatch, productId]);
 
   if (currentProduct)
     return (

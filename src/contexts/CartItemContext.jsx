@@ -90,7 +90,7 @@ function reducer(state, action) {
         }),
       };
 
-    case "reset":
+    case "size-quantity/reset":
       return { ...state, quantity: 1, sizeSelected: "S" };
 
     default:
@@ -99,7 +99,7 @@ function reducer(state, action) {
 }
 
 function CartItemProvider({ children }) {
-  const [{ quantity, sizeSelected, numItems, itemsInCart }, dispatch] =
+  const [{ quantity, sizeSelected, numItems, itemsInCart }, cartDispatch] =
     useReducer(reducer, initialState);
 
   const sumPrice = calcTotalPrice(itemsInCart);
@@ -155,7 +155,7 @@ function CartItemProvider({ children }) {
         itemsInCart,
         sumPrice,
         formatCurrency,
-        dispatch,
+        cartDispatch,
       }}
     >
       {children}

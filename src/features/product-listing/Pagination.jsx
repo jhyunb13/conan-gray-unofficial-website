@@ -5,20 +5,22 @@ import PageNumbering from "./PageNumbering";
 import styles from "./Pagination.module.css";
 
 function Pagination({ totalPage, currentPage }) {
-  const location = useLocation();
+  const { pathname, search } = useLocation();
   const navigate = useNavigate();
 
-  const pathName = location.pathname;
+  const updatedSearch = new URLSearchParams(search);
 
   function handleGoBack() {
     if (currentPage > 1) {
-      navigate(`?page=${currentPage - 1}`);
+      updatedSearch.set("page", currentPage - 1);
+      navigate(`?${updatedSearch}`);
     }
   }
 
   function handleGoForward() {
     if (currentPage !== totalPage) {
-      navigate(`?page=${currentPage + 1}`);
+      updatedSearch.set("page", currentPage + 1);
+      navigate(`?${updatedSearch}`);
     }
   }
 
@@ -49,7 +51,7 @@ function Pagination({ totalPage, currentPage }) {
         </svg>
       </button>
       <PageNumbering
-        pathName={pathName}
+        pathName={pathname}
         totalPage={totalPage}
         currentPage={currentPage}
       />

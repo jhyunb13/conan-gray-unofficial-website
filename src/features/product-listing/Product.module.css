@@ -51,6 +51,10 @@
     padding: 10px;
   }
 
+  .productCard:nth-child(3n) {
+    border-right: var(--border-default);
+  }
+
   .productCard:nth-child(2n),
   .productCard:nth-child(6n) {
     border-right: none;
@@ -58,10 +62,6 @@
 
   .product {
     font-size: var(--text-xs);
-  }
-
-  .productCard:nth-child(3n) {
-    border-right: var(--border-default);
   }
 
   .productImgContainer {

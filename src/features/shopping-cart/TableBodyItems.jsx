@@ -5,14 +5,14 @@ import styles from "./TableBodyItems.module.css";
 import { useCartItem } from "../../contexts/CartItemContext";
 
 function TableBodyItems() {
-  const { itemsInCart, formatCurrency, dispatch } = useCartItem();
+  const { itemsInCart, formatCurrency, cartDispatch } = useCartItem();
 
   function handleSubtraction(id) {
-    dispatch({ type: "cartItem/subtract-quantity", payload: id });
+    cartDispatch({ type: "cartItem/subtract-quantity", payload: id });
   }
 
   function handleAddition(id) {
-    dispatch({ type: "cartItem/add-quantity", payload: id });
+    cartDispatch({ type: "cartItem/add-quantity", payload: id });
   }
 
   return (

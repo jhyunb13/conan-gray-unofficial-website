@@ -9,10 +9,10 @@ const SIZE_OPTIONS = ["S", "M", "L", "XL", "2XL"];
 
 function SelectorSize() {
   const { currentProduct, soldOut } = useData();
-  const { sizeSelected, dispatch } = useCartItem();
+  const { sizeSelected, cartDispatch } = useCartItem();
 
   function handleSizeSelection(e) {
-    dispatch({ type: "size/select", payload: e.target.value });
+    cartDispatch({ type: "size/select", payload: e.target.value });
   }
 
   if (

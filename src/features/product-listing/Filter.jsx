@@ -3,10 +3,13 @@ import propTypes from "prop-types";
 import styles from "./Filter.module.css";
 
 import { convertUpperCase } from "../../utils/helpers";
-import { useData } from "../../contexts/DataContext";
+import { useQueryString } from "../../hooks/useQueryString";
 
 function Filter({ filterName, filterOptions, handleSettingValue }) {
-  const { currentCategory, currentInventoryStatus } = useData();
+  const { getQueryString } = useQueryString();
+
+  const currentCategory = getQueryString("category");
+  const currentInventoryStatus = getQueryString("status");
 
   const value =
     filterName === "category" ? currentCategory : currentInventoryStatus;
@@ -14,7 +17,7 @@ function Filter({ filterName, filterOptions, handleSettingValue }) {
   return (
     <div className={styles.filtering}>
       <div>{convertUpperCase(filterName)}</div>
-      <select onChange={handleSettingValue} value={value}>
+      <select onChange={handleSettingValue} defaultValue={value} key={value}>
         {filterOptions.map((option) => (
           <option key={option} value={option}>
             {option}

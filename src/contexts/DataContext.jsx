@@ -31,8 +31,6 @@ const initialState = {
   allItemData: sortData(getUniqueData(foundHeavenItemData, superacheMerchData)),
   itemCategories: ["All", "CD", "LP", "Cassette", "Digital", "Merch"],
   inventoryStatuses: ["All", "In Stock", "Out of Stock"],
-  currentCategory: "All",
-  currentInventoryStatus: "In Stock",
   currentProduct: [],
 };
 
@@ -44,19 +42,6 @@ function reducer(state, action) {
         currentProduct: state.allItemData.filter(
           (data) => action.payload === generateParams(data.title)
         ),
-      };
-
-    case "filter/inventoryStatus":
-      return { ...state, currentInventoryStatus: action.payload };
-
-    case "filter/itemCategory":
-      return { ...state, currentCategory: action.payload };
-
-    case "filter/reset":
-      return {
-        ...state,
-        currentInventoryStatus: "In Stock",
-        currentCategory: "All",
       };
 
     default:
@@ -73,10 +58,8 @@ function DataProvider({ children }) {
       itemCategories,
       inventoryStatuses,
       currentProduct: curProduct,
-      currentCategory,
-      currentInventoryStatus,
     },
-    dispatch,
+    dataDispatch,
   ] = useReducer(reducer, initialState);
 
   const [currentProduct] = curProduct;
@@ -90,11 +73,9 @@ function DataProvider({ children }) {
         superacheItemData,
         itemCategories,
         inventoryStatuses,
-        currentCategory,
-        currentInventoryStatus,
         currentProduct,
         soldOut,
-        dispatch,
+        dataDispatch,
       }}
     >
       {children}

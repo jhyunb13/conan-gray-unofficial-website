@@ -9,13 +9,20 @@ import { useCartItem } from "../../contexts/CartItemContext";
 import { useData } from "../../contexts/DataContext";
 
 function Product({ productData }) {
-  const { dispatch } = useCartItem();
-  const { dispatch: dataDispatch } = useData();
+  const { cartDispatch } = useCartItem();
+  const { dataDispatch } = useData();
 
-  const urlParam = generateParams(productData.title);
+  const itemName = productData.title;
+  const regularPrice = productData.price;
+  const originalPrice = productData.originalPrice;
+  const discountedPrice = productData.currentPrice;
+  const soldOut = productData.soldOut;
+  const extraInfo = productData.status;
+
+  const urlParam = generateParams(itemName);
 
   function handleProductClick() {
-    dispatch({ type: "reset" });
+    cartDispatch({ type: "size-quantity/reset" });
     dataDispatch({ type: "product/matching", payload: urlParam });
   }
 
@@ -30,38 +37,28 @@ function Product({ productData }) {
         className={`${styles.product} no-link-style`}
       >
         <div className={styles.productImgContainer}>
-          <img
-            src={`https:${productData.img}`}
-            alt={productData.title}
-            loading="lazy"
-          />
+          <img src={`https:${productData.img}`} alt={itemName} loading="lazy" />
         </div>
         <div className={styles.productInfo}>
           <div className={styles.productTitlePrice}>
-            <div>{convertUpperCase(productData.title)}</div>
-            {productData.price && <div>{productData.price}</div>}
-            {productData.originalPrice && (
+            <div>{convertUpperCase(itemName)}</div>
+            {regularPrice && <div>{regularPrice}</div>}
+            {originalPrice && (
               <div
                 style={{
                   textDecorationLine: "line-through",
                   fontSize: "var(--text-xs)",
                 }}
               >
-                {productData.originalPrice}
+                {originalPrice}
               </div>
             )}
-            {productData.currentPrice && <div>{productData.currentPrice}</div>}
+            {discountedPrice && <div>{discountedPrice}</div>}
           </div>
           <div>
-            {productData.status && (
-              <Badge>{convertUpperCase(productData.status)}</Badge>
-            )}
-            {productData.soldOut && (
-              <Badge>{convertUpperCase(productData.soldOut)}</Badge>
-            )}
-            {productData.originalPrice && (
-              <Badge>{convertUpperCase("sale")}</Badge>
-            )}
+            {soldOut && <Badge>{convertUpperCase(soldOut)}</Badge>}
+            {discountedPrice && <Badge>{convertUpperCase("sale")}</Badge>}
+            {extraInfo && <Badge>{convertUpperCase(extraInfo)}</Badge>}
           </div>
         </div>
       </Link>

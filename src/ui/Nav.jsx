@@ -5,7 +5,7 @@ import Star from "./Star";
 import ItemsQuantity from "./ItemsQuantity";
 
 import { convertUpperCase } from "../utils/helpers";
-import { useData } from "../contexts/DataContext";
+import { useQueryString } from "../hooks/useQueryString";
 
 const DEFAULT_NAV = [
   { name: "Home", link: `/` },
@@ -24,18 +24,14 @@ const STORE_NAV = [
 ];
 
 function Nav() {
-  const { dispatch } = useData();
   const { pathname } = useLocation();
+  const { defaultQueryString } = useQueryString();
   const navigate = useNavigate();
 
   const navLinks = pathname.includes("store") ? STORE_NAV : DEFAULT_NAV;
-  const search = new URLSearchParams([["page", "1"]]).toString();
 
   function handleNavigating(link) {
-    dispatch({ type: "filter/reset" });
-
-    if (link.includes("store")) navigate(`${link}?${search}`);
-
+    if (link.includes("store")) navigate(`${link}?${defaultQueryString}`);
     if (!link.includes("store") || link.includes("shopping-cart"))
       navigate(link);
   }

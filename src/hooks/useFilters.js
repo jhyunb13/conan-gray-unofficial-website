@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 
 import { useData } from "../contexts/DataContext";
+import { useQueryString } from "./useQueryString";
 
 export function useFilters(inputData) {
   const [availItems, setAvailItems] = useState(
     inputData.filter((data) => !data.soldOut)
   );
   const [categorizedItems, setCategorizedItems] = useState(availItems);
-  const { itemCategories, currentCategory, currentInventoryStatus } = useData();
+  const { itemCategories } = useData();
+  const { getQueryString } = useQueryString();
+
+  const currentCategory = getQueryString("category");
+  const currentInventoryStatus = getQueryString("status");
 
   const [all, cd, lp, cassette, digital, merch] = itemCategories;
 
