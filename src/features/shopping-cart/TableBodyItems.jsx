@@ -1,5 +1,7 @@
 import BtnRemove from "../../ui/BtnRemove";
 import SelectorQuantity from "../product-page/SelectorQuantity";
+import Price from "../../ui/Price";
+
 import styles from "./TableBodyItems.module.css";
 
 import { useCartItem } from "../../contexts/CartItemContext";
@@ -23,13 +25,16 @@ function TableBodyItems() {
             <img src={`https:${item.product.img}`} alt={item.product.title} />
             <div className={styles.titlePrice}>
               <div>{item.product.title}</div>
-              <div>
-                Price :{" "}
-                {item.product.price
-                  ? item.product.price
-                  : item.product.currentPrice}
+              <div style={{ display: "flex" }}>
+                <span>Price: </span>
+                <Price type="shopping-cart" data={item.product} />
               </div>
-              {item.size ? <div>Size : {item.size}</div> : ""}
+              {item.size && (
+                <div>
+                  <span>Size: </span>
+                  <span>{item.size}</span>
+                </div>
+              )}
             </div>
           </td>
           <td className="quantity-selector">

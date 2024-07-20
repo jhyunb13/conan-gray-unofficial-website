@@ -32,7 +32,7 @@ function FilterList() {
           handleSettingValue={handleCategory}
         />
         <Filter
-          filterName="filter"
+          filterName="availability"
           filterOptions={inventoryStatuses}
           handleSettingValue={handleInventoryStatus}
         />

@@ -1,27 +1,33 @@
 import { useData } from "../contexts/DataContext";
 
-function Price() {
-  const { currentProduct } = useData();
-  const regularPrice = currentProduct.price;
-  const originalPrice = currentProduct.originalPrice;
-  const discountedPrice = currentProduct.currentPrice;
+import styles from "./Price.module.css";
 
-  return (
-    <>
-      {regularPrice && <div>{regularPrice}</div>}
-      {originalPrice && (
-        <div
-          style={{
-            textDecorationLine: "line-through",
-            fontSize: "var(--text-xs)",
-          }}
-        >
-          {originalPrice}
-        </div>
-      )}
-      {discountedPrice && <div>{discountedPrice}</div>}
-    </>
-  );
+function Price({ type, data }) {
+  const { currentProduct } = useData();
+
+  let regularPrice;
+  let originalPrice;
+  let discountedPrice;
+
+  if (type === "product-listing" || type === "shopping-cart") {
+    regularPrice = data.price;
+    originalPrice = data.originalPrice;
+    discountedPrice = data.currentPrice;
+  } else {
+    regularPrice = currentProduct.price;
+    originalPrice = currentProduct.originalPrice;
+    discountedPrice = currentProduct.currentPrice;
+  }
+
+  if (regularPrice) return <span>{regularPrice}</span>;
+
+  if (originalPrice && discountedPrice)
+    return (
+      <div className={styles.discountPrice}>
+        <span>{originalPrice}</span>
+        <span>{discountedPrice}</span>
+      </div>
+    );
 }
 
 export default Price;

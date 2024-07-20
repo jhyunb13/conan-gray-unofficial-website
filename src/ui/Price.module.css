@@ -1,0 +1,6 @@
+.discountPrice span:first-child {
+  text-decoration: line-through;
+  margin-right: 5px;
+  font-weight: 200;
+  color: var(--color-light);
+}

@@ -4,6 +4,12 @@ import SongInfo from "../listen/SongInfo";
 import styles from "./Video.module.css";
 
 function Video({ video, albumTitle, index }) {
+  let publishedYear;
+
+  if (albumTitle === "fh") publishedYear = 2024;
+  if (albumTitle === "s") publishedYear = 2022;
+  if (albumTitle === "kk") publishedYear = 2020;
+
   function extractSongTitle(string, sliceStart, sliceEnd) {
     return string.split(" ").slice(sliceStart, sliceEnd).join(" ");
   }
@@ -28,7 +34,7 @@ function Video({ video, albumTitle, index }) {
       <div className="video-info">
         <SongInfo
           title={getSongTitle(video.snippet.title)}
-          releaseDate={2020}
+          releaseDate={publishedYear}
         />
       </div>
     </div>
