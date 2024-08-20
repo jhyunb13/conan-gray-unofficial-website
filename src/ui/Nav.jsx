@@ -36,8 +36,10 @@ function Nav() {
       navigate(link);
   }
 
+  const style = pathname === "/" ? { borderBottom: "none" } : {};
+
   return (
-    <nav>
+    <nav style={style}>
       <ul>
         {navLinks.map((nav) => {
           return (

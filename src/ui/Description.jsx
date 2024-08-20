@@ -6,7 +6,7 @@ function Description() {
 
   return (
     <p className="description">
-      This is not the official website of conan gray. If you want to purchase
+      This is not the official website of Conan Gray. If you want to purchase
       the product, please{" "}
       <a
         href={`https://shop.conangray.com/${url}`}

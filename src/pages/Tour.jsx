@@ -14,13 +14,15 @@ function Tour() {
       <header>
         <label>
           <h1 className="mb-10">Found Heaven On Tour near you</h1>
-          <input
-            className="input-field"
-            type="text"
-            placeholder="✪ enter a city or country name"
-            value={inputValue}
-            onChange={handleInputValue}
-          />
+          <div className="input">
+            <input
+              className="input-field"
+              type="text"
+              placeholder="✪ enter a city or country name"
+              value={inputValue}
+              onChange={handleInputValue}
+            />
+          </div>
         </label>
       </header>
       <TourList input={inputValue} />

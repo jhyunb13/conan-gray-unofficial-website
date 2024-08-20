@@ -1,0 +1,247 @@
+.mainText {
+  z-index: 100;
+  padding: 20px;
+  border: 1.5px solid rgba(0, 0, 0, 0.7);
+  background-color: var(--color-info-bg);
+  color: var(--color-background);
+  box-shadow: #0000004d 2px 0px 15px 5px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.img1 {
+  top: 7%;
+  left: 1.5%;
+  width: 25%;
+}
+
+.img2 {
+  right: 0%;
+  bottom: 1%;
+  width: 25%;
+}
+
+.img3 {
+  right: 8%;
+  top: 4%;
+  width: 20%;
+}
+
+.img4 {
+  right: 25%;
+  top: 13%;
+  width: 18%;
+}
+
+.img5 {
+  left: 5%;
+  bottom: 7%;
+  width: 24%;
+}
+
+.img6 {
+  left: 40%;
+  bottom: 5%;
+  width: 18%;
+}
+
+.img7 {
+  left: 28%;
+  top: 6%;
+  width: 10%;
+}
+
+.img8 {
+  left: 40%;
+  top: 9%;
+  width: 18%;
+}
+
+.img9 {
+  right: 35%;
+  bottom: 20%;
+  width: 17%;
+}
+
+.textBox {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: var(--color-info-bg);
+  box-shadow: rgba(0, 0, 0, 0.5) 2px 0px 4px 0px;
+}
+
+.text {
+  margin: 0px;
+  color: #3b3b3b;
+}
+
+.text1 {
+  padding: 10px;
+  bottom: 43%;
+  right: 5%;
+}
+
+.text2 {
+  padding: 10px 20px;
+  top: 17%;
+  left: 20%;
+}
+
+.text3 {
+  padding: 30px 20px;
+  top: 30%;
+  left: 18%;
+  font-size: var(--text-sm);
+}
+
+.text4 {
+  padding: 20px 25px;
+  bottom: 18%;
+  left: 23%;
+  font-size: var(--text-sm);
+}
+
+.text5 {
+  padding: 10px;
+  top: 40%;
+  right: 0.5%;
+  font-size: var(--text-sm);
+  z-index: 200;
+}
+
+.text6 {
+  padding: 10px;
+  bottom: 30%;
+  right: 23%;
+  font-size: var(--text-md);
+  z-index: 200;
+  font-weight: var(--text-weight-bold);
+  color: #0000ee;
+}
+
+.text6 a:visited {
+  color: #0000ee;
+}
+
+@media (max-width: 1000px) {
+  .img1,
+  .img2,
+  .img3,
+  .img4,
+  .img5,
+  .img6,
+  .img7,
+  .img8,
+  .img9 {
+    width: 20%;
+  }
+
+  .img1,
+  .img2 {
+    width: 30%;
+  }
+
+  .img5 {
+    width: 40%;
+  }
+
+  .img7 {
+    width: 15%;
+  }
+
+  .img8 {
+    width: 25%;
+  }
+
+  .img9 {
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .mainText {
+    font-size: var(--text-lg);
+  }
+}
+
+@media (max-width: 600px) {
+  .mainText {
+    font-size: 1.3rem;
+  }
+
+  .img3 {
+    right: 1%;
+    width: 30%;
+  }
+
+  .img4 {
+    top: 30%;
+    right: 6%;
+    width: 30%;
+  }
+
+  .img5,
+  .img6 {
+    width: 20%;
+  }
+
+  .img1,
+  .img2 {
+    width: 60%;
+  }
+
+  .img5 {
+    width: 60%;
+  }
+
+  .img7 {
+    width: 20%;
+  }
+
+  .img8 {
+    width: 30%;
+  }
+
+  .img9 {
+    display: none;
+  }
+
+  .text1,
+  .text2,
+  .text3,
+  .text4,
+  .text5,
+  .text6 {
+    font-size: var(--text-xs);
+    padding: 1%;
+  }
+
+  .text2 {
+    z-index: 200;
+  }
+
+  .text5 {
+    top: 25%;
+  }
+
+  @media (max-width: 460px) {
+    .mainText {
+      font-size: var(--text-sm);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .text3 p:after {
+      content: "I want to be with the Bourgeoisieses I want to see how th Bourgeoisieses party all night";
+    }
+
+    .text1 {
+      bottom: 36%;
+    }
+
+    .text4,
+    .text3 {
+      display: none;
+    }
+  }
+}
