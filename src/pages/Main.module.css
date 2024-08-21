@@ -7,60 +7,64 @@
   box-shadow: #0000004d 2px 0px 15px 5px;
   font-size: 2rem;
   letter-spacing: 1px;
+  z-index: 300;
 }
 
-.img1 {
+.sunglasses {
   top: 7%;
   left: 1.5%;
   width: 25%;
 }
 
-.img2 {
+.timesSquare {
   right: 0%;
   bottom: 1%;
   width: 25%;
 }
 
-.img3 {
+.lollapalooza {
   right: 8%;
   top: 4%;
   width: 20%;
 }
 
-.img4 {
+.silverFullshot {
   right: 25%;
   top: 13%;
   width: 18%;
 }
 
-.img5 {
+.silverUpperBody {
+  left: 40%;
+  top: 9%;
+  width: 18%;
+  z-index: 200;
+}
+
+.red {
   left: 5%;
   bottom: 7%;
   width: 24%;
 }
 
-.img6 {
+.hoodie {
   left: 40%;
   bottom: 5%;
   width: 18%;
+  z-index: 200;
 }
 
-.img7 {
+.vinyl {
   left: 28%;
   top: 6%;
   width: 10%;
 }
 
-.img8 {
-  left: 40%;
-  top: 9%;
-  width: 18%;
-}
-
-.img9 {
-  right: 35%;
-  bottom: 20%;
+.lonelyDancers {
+  right: 30%;
+  bottom: 18%;
   width: 17%;
+  z-index: 100;
 }
 
 .textBox {
@@ -75,86 +79,98 @@
   color: #3b3b3b;
 }
 
-.text1 {
+.lyricsAlleyRose {
   padding: 10px;
   bottom: 43%;
   right: 5%;
 }
 
-.text2 {
+.lyricsLonelyDancers {
   padding: 10px 20px;
   top: 17%;
   left: 20%;
 }
 
-.text3 {
+.lyricsBourgeoisieses {
   padding: 30px 20px;
   top: 30%;
   left: 18%;
   font-size: var(--text-sm);
 }
 
-.text4 {
+.lyricsFaintedLove {
   padding: 20px 25px;
   bottom: 18%;
   left: 23%;
   font-size: var(--text-sm);
 }
 
-.text5 {
+.lyricsNeverEndingSong {
   padding: 10px;
-  top: 40%;
+  top: 35%;
   right: 0.5%;
   font-size: var(--text-sm);
   z-index: 200;
 }
 
-.text6 {
+.link {
   padding: 10px;
-  bottom: 30%;
+  bottom: 37%;
   right: 23%;
-  font-size: var(--text-md);
+  font-size: 1.4rem;
   z-index: 200;
-  font-weight: var(--text-weight-bold);
+  font-weight: var(--text-weight-medium);
+  color: #0000ee;
+  z-index: 400;
+}
+
+.link a:visited {
   color: #0000ee;
 }
 
-.text6 a:visited {
-  color: #0000ee;
-}
-
-@media (max-width: 1000px) {
-  .img1,
-  .img2,
-  .img3,
-  .img4,
-  .img5,
-  .img6,
-  .img7,
-  .img8,
-  .img9 {
+@media (max-width: 965px) {
+  .sunglasses,
+  .timesSquare,
+  .lollapalooza,
+  .silverFullshot,
+  .red,
+  .hoodie,
+  .vinyl,
+  .silverUpperBody,
+  .lonelyDancers {
     width: 20%;
   }
 
-  .img1,
-  .img2 {
+  .sunglasses,
+  .timesSquare {
     width: 30%;
   }
 
-  .img5 {
+  .red {
     width: 40%;
   }
 
-  .img7 {
+  .vinyl {
     width: 15%;
   }
 
-  .img8 {
-    width: 25%;
+  .silverUpperBody {
+    width: 20%;
   }
 
-  .img9 {
-    display: none;
+  .lonelyDancers {
+    width: 18%;
+    right: 25%;
+  }
+
+  .lyricsAlleyRose {
+    bottom: 35%;
+    right: 1%;
+    font-size: var(--text-sm);
+  }
+
+  .lyricsNeverEndingSong {
+    top: 23%;
   }
 }
 
@@ -162,86 +178,135 @@
   .mainText {
     font-size: var(--text-lg);
   }
+
+  .lonelyDancers {
+    width: 20%;
+    bottom: 13%;
+  }
+
+  .lyricsAlleyRose {
+    bottom: 33%;
+  }
+
+  .lyricsFaintedLove {
+    bottom: 2%;
+    left: 1%;
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 665px) {
   .mainText {
     font-size: 1.3rem;
   }
 
-  .img3 {
+  .silverFullshot {
+    width: 25%;
+  }
+
+  .red {
+    width: 50%;
+  }
+
+  .link {
+    font-size: 1.2rem;
+    bottom: 38%;
+  }
+}
+
+@media (max-width: 600px) {
+  .sunglasses {
+    width: 60%;
+    top: 40px;
+  }
+
+  .timesSquare {
+    width: 60%;
+    bottom: 10%;
+  }
+
+  .lollapalooza {
     right: 1%;
     width: 30%;
   }
 
-  .img4 {
+  .silverFullshot {
     top: 30%;
     right: 6%;
     width: 30%;
   }
 
-  .img5,
-  .img6 {
-    width: 20%;
+  .red {
+    width: 50%;
+    bottom: 1%;
   }
 
-  .img1,
-  .img2 {
-    width: 60%;
+  .hoodie {
+    width: 35%;
+    bottom: 33%;
+    left: 7%;
+    z-index: 0;
   }
 
-  .img5 {
-    width: 60%;
-  }
-
-  .img7 {
-    width: 20%;
-  }
-
-  .img8 {
-    width: 30%;
-  }
-
-  .img9 {
+  .vinyl {
     display: none;
   }
 
-  .text1,
-  .text2,
-  .text3,
-  .text4,
-  .text5,
+  .silverUpperBody {
+    top: 20%;
+    left: 45%;
+  }
+
+  .lonelyDancers {
+    display: none;
+  }
+
+  .lyricsAlleyRose {
+    bottom: 30%;
+    right: 30%;
+  }
+
+  .lyricsLonelyDancers {
+    left: 50%;
+  }
+
+  .lyricsBourgeoisieses {
+    top: 40%;
+    left: 5%;
+  }
+
+  .lyricsFaintedLove {
+    left: 0%;
+    bottom: -1%;
+  }
+
+  .lyricsNeverEndingSong {
+    top: 30%;
+    right: 2%;
+  }
+
+  .link {
+    font-size: var(--text-sm);
+    bottom: 39%;
+    right: 15%;
+  }
+
+  .lyricsAlleyRose,
+  .lyricsLonelyDancers,
+  .lyricsBourgeoisieses,
+  .lyricsFaintedLove,
+  .lyricsNeverEndingSong,
   .text6 {
     font-size: var(--text-xs);
     padding: 1%;
   }
 
-  .text2 {
+  .lyricsLonelyDancers {
     z-index: 200;
   }
+}
 
-  .text5 {
-    top: 25%;
-  }
-
-  @media (max-width: 460px) {
-    .mainText {
-      font-size: var(--text-sm);
-    }
-  }
-
-  @media (max-width: 400px) {
-    .text3 p:after {
-      content: "I want to be with the Bourgeoisieses I want to see how th Bourgeoisieses party all night";
-    }
-
-    .text1 {
-      bottom: 36%;
-    }
-
-    .text4,
-    .text3 {
-      display: none;
-    }
+@media (max-width: 460px) {
+  .mainText {
+    font-size: var(--text-sm);
   }
 }
