@@ -1,0 +1,4 @@
+.storePage {
+  overflow-y: scroll;
+  border-radius: var(--border-radius);
+}

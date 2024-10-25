@@ -1,0 +1,9 @@
+.filterContainer {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 2px;
+
+  @media (max-width: 768px) {
+    font-size: var(--text-xs);
+  }
+}

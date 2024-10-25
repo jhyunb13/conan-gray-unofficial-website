@@ -6,6 +6,7 @@ import SelectorSize from "../features/product-page/SelectorSize";
 import BtnMultiuse from "../ui/BtnMultiuse";
 import Price from "../ui/Price";
 import Description from "../ui/Description";
+import Footer from "../ui/Footer";
 import styles from "./ProductPage.module.css";
 
 import { useData } from "../contexts/DataContext";
@@ -19,7 +20,6 @@ function ProductPage() {
 
   const itemImage = currentProduct?.img;
   const itemName = currentProduct?.title;
-  const footerStyle = { position: "relative", top: "80px" };
 
   function handleSubtraction() {
     if (soldOut) return;
@@ -43,36 +43,33 @@ function ProductPage() {
 
   if (currentProduct)
     return (
-      <main
-        className={`${styles.productDetailPage} grid-2-col-lg grid-1-col-md`}
-      >
+      <main className={styles.productDetailPage}>
         <div className={styles.imgContainer}>
           <img src={`https:${itemImage}`} alt={itemName} />
         </div>
         <div className={styles.productDetail}>
-          <h1>{itemName}</h1>
-          <Price />
-          <SelectorSize />
-          <div className="quantity-selector mt-20 ">
-            <div className="selector-title">Quantity</div>
+          <div className={styles.detailContainer}>
+            <div>
+              <h1>{itemName}</h1>
+              <Price />
+            </div>
+            <SelectorSize />
             <SelectorQuantity
+              type="productPage"
               handleSubtraction={handleSubtraction}
               handleAddition={handleAddition}
             >
               {quantity}
             </SelectorQuantity>
+            <BtnMultiuse type="sold-out">
+              {convertUpperCase(soldOut)}
+            </BtnMultiuse>
+            <BtnMultiuse type="add-to-cart" onClick={handleAddToCart}>
+              {convertUpperCase(`Add To Cart`)}
+            </BtnMultiuse>
+            <Description />
           </div>
-          <BtnMultiuse classForBtn="btn-add-item" type="sold-out">
-            {convertUpperCase(soldOut)}
-          </BtnMultiuse>
-          <BtnMultiuse
-            onClick={handleAddToCart}
-            classForBtn="btn-add-item"
-            type="add-to-cart"
-          >
-            {convertUpperCase(`Add To Cart`)}
-          </BtnMultiuse>
-          <Description />
+          <Footer />
         </div>
       </main>
     );

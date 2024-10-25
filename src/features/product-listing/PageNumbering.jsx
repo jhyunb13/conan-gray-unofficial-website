@@ -23,12 +23,9 @@ function PageNumbering({
           to={`${pathName}?page=${num}`}
           key={num}
           onClick={handleScrollToTop}
+          className={currentPage === num ? styles.currentPage : styles.pageNum}
         >
-          <button
-            className={currentPage === num ? "active-page" : "inactive-page"}
-          >
-            {num}
-          </button>
+          {num}
         </Link>
       ))}
     </>

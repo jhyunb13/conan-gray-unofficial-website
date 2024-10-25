@@ -1,11 +1,10 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import propTypes from "prop-types";
 
-import Star from "./Star";
-import ItemsQuantity from "./ItemsQuantity";
+import styles from "./Nav.module.css";
 
 import { convertUpperCase } from "../utils/helpers";
-import { useQueryString } from "../hooks/useQueryString";
+import { useCartItem } from "../contexts/CartItemContext";
 
 const DEFAULT_NAV = [
   { name: "Home", link: `/` },
@@ -20,33 +19,40 @@ const STORE_NAV = [
   { name: "All", link: `/store` },
   { name: "FH", link: `/store/found-heaven` },
   { name: "Superache", link: `/store/superache` },
-  { name: "Cart", link: `/store/shopping-cart` },
+  { name: "Bag", link: `/store/shopping-cart` },
 ];
 
 function Nav() {
   const { pathname } = useLocation();
-  const { defaultQueryString } = useQueryString();
-  const navigate = useNavigate();
+  const { numItems } = useCartItem();
 
   const navLinks = pathname.includes("store") ? STORE_NAV : DEFAULT_NAV;
+  const activeStyle = { fontWeight: "var(--text-weight-semi-bold)" };
 
-  function handleNavigating(link) {
-    if (link.includes("store")) navigate(`${link}?${defaultQueryString}`);
-    if (!link.includes("store") || link.includes("shopping-cart"))
-      navigate(link);
-  }
-
-  const style = pathname === "/" ? { borderBottom: "none" } : {};
+  const activeEl = <div className={styles.active}>&nbsp;</div>;
+  const NumItemsEl = <span className={styles.numItems}>({numItems})</span>;
 
   return (
-    <nav style={style}>
+    <nav className={styles.nav}>
       <ul>
         {navLinks.map((nav) => {
           return (
-            <li key={nav.name} onClick={() => handleNavigating(nav.link)}>
-              <Star link={nav.link} />
-              <Link>{convertUpperCase(nav.name)}</Link>
-              <ItemsQuantity link={nav.link} />
+            <li key={nav.name}>
+              {(pathname === nav.link ||
+                pathname.includes(`${nav.link}/products`)) &&
+                activeEl}
+              <Link
+                to={nav.link}
+                style={
+                  pathname === nav.link ||
+                  pathname.includes(`${nav.link}/products`)
+                    ? activeStyle
+                    : {}
+                }
+              >
+                {convertUpperCase(nav.name)}
+              </Link>
+              {nav.link.includes("shopping-cart") && NumItemsEl}
             </li>
           );
         })}

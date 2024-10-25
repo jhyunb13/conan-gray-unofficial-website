@@ -1,13 +1,15 @@
 import propTypes from "prop-types";
 
+import styles from "./BtnScrollToSection.module.css";
+
 function BtnScrollToSection({ textContent, element }) {
   function handleScrollTo() {
     element.current.scrollIntoView({ block: "start", behavior: "auto" });
   }
 
   return (
-    <button onClick={handleScrollTo}>
-      <h1>{textContent}</h1>
+    <button className={styles.btn} onClick={handleScrollTo}>
+      <h2>{textContent}</h2>
     </button>
   );
 }

@@ -21,18 +21,12 @@ function Tour({ tourData }) {
   if (today <= tourDate)
     return (
       <div className={styles.tour}>
-        <div className="tour-date-venue">
+        <div className={styles.venue}>
           <div className={styles.tourDate}>{formattedTourdate}</div>
           <div>{tourData.location.name}</div>
         </div>
-        <div className="tour-city">{tourData.location.address}</div>
-        <BtnMultiuse
-          url="https://www.conangray.com/"
-          classForBtn="btn-ticket-link"
-          type="tour-ticket"
-        >
-          Tickets
-        </BtnMultiuse>
+        <div className={styles.city}>{tourData.location.address}</div>
+        <BtnMultiuse type="tour-ticket">Tickets</BtnMultiuse>
       </div>
     );
 }

@@ -1,4 +1,7 @@
 import propTypes from "prop-types";
+
+import styles from "./BtnRemove.module.css";
+
 import { useCartItem } from "../contexts/CartItemContext";
 
 function BtnRemove({ itemQuantity, id }) {
@@ -10,7 +13,7 @@ function BtnRemove({ itemQuantity, id }) {
 
   return (
     <button
-      className="btn-remove-item"
+      className={styles.btnRemove}
       onClick={() => handleRemoveItem(itemQuantity, id)}
     >
       remove

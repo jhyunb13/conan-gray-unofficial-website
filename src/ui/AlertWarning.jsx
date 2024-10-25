@@ -4,8 +4,6 @@ import propTypes from "prop-types";
 import BtnMultiuse from "./BtnMultiuse";
 import styles from "./AlertWarning.module.css";
 
-import { convertUpperCase } from "../utils/helpers";
-
 function AlertWarning({ closeAlert, setCloseAlert }) {
   const warningEl = useRef(null);
 
@@ -31,36 +29,34 @@ function AlertWarning({ closeAlert, setCloseAlert }) {
 
   return (
     <div
-      className={closeAlert ? `${styles.warning} hidden` : styles.warning}
+      className={closeAlert ? styles.warningHidden : styles.warning}
       onClick={handleCloserAlert2}
       ref={warningEl}
     >
-      <div className={styles.warningText}>
+      <div className={styles.warningModal}>
         <button className={styles.btnClose} onClick={handleCloseAlert1}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-x-lg"
-            viewBox="0 0 16 16"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={styles.iconX}
           >
-            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
           </svg>
         </button>
-        <div>
-          <h1>✪ important notice ✪</h1>
+        <div className={styles.content}>
+          <h1>Important Notice</h1>
           <p>
             This is not the official website of Conan Gray. If you want to
             purchase the products, please click the button below.
           </p>
-          <BtnMultiuse
-            url="https://shop.conangray.com/?utm_campaign=nav&utm_medium=referral&utm_source=conangray.com"
-            classForBtn={"btn-to-official-website"}
-            type="notification"
-          >
-            {convertUpperCase(`go to the official website`)}
-          </BtnMultiuse>
+          <BtnMultiuse type="notification" />
         </div>
       </div>
     </div>

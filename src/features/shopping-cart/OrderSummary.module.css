@@ -1,0 +1,17 @@
+.orderSummary {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  padding: 16px 0;
+
+  border-bottom: var(--border-default);
+}
+
+.total {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  padding: 16px 0;
+
+  border-bottom: 2px solid var(--color-text);
+}

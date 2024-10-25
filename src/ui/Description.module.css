@@ -1,0 +1,17 @@
+.productDescription {
+  max-width: 550px;
+  font-weight: var(--text-weight-light);
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.link:link,
+.link:visited,
+.link:hover,
+.link:active {
+  font-weight: var(--text-weight-medium);
+  text-decoration: underline;
+}

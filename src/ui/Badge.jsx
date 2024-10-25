@@ -1,7 +1,9 @@
 import propTypes from "prop-types";
 
+import styles from "./Badge.module.css";
+
 function Badge({ children }) {
-  return <span className="badge">{children}</span>;
+  return <div className={styles.badge}>{children}</div>;
 }
 
 Badge.propTypes = {

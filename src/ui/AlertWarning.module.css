@@ -4,73 +4,66 @@
   align-items: center;
   position: fixed;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   z-index: 200;
+
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.warningText {
-  width: 30vw;
-  height: 30vh;
-  padding: 10px 10px 20px 10px;
-  border-radius: 20px;
+.warningHidden {
+  display: none;
+}
+
+.warningModal {
+  width: 30dvw;
+  padding: 16px;
+
+  border-radius: var(--border-radius);
   background-color: var(--color-info-bg);
   color: var(--color-info-text);
-  text-align: right;
-  line-height: 1.6;
+
+  @media (max-width: 1000px) {
+    width: 50dvw;
+  }
+
+  @media (max-width: 768px) {
+    width: 70dvw;
+  }
+
+  @media (max-width: 400px) {
+    width: 80dvw;
+  }
 }
 
 .btnClose {
-  background: none;
-  border: none;
-  cursor: pointer;
+  display: block;
+  margin-left: auto;
 }
 
-.btnClose svg {
-  padding-right: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: var(--color-button-text);
+.iconX {
+  width: 24px;
+  height: 24px;
+
+  stroke: var(--color-text);
 }
 
-.warningText > div {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
+  gap: 16px;
+  margin: 24px 0;
 
-.warningText > h1,
-.warningText p {
   text-align: center;
 }
 
-@media (max-width: 1000px) {
-  .warningText {
-    width: 50vw;
-    height: 30vh;
-  }
-}
-
 @media (max-width: 768px) {
-  .warningText {
-    width: 70vw;
-    height: 25vh;
-  }
-
-  .warningText h1 {
+  .warningModal h1 {
     font-size: var(--text-lg);
   }
 
-  .warningText p {
+  .warningModal p {
     font-size: var(--text-sm);
-  }
-}
-
-@media (max-width: 400px) {
-  .warningText {
-    width: 80vw;
-    height: 33vh;
   }
 }

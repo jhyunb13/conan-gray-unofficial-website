@@ -1,9 +1,14 @@
-/* .activePage {
-  font-weight: var(--text-weight-bold);
+.currentPage:link,
+.currentPage:visited,
+.currentPage:hover,
+.currentPage:active {
   color: var(--color-text);
 }
 
-.inactivePage {
-  font-weight: var(--text-weight-thin);
-  color: #333333;
-} */
+.pageNum:link,
+.pageNum:visited,
+.pageNum:hover,
+.pageNum:active {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+}

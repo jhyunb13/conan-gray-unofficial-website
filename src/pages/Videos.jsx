@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import VideoList from "../features/videos/VideoList";
 import BtnScrollToSection from "../ui/BtnScrollToSection";
+import styles from "./Videos.module.css";
 
 import { useYoutube } from "../hooks/useYoutube";
 
@@ -27,39 +28,39 @@ function Videos() {
   if (isLoading) return <p>loading...</p>;
 
   return (
-    <main id="video-page">
-      <header id="video-menu">
+    <>
+      <header className={styles.submenu}>
         <BtnScrollToSection
           textContent="Found Heaven"
           element={foundHeavenElement}
         />
-        <h1>/</h1>
         <BtnScrollToSection
           textContent="Superache"
           element={superacheElement}
         />
-        <h1>/</h1>
         <BtnScrollToSection textContent="Kid Krow" element={kidKrowElement} />
       </header>
-      <VideoList
-        elementId="found-heaven"
-        playlist={foundHeavenPlaylist}
-        albumTitle="fh"
-        element={foundHeavenElement}
-      />
-      <VideoList
-        elementId="superache"
-        playlist={superachePlaylist}
-        albumTitle="s"
-        element={superacheElement}
-      />
-      <VideoList
-        elementId="kid-krow"
-        playlist={allVideosPlaylist}
-        albumTitle="kk"
-        element={kidKrowElement}
-      />
-    </main>
+      <div className={styles.videoList}>
+        <VideoList
+          elementId="found-heaven"
+          playlist={foundHeavenPlaylist}
+          albumTitle="fh"
+          element={foundHeavenElement}
+        />
+        <VideoList
+          elementId="superache"
+          playlist={superachePlaylist}
+          albumTitle="s"
+          element={superacheElement}
+        />
+        <VideoList
+          elementId="kid-krow"
+          playlist={allVideosPlaylist}
+          albumTitle="kk"
+          element={kidKrowElement}
+        />
+      </div>
+    </>
   );
 }
 

@@ -5,12 +5,15 @@ import styles from "./Song.module.css";
 
 function Song({ itemData }) {
   return (
-    <div className={styles.song}>
-      <a href={itemData.url} target="_blank" className="no-link-style">
-        <img src={itemData.cover} alt={itemData.songTitle} />
-        <SongInfo title={itemData.songTitle} releaseDate={itemData.release} />
-      </a>
-    </div>
+    <a
+      className={styles.song}
+      href={itemData.url}
+      target="_blank"
+      rel="noopener"
+    >
+      <img src={itemData.cover} alt={itemData.songTitle} />
+      <SongInfo title={itemData.songTitle} releaseDate={itemData.release} />
+    </a>
   );
 }
 

@@ -1,6 +1,12 @@
-.discountPrice span:first-child {
-  text-decoration: line-through;
+.price {
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.originalPrice {
   margin-right: 5px;
-  font-weight: 200;
-  color: var(--color-light);
+
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
 }

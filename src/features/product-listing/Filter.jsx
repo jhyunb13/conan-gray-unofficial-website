@@ -15,7 +15,7 @@ function Filter({ filterName, filterOptions, handleSettingValue }) {
     filterName === "category" ? currentCategory : currentInventoryStatus;
 
   return (
-    <div className={styles.filtering}>
+    <div className={styles.filter}>
       <div>{convertUpperCase(filterName)}</div>
       <select onChange={handleSettingValue} defaultValue={value} key={value}>
         {filterOptions.map((option) => (

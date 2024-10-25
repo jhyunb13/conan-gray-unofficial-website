@@ -1,28 +1,32 @@
-.filtering {
+.filter {
+  flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px 20px;
+  height: 45px;
+
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-secondary);
 }
 
-.filtering:first-child {
-  border-right: var(--border-default);
-}
-
-.filtering > div {
+.filter {
   font-size: var(--text-sm);
+  font-weight: var(--text-weight-medium);
+
+  @media (max-width: 400px) {
+    font-size: var(--text-xs);
+  }
 }
 
-.filtering select {
+.filter select {
   width: 70px;
-  border: none;
-  border-radius: 3px;
-  color: var(--color-button-text);
-}
 
-@media (max-width: 768px) {
-  .filtering > div {
+  font-family: "Rethink Sans", sans-serif;
+  background-color: var(--color-bg-secondary);
+  border: none;
+
+  @media (max-width: 400px) {
     font-size: var(--text-xs);
   }
 }

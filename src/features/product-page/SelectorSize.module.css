@@ -1,40 +1,35 @@
-.sizeSelector .size {
+.sizeOptions label {
   display: flex;
-  gap: 10px;
-}
-
-.sizeOption {
-  display: inline-block;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 40px;
   height: 40px;
+
   border: var(--border-default);
   border-radius: 3px;
   cursor: pointer;
 }
 
-.sizeOption:last-child {
-  margin-right: 0;
-}
-
-.sizeOption > input[type="radio"] {
+.sizeOptions label > input[type="radio"] {
   position: absolute;
   visibility: hidden;
   width: 0;
   height: 0;
-  margin: 0;
 }
 
-.sizeOption > div {
+.sizeOptions {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: inherit;
-  height: inherit;
+  gap: 10px;
 }
 
-.sizeSelected {
+.optionSelected {
   background-color: var(--color-theme-tertiary);
   border-color: var(--color-theme-tertiary);
   color: var(--color-button-text);
+}
+
+.optionUnavail {
+  background: rgba(212, 212, 212, 0.4);
+  cursor: not-allowed;
 }

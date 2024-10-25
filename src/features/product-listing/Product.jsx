@@ -47,32 +47,19 @@ function Product({ productData }) {
   }, []);
 
   return (
-    <li
-      className={styles.productCard}
-      style={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-      onClick={handleProductClick}
-    >
-      <Link
-        to={`products/${urlParam}`}
-        className={`${styles.product} no-link-style`}
-      >
-        <div className={styles.productImgContainer}>
-          <img
-            src="https://fakeimg.pl/200x200/000000/000000"
-            data-src={`https:${itemImage}`}
-            alt={itemName}
-            ref={productImageEl}
-          />
-        </div>
+    <li className={styles.productCard} onClick={handleProductClick}>
+      <Link to={`products/${urlParam}`} className={styles.productLink}>
+        <img
+          src="https://fakeimg.pl/200x200/ffffff/ffffff"
+          className={styles.productImg}
+          data-src={`https:${itemImage}`}
+          alt={itemName}
+          ref={productImageEl}
+        />
         <div className={styles.productInfo}>
-          <div className={styles.productTitlePrice}>
-            <div>{convertUpperCase(itemName)}</div>
-            <Price type="product-listing" data={productData} />
-          </div>
-          <div>
+          <div>{convertUpperCase(itemName)}</div>
+          <Price type="product-listing" data={productData} />
+          <div className={styles.extraInfo}>
             {soldOut && <Badge>{convertUpperCase(soldOut)}</Badge>}
             {discountedPrice && <Badge>{convertUpperCase("sale")}</Badge>}
             {extraInfo && <Badge>{convertUpperCase(extraInfo)}</Badge>}

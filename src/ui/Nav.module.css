@@ -1,0 +1,53 @@
+.nav {
+  flex: 0 0 45px;
+
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 16px;
+  }
+}
+
+.nav ul {
+  height: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav a:link,
+.nav a:visited,
+.nav a:hover,
+.nav a:active {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: var(--text-weight-regular);
+}
+
+.nav li {
+  position: relative;
+}
+
+.active {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 6px;
+  height: 6px;
+
+  border-radius: var(--border-radius-btn);
+  background-color: var(--color-text);
+}
+
+.numItems {
+  margin-left: 4px;
+}

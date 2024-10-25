@@ -31,7 +31,7 @@ function Video({ video, albumTitle, index }) {
           id={`video-player-${albumTitle}-${index + 1}`}
         ></div>
       </div>
-      <div className="video-info">
+      <div className={styles.videoInfo}>
         <SongInfo
           title={getSongTitle(video.snippet.title)}
           releaseDate={publishedYear}

@@ -1,0 +1,38 @@
+.searchCity h1 {
+  margin-bottom: 8px;
+
+  @media (max-width: 768px) {
+    font-size: var(--text-lg);
+  }
+}
+
+.searchCity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.searchCity .searchField {
+  width: 300px;
+  height: 40px;
+  padding-left: 10px;
+
+  border: none;
+  border-radius: var(--border-radius-btn);
+  background-color: #e9ecef;
+  font-size: var(--text-sm);
+
+  @media (max-width: 768px) {
+    width: 200px;
+    font-size: var(--text-xs);
+  }
+}
+
+.searchField:hover {
+  cursor: text;
+}
+
+.searchField:focus {
+  outline: none;
+}

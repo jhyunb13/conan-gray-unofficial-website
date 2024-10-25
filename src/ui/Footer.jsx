@@ -2,6 +2,7 @@ import propTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 
 import socialMediaData from "../data/socialMediaData.json";
+import styles from "./Footer.module.css";
 
 function Footer({ style }) {
   const { pathname } = useLocation();
@@ -10,19 +11,21 @@ function Footer({ style }) {
   const socialMediaList = socialMediaData.slice(0, 6);
   const storeList = ["help", "returns", "terms", "privacy police", "contacts"];
 
-  if (footerType === "social-media" && pathname !== "/")
+  if (footerType === "social-media")
     return (
-      <footer id="info-links" style={style}>
+      <footer className={styles.infoLinks} style={style}>
         <ul>
           {socialMediaList.map((data) => (
-            <a
-              href={data.url}
-              target="_blank"
-              rel="noopener"
-              key={data.platform}
-            >
-              <li>{data.platform}</li>
-            </a>
+            <li key={data.platform}>
+              <a
+                className={styles.link}
+                href={data.url}
+                target="_blank"
+                rel="noopener"
+              >
+                {data.platform}
+              </a>
+            </li>
           ))}
         </ul>
       </footer>
@@ -30,12 +33,14 @@ function Footer({ style }) {
 
   if (footerType === "store")
     return (
-      <footer id="info-links" style={style}>
+      <footer className={styles.infoLinks} style={style}>
         <ul>
           {storeList.map((content) => (
-            <a href="" key={content}>
-              <li>{content}</li>
-            </a>
+            <li key={content}>
+              <a className={styles.link} href="">
+                {content}
+              </a>
+            </li>
           ))}
         </ul>
       </footer>

@@ -1,9 +1,8 @@
 .video {
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 }
 
 .playerContainer {
-  margin-bottom: 20px;
   position: relative;
   height: 0;
   padding-bottom: 56.25%;
@@ -15,4 +14,8 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.videoInfo {
+  margin-top: 16px;
 }

@@ -1,9 +1,16 @@
 import propTypes from "prop-types";
 
-function AlertNoResult({ children, dataAvail }) {
-  if (dataAvail) return;
+import styles from "./AlertNoResult.module.css";
 
-  if (!dataAvail) return <h1>{children}</h1>;
+function AlertNoResult({ children, type }) {
+  return (
+    <h1
+      className={type === "no-results" ? styles.noResults : styles.emptyCart}
+      style={{ textTransform: "capitalize", textAlign: "center" }}
+    >
+      {children}
+    </h1>
+  );
 }
 
 AlertNoResult.propTypes = {

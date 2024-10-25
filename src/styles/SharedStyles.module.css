@@ -1,0 +1,16 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 45px;
+}
+
+.main {
+  background-color: var(--color-text);
+}
+
+.inactive {
+  background: rgba(212, 212, 212, 0.4);
+  cursor: not-allowed;
+}

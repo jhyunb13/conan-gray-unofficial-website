@@ -1,51 +1,79 @@
 import propTypes from "prop-types";
 
 import styles from "./SelectorQuantity.module.css";
+import sharedStyles from "../../styles/SharedStyles.module.css";
 
 import { useData } from "../../contexts/DataContext";
 
-function SelectorQuantity({ id, children, handleSubtraction, handleAddition }) {
+function SelectorQuantity({
+  type,
+  id,
+  children,
+  handleSubtraction,
+  handleAddition,
+}) {
   const { soldOut } = useData();
 
+  const styleContainer = {
+    justifyContent: "center",
+    gap: "8px",
+  };
+
+  const styleBtn = {
+    background: "var(--color-bg-secondary)",
+    width: "24px",
+    height: "24px",
+  };
+
   return (
-    <div>
-      <button
-        onClick={() => handleSubtraction(id)}
-        className={soldOut ? "btn-quantity inactive" : "btn-quantity active"}
+    <div className={styles.quantityContainer}>
+      {type === "productPage" && <div className={styles.name}>Quantity</div>}
+      <div
+        className={styles.quantitySelector}
+        style={type === "shopping-cart" ? styleContainer : {}}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="70%"
-          height="70%"
-          fill="currentColor"
-          className="bi bi-dash-lg"
-          viewBox="0 0 16 16"
+        <button
+          onClick={() => handleSubtraction(id)}
+          className={soldOut ? sharedStyles.inactive : styles.btnQuantity}
+          style={type === "shopping-cart" ? styleBtn : {}}
         >
-          <path
-            fillRule="evenodd"
-            d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"
-          />
-        </svg>
-      </button>
-      <span>{children}</span>
-      <button
-        onClick={() => handleAddition(id)}
-        className={soldOut ? "btn-quantity inactive" : "btn-quantity active"}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="70%"
-          height="70%"
-          fill="currentColor"
-          className="bi bi-plus-lg"
-          viewBox="0 0 16 16"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={
+              type === "shopping-cart" ? styles.iconSmall : styles.icon
+            }
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+          </svg>
+        </button>
+        <div>{children}</div>
+        <button
+          onClick={() => handleAddition(id)}
+          className={soldOut ? sharedStyles.inactive : styles.btnQuantity}
+          style={type === "shopping-cart" ? styleBtn : {}}
         >
-          <path
-            fillRule="evenodd"
-            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={
+              type === "shopping-cart" ? styles.iconSmall : styles.icon
+            }
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
@@ -56,6 +84,7 @@ SelectorQuantity.propTypes = {
   children: propTypes.number,
   handleSubtraction: propTypes.func,
   handleAddition: propTypes.func,
+  type: propTypes.string,
 };
 
 export default SelectorQuantity;

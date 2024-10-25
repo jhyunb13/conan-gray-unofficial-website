@@ -8,4 +8,5 @@ export default defineConfig({
     // Enable history fallback for single-page applications
     historyApiFallback: true,
   },
+  assetsInclude: ["**/*.JPG"],
 });

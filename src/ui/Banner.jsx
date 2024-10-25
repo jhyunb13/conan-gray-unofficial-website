@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 
+import styles from "./Banner.module.css";
+
 function Banner() {
   const { pathname } = useLocation();
 
@@ -18,11 +20,7 @@ function Banner() {
     );
   }
 
-  return (
-    <footer id="info-banner" style={style}>
-      {infoText}
-    </footer>
-  );
+  return <footer className={styles.banner}>{infoText}</footer>;
 }
 
 export default Banner;

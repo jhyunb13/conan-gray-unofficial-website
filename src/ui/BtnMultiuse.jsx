@@ -1,58 +1,82 @@
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import styles from "./BtnMultiuse.module.css";
+
 import { useData } from "../contexts/DataContext";
 import { convertUpperCase } from "../utils/helpers";
 
-function BtnMultiuse({ children, url, onClick, classForBtn, type }) {
+function BtnMultiuse({ children, onClick, type }) {
   const { soldOut } = useData();
 
   const newParam = new URLSearchParams([["page", "1"]]).toString();
 
   if (type === "empty-cart")
     return (
-      <div className={classForBtn}>
-        <Link to={`/store?${newParam}`}>
-          <button className="button mt-20 ">
-            {convertUpperCase(`Continue Shopping`)}
-          </button>
-        </Link>
-      </div>
+      <Link to={`/store?${newParam}`}>
+        <button className={`${styles.btn} ${styles.btnToStore} mt-20`}>
+          {convertUpperCase(`Continue Shopping`)}
+        </button>
+      </Link>
     );
 
   if (type === "sold-out" && soldOut)
     return (
-      <div className={classForBtn}>
-        <button className="button not-allowed" disabled onClick={onClick}>
-          {children}
-        </button>
-      </div>
+      <button
+        className={`${styles.btnAddItem} ${styles.btnSoldOut}`}
+        disabled
+        onClick={onClick}
+      >
+        {children}
+      </button>
     );
 
-  if ((type === "add-to-cart" && !soldOut) || type === "checkout")
+  if (type === "add-to-cart" && !soldOut)
     return (
-      <div className={classForBtn}>
-        <button className="button" onClick={onClick}>
-          {children}
-        </button>
-      </div>
+      <button className={styles.btnAddItem} onClick={onClick}>
+        {children}
+      </button>
     );
 
-  if (type === "tour-ticket" || type === "notification")
+  if (type === "tour-ticket")
     return (
-      <div className={classForBtn}>
-        <a href={url} target="_blank" rel="noopener" className="no-link-style">
-          <button className="button" onClick={onClick}>
-            {children}
-          </button>
-        </a>
-      </div>
+      <a
+        className={styles.btnTicket}
+        href="https://www.conangray.com/"
+        target="_blank"
+        rel="noopener"
+      >
+        <button className={styles.btn} onClick={onClick}>
+          {children}
+        </button>
+      </a>
+    );
+
+  if (type === "notification")
+    return (
+      <a
+        className={styles.btnToOfficial}
+        href="https://www.conangray.com/"
+        target="_blank"
+        rel="noopener"
+      >
+        <button className={styles.btn} onClick={onClick}>
+          {convertUpperCase(`go to the official website`)}
+        </button>
+      </a>
+    );
+
+  if (type === "checkout")
+    return (
+      <button className={styles.checkout} onClick={onClick}>
+        {convertUpperCase(`Continue To Check Out`)}
+      </button>
     );
 }
 
 BtnMultiuse.propTypes = {
   children: propTypes.string,
-  url: propTypes.string,
+  type: propTypes.string,
   soldOut: propTypes.string,
   onClick: propTypes.func,
   classForBtn: propTypes.string,

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import TourList from "../features/tour-dates/TourList";
+import styles from "./Tour.module.css";
 
 function Tour() {
   const [inputValue, setInputValue] = useState("");
@@ -10,23 +11,21 @@ function Tour() {
   }
 
   return (
-    <main id="tour-page">
+    <>
       <header>
-        <label>
-          <h1 className="mb-10">Found Heaven On Tour near you</h1>
-          <div className="input">
-            <input
-              className="input-field"
-              type="text"
-              placeholder="✪ enter a city or country name"
-              value={inputValue}
-              onChange={handleInputValue}
-            />
-          </div>
+        <label className={styles.searchCity}>
+          <h1>Found Heaven On Tour near you</h1>
+          <input
+            className={styles.searchField}
+            type="text"
+            placeholder="✪ enter a city or country name"
+            value={inputValue}
+            onChange={handleInputValue}
+          />
         </label>
       </header>
       <TourList input={inputValue} />
-    </main>
+    </>
   );
 }
 

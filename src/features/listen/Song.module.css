@@ -1,31 +1,21 @@
 .song {
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
+  width: 100%;
+}
+
+.song:link,
+.song:visited,
+.song:hover,
+.song:active {
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 .song img {
-  width: 30vw;
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .song h2,
 .song div {
   white-space: nowrap;
-}
-
-.song-info {
-  font-size: var(--text-sm);
-}
-
-.song button {
-  margin-top: 5px;
-}
-
-@media (max-width: 768px) {
-  .song img {
-    width: 60vw;
-    margin-bottom: 10px;
-  }
 }

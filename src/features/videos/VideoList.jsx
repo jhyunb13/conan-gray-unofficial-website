@@ -41,17 +41,16 @@ function VideoList({ elementId, playlist, albumTitle, element }) {
   }, [videoIdList, playlist, albumTitle]);
 
   return (
-    <div id={`${elementId}-era`} className="video-list" ref={element}>
-      {playlist.length
-        ? selectVideos(elementId).map((video, i) => (
-            <Video
-              albumTitle={albumTitle}
-              video={video}
-              index={i}
-              key={video.snippet.title}
-            />
-          ))
-        : ""}
+    <div className={`${elementId}-era`} ref={element}>
+      {playlist.length &&
+        selectVideos(elementId).map((video, i) => (
+          <Video
+            albumTitle={albumTitle}
+            video={video}
+            index={i}
+            key={video.snippet.title}
+          />
+        ))}
     </div>
   );
 }

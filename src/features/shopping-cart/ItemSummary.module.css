@@ -1,0 +1,54 @@
+.itemSummary {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr;
+  gap: 8px;
+  padding: 16px 0;
+
+  border-bottom: var(--border-default);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.itemSummary:first-of-type {
+  border-top: 2px solid var(--color-text);
+}
+
+.itemSummary:last-child {
+  border-bottom: 2px solid var(--color-text);
+}
+
+.itemInfo {
+  display: flex;
+  align-items: start;
+  gap: 4px;
+}
+
+.img {
+  width: 40%;
+}
+
+.itemName {
+  margin-bottom: 12px;
+}
+
+.priceInfo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px;
+
+  font-size: var(--text-sm);
+
+  @media (max-width: 768px) {
+    font-size: var(--text-xs);
+  }
+}
+
+.subtotal {
+  text-align: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

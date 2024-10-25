@@ -2,26 +2,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 50px;
+  gap: 24px;
+  margin-top: 2px;
+  height: 45px;
+
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+  font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
-.pagination a {
-  text-decoration: none;
-}
-
-.pagination button {
+.btnArrow {
   display: flex;
   justify-content: center;
-  border: none;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: var(--text-lg);
-  background: none;
-  cursor: pointer;
+  align-items: center;
 }
 
-@media (max-width: 768px) {
-  .pagination {
-    gap: 5px;
-  }
+.iconArrow {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-text);
+}
+
+.iconHidden {
+  display: none;
 }

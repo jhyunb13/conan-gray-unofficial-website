@@ -19,13 +19,13 @@ function Price({ type, data }) {
     discountedPrice = currentProduct.currentPrice;
   }
 
-  if (regularPrice) return <span>{regularPrice}</span>;
+  if (regularPrice) return <span className={styles.price}>{regularPrice}</span>;
 
   if (originalPrice && discountedPrice)
     return (
-      <div className={styles.discountPrice}>
-        <span>{originalPrice}</span>
-        <span>{discountedPrice}</span>
+      <div className={styles.price}>
+        <span className={styles.originalPrice}>{originalPrice}</span>
+        <span className="currentPrice">{discountedPrice}</span>
       </div>
     );
 }

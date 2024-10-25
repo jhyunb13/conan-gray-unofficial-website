@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import propTypes from "prop-types";
 
 import Filter from "./Filter";
+import styles from "./FilterList.module.css";
 
 import { useData } from "../../contexts/DataContext";
 import { useQueryString } from "../../hooks/useQueryString";
@@ -24,20 +25,18 @@ function FilterList() {
   }
 
   return (
-    <>
-      <div id="search-options" className="grid-2-col-lg">
-        <Filter
-          filterName="category"
-          filterOptions={itemCategories}
-          handleSettingValue={handleCategory}
-        />
-        <Filter
-          filterName="availability"
-          filterOptions={inventoryStatuses}
-          handleSettingValue={handleInventoryStatus}
-        />
-      </div>
-    </>
+    <div className={`${styles.filterContainer} grid-2-col-lg`}>
+      <Filter
+        filterName="category"
+        filterOptions={itemCategories}
+        handleSettingValue={handleCategory}
+      />
+      <Filter
+        filterName="availability"
+        filterOptions={inventoryStatuses}
+        handleSettingValue={handleInventoryStatus}
+      />
+    </div>
   );
 }
 

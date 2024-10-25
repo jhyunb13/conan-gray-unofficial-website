@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import tourData from "../../data/tourData.json";
 import Tour from "./Tour";
 import AlertNoResult from "../../ui/AlertNoResult";
+import styles from "./TourList.module.css";
 
 function TourList({ input }) {
   const capitalizedInput =
@@ -22,7 +23,7 @@ function TourList({ input }) {
     return <AlertNoResult>No shows at the moment</AlertNoResult>;
 
   return (
-    <div className="tour-list">
+    <div className={styles.tourList}>
       {filteredData.map((data, i) => (
         <Tour tourData={data} key={`${data.location.name}-${i}`} />
       ))}

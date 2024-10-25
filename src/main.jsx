@@ -6,9 +6,10 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import "./assets/style.css";
-import Root from "./layout/Root";
-import Main from "./pages/Main";
+import "./styles/globals.css";
+import DefaultLayout from "./layout/DefaultLayout";
+import NestedLayout from "./layout/NestedLayout";
+import Landing from "./pages/Landing";
 import Listen from "./pages/Listen";
 import Videos from "./pages/Videos";
 import Tour from "./pages/Tour";
@@ -24,19 +25,31 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const router = createHashRouter([
   {
     path: "",
-    element: <Root />,
+    element: <DefaultLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "", element: <Main /> },
-      { path: "listen", element: <Listen /> },
-      { path: "videos", element: <Videos /> },
-      { path: "tour", element: <Tour /> },
+      { path: "", element: <Landing /> },
+      {
+        path: "",
+        element: <NestedLayout />,
+        children: [
+          { path: "listen", element: <Listen /> },
+          {
+            path: "videos",
+            element: <Videos />,
+          },
+          {
+            path: "tour",
+            element: <Tour />,
+          },
+        ],
+      },
     ],
   },
 
   {
     path: "store",
-    element: <Root />,
+    element: <DefaultLayout />,
     errorElement: <ErrorPage />,
     children: [
       { path: "", element: <ProductListing /> },
