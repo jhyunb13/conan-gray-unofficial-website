@@ -2,7 +2,7 @@ import styles from "./Landing.module.css";
 
 function Landing() {
   return (
-    <main className={styles.main}>
+    <main className={styles.landing}>
       <div className={styles.imgContainer}>&nbsp;</div>
       <div className={styles.imgContainer}>&nbsp;</div>
       <div className={styles.imgContainer}>&nbsp;</div>

@@ -39,10 +39,10 @@ function ShoppingCart() {
   return (
     <>
       <main className={styles.shoppingCart}>
-        <Summary headers={ITEM_SUMMARY}>
+        <Summary type="item" headers={ITEM_SUMMARY}>
           <ItemSummary />
         </Summary>
-        <Summary headers={ORDER_SUMMARY}>
+        <Summary type="order" headers={ORDER_SUMMARY}>
           <OrderSummary />
           <BtnMultiuse type="checkout" onClick={handleAlertWarning} />
           <Footer />

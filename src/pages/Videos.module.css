@@ -30,3 +30,11 @@
   padding: 0 32px;
   margin: 0 auto;
 }
+
+.loading {
+  height: 75%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

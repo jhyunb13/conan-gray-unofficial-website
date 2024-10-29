@@ -25,8 +25,9 @@ function Videos() {
     }
   }, [videoLists]);
 
-  if (isLoading) return <p>loading...</p>;
+  // console.log(isLoading);
 
+  // if (isLoading)
   return (
     <>
       <header className={styles.submenu}>
@@ -40,26 +41,30 @@ function Videos() {
         />
         <BtnScrollToSection textContent="Kid Krow" element={kidKrowElement} />
       </header>
-      <div className={styles.videoList}>
-        <VideoList
-          elementId="found-heaven"
-          playlist={foundHeavenPlaylist}
-          albumTitle="fh"
-          element={foundHeavenElement}
-        />
-        <VideoList
-          elementId="superache"
-          playlist={superachePlaylist}
-          albumTitle="s"
-          element={superacheElement}
-        />
-        <VideoList
-          elementId="kid-krow"
-          playlist={allVideosPlaylist}
-          albumTitle="kk"
-          element={kidKrowElement}
-        />
-      </div>
+      {isLoading ? (
+        <h1 className={styles.loading}>Loading...</h1>
+      ) : (
+        <div className={styles.videoList}>
+          <VideoList
+            elementId="found-heaven"
+            playlist={foundHeavenPlaylist}
+            albumTitle="fh"
+            element={foundHeavenElement}
+          />
+          <VideoList
+            elementId="superache"
+            playlist={superachePlaylist}
+            albumTitle="s"
+            element={superacheElement}
+          />
+          <VideoList
+            elementId="kid-krow"
+            playlist={allVideosPlaylist}
+            albumTitle="kk"
+            element={kidKrowElement}
+          />
+        </div>
+      )}
     </>
   );
 }

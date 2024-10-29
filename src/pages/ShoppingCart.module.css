@@ -1,14 +1,16 @@
 .shoppingCart {
-  flex: 1;
-
   display: grid;
   grid-template-columns: 3fr 2fr;
+  grid-template-rows: calc(100dvh - 84px);
   gap: 2px;
 
-  overflow-y: scroll;
+  border-radius: var(--border-radius);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    overflow-y: scroll;
+
     font-size: var(--text-sm);
   }
 }

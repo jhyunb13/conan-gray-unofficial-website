@@ -3,6 +3,11 @@
 
   background-color: var(--color-background);
   border-radius: var(--border-radius);
+  overflow-y: scroll;
+
+  @media (max-width: 768px) {
+    overflow-y: unset;
+  }
 }
 
 .headers {

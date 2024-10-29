@@ -41,7 +41,7 @@
   height: inherit;
   padding: 8px 16px;
 
-  background-color: var(--color-warning);
+  background-color: var(--color-theme-secondary);
   font-size: var(--text-md);
   text-align: center;
 

@@ -1,7 +1,8 @@
 .itemSummary {
   display: grid;
   grid-template-columns: 2.5fr 1fr 1fr;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 10px;
   padding: 16px 0;
 
   border-bottom: var(--border-default);
