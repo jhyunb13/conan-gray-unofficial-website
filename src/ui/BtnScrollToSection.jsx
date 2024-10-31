@@ -4,7 +4,7 @@ import styles from "./BtnScrollToSection.module.css";
 
 function BtnScrollToSection({ textContent, element }) {
   function handleScrollTo() {
-    element.current.scrollIntoView({ block: "start", behavior: "auto" });
+    element.current.scrollIntoView({ block: "start", behavior: "smooth" });
   }
 
   return (

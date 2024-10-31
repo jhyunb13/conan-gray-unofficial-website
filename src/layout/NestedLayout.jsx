@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 
 import Footer from "../ui/Footer";
-import ScrollToTop from "../ui/ScrollToTop";
 import styles from "./NestedLayout.module.css";
 
 function NestedLayout() {
@@ -16,7 +15,6 @@ function NestedLayout() {
     >
       <Outlet />
       <Footer />
-      <ScrollToTop />
     </main>
   );
 }

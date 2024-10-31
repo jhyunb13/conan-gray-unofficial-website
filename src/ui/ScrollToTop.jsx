@@ -6,12 +6,10 @@ function ScrollToTop({ children }) {
   const location = useLocation();
 
   useEffect(() => {
-    !location.hash ? window.scrollTo(0, 0) : "";
+    if (!location.hash) {
+      document.querySelector("main").scrollTo({ top: 0, behavior: "instant" });
+    }
   }, [location]);
-
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
 
   return <>{children}</>;
 }

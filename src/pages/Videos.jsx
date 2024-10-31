@@ -25,9 +25,6 @@ function Videos() {
     }
   }, [videoLists]);
 
-  // console.log(isLoading);
-
-  // if (isLoading)
   return (
     <>
       <header className={styles.submenu}>

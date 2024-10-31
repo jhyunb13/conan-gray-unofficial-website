@@ -41,6 +41,7 @@
 
 .productDetail h1 {
   font-size: var(--text-xl);
+  margin-bottom: 8px;
 }
 
 @media (max-width: 768px) {

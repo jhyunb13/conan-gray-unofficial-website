@@ -5,6 +5,8 @@ import styles from "./Price.module.css";
 function Price({ type, data }) {
   const { currentProduct } = useData();
 
+  const style = type === "shopping-cart" ? { textAlign: "left" } : {};
+
   let regularPrice;
   let originalPrice;
   let discountedPrice;
@@ -19,11 +21,16 @@ function Price({ type, data }) {
     discountedPrice = currentProduct.currentPrice;
   }
 
-  if (regularPrice) return <div className={styles.price}>{regularPrice}</div>;
+  if (regularPrice)
+    return (
+      <div className={styles.price} style={style}>
+        {regularPrice}
+      </div>
+    );
 
   if (originalPrice && discountedPrice)
     return (
-      <div className={styles.price}>
+      <div className={styles.price} style={style}>
         <span className={styles.originalPrice}>{originalPrice}</span>
         <span className="currentPrice">{discountedPrice}</span>
       </div>

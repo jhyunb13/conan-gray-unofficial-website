@@ -5,7 +5,7 @@ import styles from "./Listen.module.css";
 function Listen() {
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <h1>Releases</h1>
       </header>
       <div className={styles.songList}>
