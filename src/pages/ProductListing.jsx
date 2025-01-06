@@ -2,7 +2,7 @@ import FilterList from "../features/product-listing/FilterList";
 import ProductList from "../features/product-listing/ProductList";
 import Pagination from "../features/product-listing/Pagination";
 import AlertNoResult from "../ui/AlertNoResult";
-import styles from "./ProductListing.module.css";
+import styles from "./ProductListing.module.scss";
 
 import { useFilters } from "../hooks/useFilters";
 import { usePageData } from "../hooks/usePageData";

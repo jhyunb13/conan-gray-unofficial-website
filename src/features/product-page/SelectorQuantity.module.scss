@@ -1,0 +1,38 @@
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.btnActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+
+  border-radius: var(--border-radius-btn);
+  background: var(--color-theme-primary);
+}
+
+.btnInactive {
+  @extend .btnActive;
+
+  background: rgba(212, 212, 212, 0.4);
+  border: var(--border-default);
+  cursor: not-allowed;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.iconSmall {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.name {
+  margin-bottom: 0.8rem;
+}

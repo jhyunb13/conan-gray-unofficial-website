@@ -1,0 +1,33 @@
+@use "../../styles/mixins" as *;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem;
+  margin-top: 2px;
+  height: 4.5rem;
+
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+  font-size: 2rem;
+
+  @include media-breakpoint(768px) {
+    font-size: 1.6rem;
+  }
+}
+
+.btnArrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconArrow {
+  width: 2rem;
+  height: 2rem;
+}
+
+.iconHidden {
+  display: none;
+}

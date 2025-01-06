@@ -1,0 +1,31 @@
+.banner {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  height: 3.5rem;
+  bottom: 0;
+
+  color: var(--color-background);
+  background-color: var(--color-text);
+  font-size: var(--text-sm);
+
+  span {
+    margin-right: 3rem;
+    white-space: nowrap;
+    transform: translateX(100vw);
+    animation-name: scroll-to-left;
+    animation-duration: 20s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes scroll-to-left {
+  from {
+    transform: translateX(0vw);
+  }
+  to {
+    transform: translateX(-30vw);
+  }
+}

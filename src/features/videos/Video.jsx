@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 
 import SongInfo from "../listen/SongInfo";
-import styles from "./Video.module.css";
+import styles from "./Video.module.scss";
 
 function Video({ video, albumTitle, index }) {
   let publishedYear;

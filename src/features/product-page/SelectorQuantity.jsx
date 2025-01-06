@@ -1,7 +1,6 @@
 import propTypes from "prop-types";
 
-import styles from "./SelectorQuantity.module.css";
-import sharedStyles from "../../styles/SharedStyles.module.css";
+import styles from "./SelectorQuantity.module.scss";
 
 import { useData } from "../../contexts/DataContext";
 
@@ -25,6 +24,36 @@ function SelectorQuantity({
     height: "24px",
   };
 
+  const iconMinus = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className={type === "shopping-cart" ? styles.iconSmall : styles.icon}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+    </svg>
+  );
+
+  const iconPlus = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className={type === "shopping-cart" ? styles.iconSmall : styles.icon}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 4.5v15m7.5-7.5h-15"
+      />
+    </svg>
+  );
+
   return (
     <div className={styles.quantityContainer}>
       {type === "productPage" && <div className={styles.name}>Quantity</div>}
@@ -34,44 +63,18 @@ function SelectorQuantity({
       >
         <button
           onClick={() => handleSubtraction(id)}
-          className={soldOut ? sharedStyles.inactive : styles.btnQuantity}
+          className={soldOut ? styles.btnInactive : styles.btnActive}
           style={type === "shopping-cart" ? styleBtn : {}}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className={
-              type === "shopping-cart" ? styles.iconSmall : styles.icon
-            }
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
-          </svg>
+          {iconMinus}
         </button>
         <div>{children}</div>
         <button
           onClick={() => handleAddition(id)}
-          className={soldOut ? sharedStyles.inactive : styles.btnQuantity}
+          className={soldOut ? styles.btnInactive : styles.btnActive}
           style={type === "shopping-cart" ? styleBtn : {}}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className={
-              type === "shopping-cart" ? styles.iconSmall : styles.icon
-            }
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 4.5v15m7.5-7.5h-15"
-            />
-          </svg>
+          {iconPlus}
         </button>
       </div>
     </div>

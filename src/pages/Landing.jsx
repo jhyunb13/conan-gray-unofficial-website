@@ -1,4 +1,4 @@
-import styles from "./Landing.module.css";
+import styles from "./Landing.module.scss";
 
 function Landing() {
   return (
@@ -10,7 +10,7 @@ function Landing() {
 
       <div className={styles.textArea}>
         <h1>Conan Gray</h1>
-        <div>The new single &quot;Holidays&quot; is out now everywhere</div>
+        <p>The new single &quot;Holidays&quot; is out now everywhere</p>
       </div>
     </main>
   );

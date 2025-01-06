@@ -1,12 +1,12 @@
 import songsData from "../data/songsData.json";
 import Song from "../features/listen/Song";
-import styles from "./Listen.module.css";
+import styles from "./Listen.module.scss";
 
 function Listen() {
   return (
     <>
       <header className={styles.header}>
-        <h1>Releases</h1>
+        <h2>Releases</h2>
       </header>
       <div className={styles.songList}>
         {songsData.map((itemData, i) => (

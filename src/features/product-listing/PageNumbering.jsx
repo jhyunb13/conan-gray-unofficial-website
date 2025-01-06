@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 
-import styles from "./PageNumbering.module.css";
+import styles from "./PageNumbering.module.scss";
 
 function PageNumbering({
   pathName,

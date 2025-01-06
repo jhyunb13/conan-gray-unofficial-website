@@ -1,0 +1,39 @@
+@use "../styles/mixins" as *;
+
+.shoppingCart {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: calc(100dvh - 8.4rem);
+  gap: 2px;
+
+  border-radius: var(--border-radius);
+
+  @include media-breakpoint(768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    overflow-y: scroll;
+
+    font-size: var(--text-sm);
+  }
+}
+
+.emptyShoppingCart {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.alertMessage {
+  flex: 0 0 80%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}

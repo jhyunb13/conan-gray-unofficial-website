@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-import styles from "./SelectorSize.module.css";
+import styles from "./SelectorSize.module.scss";
 
 import { useCartItem } from "../../contexts/CartItemContext";
 import { useData } from "../../contexts/DataContext";
@@ -12,13 +12,18 @@ function SelectorSize() {
   const { sizeSelected, cartDispatch } = useCartItem();
 
   const optionSoldOutEl = SIZE_OPTIONS.map((option) => (
-    <label className={styles.optionUnavail} key={`${option}-soldout`}>
+    <label
+      className={styles.optionUnavail}
+      htmlFor={option}
+      key={`${option}-soldout`}
+    >
       <input
         type="radio"
         name="size"
         value={option}
         onClick={handleSizeSelection}
         defaultChecked={option === "S"}
+        id={option}
       />
       {option}
     </label>
@@ -29,6 +34,7 @@ function SelectorSize() {
       className={
         sizeSelected === option ? styles.optionSelected : "optionAvail"
       }
+      htmlFor={option}
       key={`${option}-avail`}
     >
       <input
@@ -37,6 +43,7 @@ function SelectorSize() {
         value={option}
         onClick={handleSizeSelection}
         defaultChecked={option === "S"}
+        id={option}
       />
       {option}
     </label>

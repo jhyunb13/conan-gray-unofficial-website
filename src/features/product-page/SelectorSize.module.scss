@@ -1,0 +1,41 @@
+.sizeOptions {
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+
+    border: var(--border-default);
+    border-radius: 0.3rem;
+    cursor: pointer;
+
+    & > input[type="radio"] {
+      position: absolute;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  .optionSelected {
+    background-color: var(--color-theme-tertiary);
+    border-color: var(--color-theme-tertiary);
+    color: var(--color-button-text);
+  }
+
+  .optionUnavail {
+    background: rgba(212, 212, 212, 0.4);
+    cursor: not-allowed;
+  }
+}
+
+.sizeOptions {
+  display: flex;
+  gap: 1rem;
+}
+
+.name {
+  margin-bottom: 0.8rem;
+}

@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 
 import SelectorQuantity from "../features/product-page/SelectorQuantity";
 import SelectorSize from "../features/product-page/SelectorSize";
-import BtnMultiuse from "../ui/BtnMultiuse";
+import BtnRound from "../ui/BtnRound";
 import Price from "../ui/Price";
 import Description from "../ui/Description";
-import Footer from "../ui/Footer";
-import styles from "./ProductPage.module.css";
+import InfoLinks from "../ui/InfoLinks";
+import styles from "./ProductPage.module.scss";
 
 import { useData } from "../contexts/DataContext";
 import { useCartItem } from "../contexts/CartItemContext";
@@ -50,7 +50,7 @@ function ProductPage() {
         <div className={styles.productDetail}>
           <div className={styles.detailContainer}>
             <div>
-              <h1>{itemName}</h1>
+              <h3>{itemName}</h3>
               <Price />
             </div>
             <SelectorSize />
@@ -61,15 +61,13 @@ function ProductPage() {
             >
               {quantity}
             </SelectorQuantity>
-            <BtnMultiuse type="sold-out">
-              {convertUpperCase(soldOut)}
-            </BtnMultiuse>
-            <BtnMultiuse type="add-to-cart" onClick={handleAddToCart}>
+            <BtnRound type="sold-out">{convertUpperCase(soldOut)}</BtnRound>
+            <BtnRound type="add-to-cart" onClick={handleAddToCart}>
               {convertUpperCase(`Add To Cart`)}
-            </BtnMultiuse>
+            </BtnRound>
             <Description />
           </div>
-          <Footer />
+          <InfoLinks />
         </div>
       </main>
     );

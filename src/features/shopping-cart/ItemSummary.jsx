@@ -2,7 +2,7 @@ import BtnRemove from "../../ui/BtnRemove";
 import SelectorQuantity from "../product-page/SelectorQuantity";
 import Price from "../../ui/Price";
 
-import styles from "./ItemSummary.module.css";
+import styles from "./ItemSummary.module.scss";
 
 import { useCartItem } from "../../contexts/CartItemContext";
 

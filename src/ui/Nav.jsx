@@ -1,17 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
 import propTypes from "prop-types";
 
-import styles from "./Nav.module.css";
+import styles from "./Nav.module.scss";
 
 import { convertUpperCase } from "../utils/helpers";
 import { useCartItem } from "../contexts/CartItemContext";
 
 const DEFAULT_NAV = [
   { name: "Home", link: `/` },
-  { name: "listen", link: `/listen` },
-  { name: "videos", link: `/videos` },
-  { name: "tour", link: `/tour` },
-  { name: "store", link: `/store` },
+  { name: "Listen", link: `/listen` },
+  { name: "Videos", link: `/videos` },
+  { name: "Tour", link: `/tour` },
+  { name: "Store", link: `/store` },
 ];
 
 const STORE_NAV = [
@@ -25,6 +25,8 @@ const STORE_NAV = [
 function Nav() {
   const { pathname } = useLocation();
   const { numItems } = useCartItem();
+
+  console.log(pathname);
 
   const navLinks = pathname.includes("store") ? STORE_NAV : DEFAULT_NAV;
   const activeStyle = { fontWeight: "var(--text-weight-semi-bold)" };
@@ -41,17 +43,25 @@ function Nav() {
               {(pathname === nav.link ||
                 pathname.includes(`${nav.link}/products`)) &&
                 activeEl}
-              <Link
-                to={nav.link}
-                style={
-                  pathname === nav.link ||
-                  pathname.includes(`${nav.link}/products`)
-                    ? activeStyle
-                    : {}
-                }
-              >
-                {convertUpperCase(nav.name)}
-              </Link>
+              {nav.name !== "Store" && (
+                <Link
+                  to={nav.link}
+                  style={
+                    pathname === nav.link ||
+                    pathname.includes(`${nav.link}/products`)
+                      ? activeStyle
+                      : {}
+                  }
+                >
+                  {convertUpperCase(nav.name)}
+                </Link>
+              )}
+              {nav.name === "Store" && (
+                <Link to={nav.link} target="_blank" rel="noopener noreferrer">
+                  {convertUpperCase(nav.name)}
+                </Link>
+              )}
+
               {nav.link.includes("shopping-cart") && NumItemsEl}
             </li>
           );

@@ -1,6 +1,6 @@
 import { useData } from "../contexts/DataContext";
 
-import styles from "./Price.module.css";
+import styles from "./Price.module.scss";
 
 function Price({ type, data }) {
   const { currentProduct } = useData();

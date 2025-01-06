@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-import styles from "./Summary.module.css";
+import styles from "./Summary.module.scss";
 
 function Summary({ children, headers }) {
   if (headers)

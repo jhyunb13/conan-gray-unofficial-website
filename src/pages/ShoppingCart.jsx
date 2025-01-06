@@ -4,11 +4,11 @@ import Summary from "../features/shopping-cart/Summary";
 import ItemSummary from "../features/shopping-cart/ItemSummary";
 import OrderSummary from "../features/shopping-cart/OrderSummary";
 import AlertNoResult from "../ui/AlertNoResult";
-import AlertWarning from "../ui/AlertWarning";
-import BtnMultiuse from "../ui/BtnMultiuse";
-import Footer from "../ui/Footer";
+import ModalWarning from "../ui/ModalWarning";
+import BtnRound from "../ui/BtnRound";
+import InfoLinks from "../ui/InfoLinks";
 
-import styles from "./ShoppingCart.module.css";
+import styles from "./ShoppingCart.module.scss";
 
 import { useCartItem } from "../contexts/CartItemContext";
 
@@ -29,9 +29,9 @@ function ShoppingCart() {
         <main className={styles.emptyShoppingCart}>
           <div className={styles.alertMessage}>
             <AlertNoResult>Your cart is currently empty</AlertNoResult>
-            <BtnMultiuse type="empty-cart" />
+            <BtnRound type="empty-cart" />
           </div>
-          <Footer />
+          <InfoLinks />
         </main>
       </>
     );
@@ -44,11 +44,11 @@ function ShoppingCart() {
         </Summary>
         <Summary type="order" headers={ORDER_SUMMARY}>
           <OrderSummary />
-          <BtnMultiuse type="checkout" onClick={handleAlertWarning} />
-          <Footer />
+          <BtnRound type="checkout" onClick={handleAlertWarning} />
+          <InfoLinks />
         </Summary>
       </main>
-      <AlertWarning closeAlert={closeAlert} setCloseAlert={setCloseAlert} />
+      <ModalWarning closeAlert={closeAlert} setCloseAlert={setCloseAlert} />
     </>
   );
 }

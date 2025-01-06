@@ -1,0 +1,23 @@
+.infoLinks > ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.4rem;
+  row-gap: 4px;
+  padding: 0 3.2rem;
+
+  @media (max-width: 768px) {
+    column-gap: 1.2rem;
+    row-gap: 0.8rem;
+  }
+}
+
+.link {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+}

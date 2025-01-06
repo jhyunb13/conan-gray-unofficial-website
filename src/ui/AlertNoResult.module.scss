@@ -1,0 +1,26 @@
+%alert-style {
+  text-transform: capitalize;
+  text-align: center;
+  font-size: var(--text-xl);
+  font-weight: var(--text-weight-medium);
+}
+
+.noResults {
+  @extend %alert-style;
+
+  height: calc(100dvh - 13.1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.emptyCart {
+  @extend %alert-style;
+
+  @media (max-width: 420px) {
+    font-size: var(--text-lg);
+  }
+}

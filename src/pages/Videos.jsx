@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 
 import VideoList from "../features/videos/VideoList";
-import BtnScrollToSection from "../ui/BtnScrollToSection";
-import styles from "./Videos.module.css";
+import BtnRound from "../ui/BtnRound";
+import styles from "./Videos.module.scss";
 
 import { useYoutube } from "../hooks/useYoutube";
 
@@ -28,15 +28,21 @@ function Videos() {
   return (
     <>
       <header className={styles.submenu}>
-        <BtnScrollToSection
+        <BtnRound
+          type="scroll"
           textContent="Found Heaven"
           element={foundHeavenElement}
         />
-        <BtnScrollToSection
+        <BtnRound
+          type="scroll"
           textContent="Superache"
           element={superacheElement}
         />
-        <BtnScrollToSection textContent="Kid Krow" element={kidKrowElement} />
+        <BtnRound
+          type="scroll"
+          textContent="Kid Krow"
+          element={kidKrowElement}
+        />
       </header>
       {isLoading ? (
         <h1 className={styles.loading}>Loading...</h1>

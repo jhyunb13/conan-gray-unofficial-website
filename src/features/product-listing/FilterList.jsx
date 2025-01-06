@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import propTypes from "prop-types";
 
 import Filter from "./Filter";
-import styles from "./FilterList.module.css";
+import styles from "./FilterList.module.scss";
 
 import { useData } from "../../contexts/DataContext";
 import { useQueryString } from "../../hooks/useQueryString";

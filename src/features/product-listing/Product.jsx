@@ -4,7 +4,7 @@ import propTypes from "prop-types";
 
 import Badge from "../../ui/Badge";
 import Price from "../../ui/Price";
-import styles from "./Product.module.css";
+import styles from "./Product.module.scss";
 
 import { convertUpperCase, generateParams } from "../../utils/helpers";
 import { useCartItem } from "../../contexts/CartItemContext";

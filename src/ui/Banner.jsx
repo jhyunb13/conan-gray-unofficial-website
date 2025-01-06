@@ -1,18 +1,7 @@
-import { useLocation } from "react-router-dom";
-
-import styles from "./Banner.module.css";
+import styles from "./Banner.module.scss";
 
 function Banner() {
-  const { pathname } = useLocation();
-
   const infoText = [];
-  const style =
-    pathname === "/"
-      ? {
-          color: "var(--color-text)",
-          backgroundColor: "var(--color-background)",
-        }
-      : {};
 
   for (let i = 0; i < 10; i++) {
     infoText.push(

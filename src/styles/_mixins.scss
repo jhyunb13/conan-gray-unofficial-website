@@ -1,0 +1,31 @@
+@mixin media-breakpoint($breakpoint) {
+  @if $breakpoint == 1100px {
+    @media screen and (max-width: 68.75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 768px {
+    @media screen and (max-width: 48em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 650px {
+    @media screen and (max-width: 40.62em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 470px {
+    @media screen and (max-width: 29em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 400px {
+    @media screen and (max-width: 25em) {
+      @content;
+    }
+  }
+}

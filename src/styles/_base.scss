@@ -1,0 +1,86 @@
+:root {
+  --text-xs: 1.2rem;
+  --text-sm: 1.4rem;
+  --text-md: 1.8rem;
+  --text-lg: 2.4rem;
+  --text-xl: 3.2rem;
+
+  --text-weight-regular: 400;
+  --text-weight-medium: 500;
+  --text-weight-semi-bold: 600;
+  --text-weight-bold: 700;
+
+  --font-display: "Rethink Sans", sans-serif;
+  --font-nav: "Outfit", sans-serif;
+
+  --color-background: #ffffff;
+  --color-bg-secondary: #e9ecef;
+  --color-text: #000000;
+  --color-text-secondary: #868e96;
+  --color-theme-primary: #f5b804;
+  --color-theme-secondary: #e44335;
+  --color-theme-tertiary: #4280ef;
+  --color-border: #d6dae3;
+
+  --base-unit: max(0.5px, 1/1800 * 100vw);
+  --border-default: 1px solid var(--color-border);
+  --border-radius: calc(var(--base-unit) * 32);
+  --border-radius-btn: 999rem;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  overflow: hidden;
+  font-family: var(--font-display);
+  background-color: var(--color-text);
+  color: var(--color-text);
+  font-size: 1.6rem;
+}
+
+button {
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: var(--text-weight-medium);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: calc(100dvh - 3.5rem);
+  padding: 2px;
+}

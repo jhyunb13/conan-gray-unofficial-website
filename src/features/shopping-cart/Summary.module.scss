@@ -1,0 +1,40 @@
+@use "../../styles/mixins" as *;
+
+.summary {
+  padding: 2.4rem;
+
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  overflow-y: scroll;
+
+  @include media-breakpoint(768px) {
+    overflow-y: unset;
+  }
+}
+
+.headers {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr;
+  gap: 0.8rem;
+  padding-bottom: 0.8rem;
+
+  font-weight: var(--text-weight-medium);
+  border-bottom: 2px solid var(--color-text);
+
+  @include media-breakpoint(768px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.header {
+  &:nth-child(2),
+  &:nth-child(3) {
+    text-align: center;
+  }
+
+  &:nth-child(3) {
+    @include media-breakpoint(768px) {
+      display: none;
+    }
+  }
+}

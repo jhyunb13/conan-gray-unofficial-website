@@ -1,0 +1,42 @@
+@use "../styles/mixins" as *;
+
+.videoPage {
+  padding: 3rem 0;
+
+  border-radius: var(--border-radius);
+  background-color: var(--color-text);
+  overflow-y: scroll;
+}
+
+.submenu {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-bottom: 3rem;
+
+  @include media-breakpoint(768px) {
+    gap: 0.5rem;
+  }
+}
+
+.submenu h1 {
+  font-size: 2rem;
+
+  @include media-breakpoint(768px) {
+    font-size: var(--text-lg);
+  }
+}
+
+.videoList {
+  max-width: 90rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+
+.loading {
+  height: 75%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

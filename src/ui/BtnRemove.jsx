@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-import styles from "./BtnRemove.module.css";
+import styles from "./BtnRemove.module.scss";
 
 import { useCartItem } from "../contexts/CartItemContext";
 

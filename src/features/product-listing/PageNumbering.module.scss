@@ -1,0 +1,17 @@
+.currentPage {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: var(--color-text);
+  }
+}
+
+.pageNum {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: var(--color-text-secondary);
+  }
+}

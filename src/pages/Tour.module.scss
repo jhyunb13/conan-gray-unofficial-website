@@ -1,0 +1,41 @@
+@use "../styles/mixins" as *;
+
+.searchCity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 0.8rem;
+  }
+}
+
+.searchField {
+  width: 30rem;
+  height: 4rem;
+  padding-left: 1rem;
+
+  border: none;
+  border-radius: var(--border-radius-btn);
+  background-color: var(--color-bg-secondary);
+  font-size: 1.6rem;
+  transition: all 0.2s;
+
+  @include media-breakpoint(768px) {
+    width: 25rem;
+  }
+
+  &:hover {
+    cursor: text;
+  }
+
+  &:focus {
+    outline: none;
+    width: 35rem;
+
+    @include media-breakpoint(768px) {
+      width: 28rem;
+    }
+  }
+}

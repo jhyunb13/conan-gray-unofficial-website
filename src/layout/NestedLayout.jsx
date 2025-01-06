@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 
-import Footer from "../ui/Footer";
-import styles from "./NestedLayout.module.css";
+import InfoLinks from "../ui/InfoLinks";
+import styles from "./NestedLayout.module.scss";
 
 function NestedLayout() {
   const { pathname } = useLocation();
@@ -14,7 +14,7 @@ function NestedLayout() {
       style={pathname.includes("videos") ? style : {}}
     >
       <Outlet />
-      <Footer />
+      <InfoLinks />
     </main>
   );
 }

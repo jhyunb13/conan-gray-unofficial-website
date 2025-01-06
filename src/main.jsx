@@ -6,7 +6,7 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import "./styles/globals.css";
+import "./styles/main.scss";
 import DefaultLayout from "./layout/DefaultLayout";
 import NestedLayout from "./layout/NestedLayout";
 import Landing from "./pages/Landing";

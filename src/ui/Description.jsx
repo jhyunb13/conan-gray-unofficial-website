@@ -1,4 +1,4 @@
-import styles from "./Description.module.css";
+import styles from "./Description.module.scss";
 
 import { useData } from "../contexts/DataContext";
 

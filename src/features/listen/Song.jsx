@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 
 import SongInfo from "./SongInfo";
-import styles from "./Song.module.css";
+import styles from "./Song.module.scss";
 
 function Song({ itemData }) {
   return (

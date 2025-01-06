@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import tourData from "../../data/tourData.json";
 import Tour from "./Tour";
 import AlertNoResult from "../../ui/AlertNoResult";
-import styles from "./TourList.module.css";
+import styles from "./TourList.module.scss";
 
 function TourList({ input }) {
   const capitalizedInput =

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import TourList from "../features/tour-dates/TourList";
-import styles from "./Tour.module.css";
+import styles from "./Tour.module.scss";
 
 function Tour() {
   const [inputValue, setInputValue] = useState("");
@@ -14,7 +14,7 @@ function Tour() {
     <>
       <header>
         <label className={styles.searchCity}>
-          <h1>Found Heaven On Tour near you</h1>
+          <h2>Found Heaven On Tour near you</h2>
           <input
             className={styles.searchField}
             type="text"

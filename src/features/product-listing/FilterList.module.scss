@@ -1,0 +1,11 @@
+@use "../../styles/mixins" as *;
+
+.filterContainer {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 2px;
+
+  @include media-breakpoint(768px) {
+    font-size: var(--text-xs);
+  }
+}

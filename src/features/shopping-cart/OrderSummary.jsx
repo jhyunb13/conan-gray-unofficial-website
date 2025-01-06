@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-import styles from "./OrderSummary.module.css";
+import styles from "./OrderSummary.module.scss";
 
 import { useCartItem } from "../../contexts/CartItemContext";
 

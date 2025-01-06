@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import propTypes from "prop-types";
 
 import PageNumbering from "./PageNumbering";
-import styles from "./Pagination.module.css";
+import styles from "./Pagination.module.scss";
 
 function Pagination({ totalPage, currentPage }) {
   const { pathname, search } = useLocation();

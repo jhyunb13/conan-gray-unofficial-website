@@ -1,21 +1,20 @@
 import propTypes from "prop-types";
 
-import styles from "./AlertNoResult.module.css";
+import styles from "./AlertNoResult.module.scss";
 
 function AlertNoResult({ children, type }) {
   return (
-    <h1
+    <div
       className={type === "no-results" ? styles.noResults : styles.emptyCart}
-      style={{ textTransform: "capitalize", textAlign: "center" }}
     >
       {children}
-    </h1>
+    </div>
   );
 }
 
 AlertNoResult.propTypes = {
   children: propTypes.string,
-  dataAvail: propTypes.number,
+  type: propTypes.string,
 };
 
 export default AlertNoResult;

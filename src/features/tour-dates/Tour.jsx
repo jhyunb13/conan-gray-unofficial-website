@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 
-import BtnMultiuse from "../../ui/BtnMultiuse";
-import styles from "./Tour.module.css";
+import BtnRound from "../../ui/BtnRound";
+import styles from "./Tour.module.scss";
 
 function Tour({ tourData }) {
   const dateString = tourData.startDate;
@@ -18,17 +18,17 @@ function Tour({ tourData }) {
     formatOptions
   ).format(tourDate);
 
-  if (today <= tourDate)
-    return (
-      <div className={styles.tour}>
-        <div className={styles.venue}>
-          <div className={styles.tourDate}>{formattedTourdate}</div>
-          <div>{tourData.location.name}</div>
-        </div>
-        <div className={styles.city}>{tourData.location.address}</div>
-        <BtnMultiuse type="tour-ticket">Tickets</BtnMultiuse>
+  // if (today <= tourDate)
+  return (
+    <div className={styles.tour}>
+      <div className={styles.venue}>
+        <div className={styles.tourDate}>{formattedTourdate}</div>
+        <div>{tourData.location.name}</div>
       </div>
-    );
+      <div className={styles.city}>{tourData.location.address}</div>
+      <BtnRound type="tour-ticket">Tickets</BtnRound>
+    </div>
+  );
 }
 
 Tour.propTypes = {

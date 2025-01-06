@@ -1,0 +1,67 @@
+@use "../../styles/mixins" as *;
+
+.filter {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1rem 2rem;
+  height: 4.5rem;
+
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--text-weight-medium);
+
+  @include media-breakpoint(400px) {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-xs);
+  }
+
+  select {
+    position: relative;
+    width: 10rem;
+    padding-right: 1.5rem;
+    z-index: 3;
+
+    font-family: "Rethink Sans", sans-serif;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    background-color: transparent;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    appearance: none;
+    cursor: pointer;
+
+    @include media-breakpoint(470px) {
+      width: 7rem;
+    }
+
+    @include media-breakpoint(400px) {
+      font-size: var(--text-xs);
+    }
+  }
+
+  select:focus {
+    outline-offset: 0;
+  }
+}
+
+.selectContainer {
+  position: relative;
+}
+
+.iconArrow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  z-index: 1;
+
+  width: 1.5rem;
+  height: 1.5rem;
+}

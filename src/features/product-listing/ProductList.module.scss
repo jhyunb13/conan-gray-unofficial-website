@@ -1,0 +1,11 @@
+@use "../../styles/mixins" as *;
+
+.productList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+
+  @include media-breakpoint(1100px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
